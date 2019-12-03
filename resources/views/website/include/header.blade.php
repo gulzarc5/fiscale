@@ -36,8 +36,8 @@
                                         <ul>
                                             <li class="active"><a href="{{route('website.web.index')}}">Home</a></li>
                                             <li><a href="{{route('website.web.contact')}}">Contact</a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('empl_login')}}">Employee login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('branch_login')}}">Branch login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('employee.loginForm')}}">Employee login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('branch.loginForm')}}">Branch login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
                                         </ul>
                                     </div>
                                 </nav>

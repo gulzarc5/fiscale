@@ -60,9 +60,15 @@ class Handler extends ExceptionHandler
         switch ($guard) {
             case 'admin':
                 $login = 'admin.login';
-                break;               
+                break;  
+            case 'employee':
+                    $login = 'employee.loginForm';
+                    break;   
+            case 'branch':
+                $login = 'branch.loginForm';
+                break;             
             default:
-                $login = 'admin.login';
+                $login = 'employee.loginForm';
                 break;
         }
         return redirect()->guest(route($login));
