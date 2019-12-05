@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DB;
+use auth;
 
 class RegisterController extends Controller
 {
@@ -82,7 +83,7 @@ class RegisterController extends Controller
             $job = DB::table('job')
                 ->insert([
                     'job_type' =>  $request->input('job_type'),
-                    'created_by_id' => Auth::guard('branch')->user()->id;
+                    'created_by_id' => Auth::guard('branch')->user()->id,
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
@@ -97,5 +98,10 @@ class RegisterController extends Controller
         }else{
             return redirect()->back()->with('error','Something Wrong With Registration Please Try Again');  
         }
+    }
+
+    public function thankYou()
+    {
+        return view('website.branch.thankyou');
     }
 }

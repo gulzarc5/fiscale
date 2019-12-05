@@ -19,6 +19,7 @@ Route::group(['namespace'=>'Branch'],function(){
 
     Route::group(['middleware'=>'auth:branch','prefix'=>'branch'],function(){
         Route::get('/deshboard', 'DeshboardController@index')->name('branch.deshboard');
+        Route::get('/thankyou', 'RegisterController@thankYou')->name('branch.thank_you');
 
         Route::post('/register', 'RegisterController@registerUsers')->name('branch.register_user');
         Route::get('/user/list', 'DeshboardController@index')->name('branch.deshboard');
