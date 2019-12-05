@@ -358,12 +358,6 @@
                 var s = jQuery(a).find("svg");
                 void 0 !== t && (s = s.attr("id", t)), void 0 !== i && (s = s.attr("class", i + " replaced-svg")), !(s = s.removeAttr("xmlns:a")).attr("viewBox") && s.attr("height") && s.attr("width") && s.attr("viewBox", "0 0 " + s.attr("height") + " " + s.attr("width")), e.replaceWith(s)
             }, "xml")
-        }), e(".contact-form").on("submit", "form", function(t) {
-            t.preventDefault();
-            var i = e(this);
-            e.post(i.attr("action"), i.serialize(), function(t) {
-                t = e.parseJSON(t), i.parent(".contact-page-form").find(".form-response").html("<span>" + t[1] + "</span>")
-            })
         }), l(), e(window).resize(function() {
             l()
         });

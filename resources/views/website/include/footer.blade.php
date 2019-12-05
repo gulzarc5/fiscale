@@ -34,6 +34,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
     <script src="{{asset('web/js/menu.min.js')}}"></script>
     <script src="{{asset('web/js/scripts.js')}}"></script>
-    <script src="{{asset('web/js/custom.js')}}"></script>
+    {{-- <script src="{{asset('web/js/custom.js')}}"></script> --}}
 </body>
 </html>
