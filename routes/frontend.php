@@ -1,25 +1,25 @@
 <?php
-Route::group(['namespace'=>'Employee'],function(){
-    Route::get('Employee/Login/Form','LoginController@index')->name('employee.loginForm');
-    Route::post('Employee/Login','LoginController@employeeLogin')->name('employee.login');
+Route::group(['namespace' => 'Employee'], function () {
+    Route::get('Employee/Login/Form', 'LoginController@index')->name('employee.loginForm');
+    Route::post('Employee/Login', 'LoginController@employeeLogin')->name('employee.login');
     Route::post('Employee/logout', 'LoginController@logout')->name('employee.logout');
 
-    Route::group(['middleware'=>'auth:employee','prefix'=>'employee'],function(){
+    Route::group(['middleware' => 'auth:employee', 'prefix' => 'employee'], function () {
         Route::get('/deshboard', 'DeshboardController@index')->name('employee.deshboard');
 
         Route::get('/close/jobs', 'JobController@closeJobForm')->name('employee.close_job_form');
     });
-
 });
 
-Route::group(['namespace'=>'Branch'],function(){
-    Route::get('Branch/Login/Form','LoginController@index')->name('branch.loginForm');
-    Route::post('Branch/Login','LoginController@branchLogin')->name('branch.login');
+Route::group(['namespace' => 'Branch'], function () {
+    Route::get('Branch/Login/Form', 'LoginController@index')->name('branch.loginForm');
+    Route::post('Branch/Login', 'LoginController@branchLogin')->name('branch.login');
     Route::post('Branch/logout', 'LoginController@logout')->name('branch.logout');
 
-    Route::group(['middleware'=>'auth:branch','prefix'=>'branch'],function(){
+    Route::group(['middleware' => 'auth:branch', 'prefix' => 'branch'], function () {
         Route::get('/deshboard', 'DeshboardController@index')->name('branch.deshboard');
         Route::get('/thankyou', 'RegisterController@thankYou')->name('branch.thank_you');
+        Route::get('/registrationprint', 'RegisterController@registrationPrint')->name('branch.registration_print');
 
         Route::post('/register', 'RegisterController@registerUsers')->name('branch.register_user');
         Route::get('/user/list', 'DeshboardController@index')->name('branch.deshboard');

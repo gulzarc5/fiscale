@@ -13,28 +13,28 @@ class RegisterController extends Controller
     public function registerUsers(Request $request)
     {
         $request->validate([
-	        'name' => ['required', 'string', 'max:255'],
-            'dob' => ['required'],           
+            'name' => ['required', 'string', 'max:255'],
+            'dob' => ['required'],
             'pan'  => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:client'],
-            'mobile' =>  ['required','digits:10','numeric','unique:client'],
-            'constitution' => ['required'], 
-            'gender' => ['required'], 
-            'mobile' => ['required'], 
+            'mobile' =>  ['required', 'digits:10', 'numeric', 'unique:client'],
+            'constitution' => ['required'],
+            'gender' => ['required'],
+            'mobile' => ['required'],
 
-            'village_addr' => ['required'], 
-            'po_addr' => ['required'], 
-            'ps_addr' => ['required'], 
-            'district_addr' => ['required'], 
-            'state_addr' => ['required'], 
-            'pin_addr' => ['required'], 
-            'flat' => ['required'], 
-            'village' => ['required'], 
-            'po' => ['required'], 
-            'ps' => ['required'], 
-            'district' => ['required'], 
-            'state' => ['required'], 
-            'pin' => ['required'], 
+            'village_addr' => ['required'],
+            'po_addr' => ['required'],
+            'ps_addr' => ['required'],
+            'district_addr' => ['required'],
+            'state_addr' => ['required'],
+            'pin_addr' => ['required'],
+            'flat' => ['required'],
+            'village' => ['required'],
+            'po' => ['required'],
+            'ps' => ['required'],
+            'district' => ['required'],
+            'state' => ['required'],
+            'pin' => ['required'],
         ]);
 
         $user = DB::table('client')
@@ -66,19 +66,19 @@ class RegisterController extends Controller
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
             $business_addr = DB::table('address')
-            ->insertGetId([
-                'flat_no' =>  $request->input('flat'),
-                'village' =>  $request->input('village'),
-                'po' =>  $request->input('po'),
-                'ps' =>  $request->input('ps'),
-                'area' =>  $request->input('area'),
-                'dist' =>  $request->input('district'),
-                'state' =>  $request->input('state'),
-                'pin' =>  $request->input('pin'),
-                'trade_name' => $request->input('trade_name'),
-                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
-                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
-            ]);
+                ->insertGetId([
+                    'flat_no' =>  $request->input('flat'),
+                    'village' =>  $request->input('village'),
+                    'po' =>  $request->input('po'),
+                    'ps' =>  $request->input('ps'),
+                    'area' =>  $request->input('area'),
+                    'dist' =>  $request->input('district'),
+                    'state' =>  $request->input('state'),
+                    'pin' =>  $request->input('pin'),
+                    'trade_name' => $request->input('trade_name'),
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
 
             $job = DB::table('job')
                 ->insert([
@@ -88,20 +88,25 @@ class RegisterController extends Controller
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
             $update_client = DB::table('client')
-                ->where('id',$user)
+                ->where('id', $user)
                 ->update([
                     'residential_addr_id' =>  $resident_addr,
                     'business_addr_id' => $business_addr,
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
-            return redirect()->back()->with('message','Client Registered Successfully');   
-        }else{
-            return redirect()->back()->with('error','Something Wrong With Registration Please Try Again');  
+            return redirect()->route('branch.thank_you')->with('message', 'Client Registered Successfully');
+        } else {
+            return redirect()->back()->with('error', 'Something Wrong With Registration Please Try Again');
         }
     }
 
     public function thankYou()
     {
         return view('website.branch.thankyou');
+    }
+
+    public function registrationPrint()
+    {
+        return view('website.branch.registration_print');
     }
 }
