@@ -7,22 +7,37 @@
 		<div class="page-header text-center">
 			<h1>Branch Login</h1>
 		</div>
-		<form action="branch_home.php" method="post" class="form-validate" _lpchecked="1">
+		{{ Form::open(array('route' => 'branch.login', 'method' => 'post')) }}
 			<div class="form-group">
 				<div class="control-label">
-					<label id="username-lbl" for="username" class="required invalid">Username<span class="star">&nbsp;*</span></label>
+					<label id="username-lbl" for="username" class="required invalid">Email<span class="star">&nbsp;*</span></label>
 				</div>
 				<div class="controls">
-					<input name="username" id="username" value="" class="theme-input-style validate-username required form-control" size="25" required="required" aria-required="true" autofocus="" type="text">
+				<input name="email" id="username" class="theme-input-style form-control" aria-required="true" autofocus="" type="text" value="{{old('email')}}" >
 				</div>
+				@if ($message = Session::get('login_error'))
+					<span style="color:red" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@endif
+				@error('email')
+					<span style="color:red" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
 			</div>
 			<div class="form-group">
 				<div class="control-label">
 					<label id="password-lbl" for="password" class="required">Password<span class="star">&nbsp;*</span></label>
 				</div>
 				<div class="controls">
-					<input name="password" id="password" value="" class="theme-input-style validate-password required form-control" size="25" maxlength="99" required="required" aria-required="true" type="password">
+					<input name="password" id="password" class="theme-input-style form-control"  aria-required="true" type="password">
 				</div>
+				@error('password')
+					<span style="color:red" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
 			</div>
 			<div class="d-flex justify-content-between">
 				<div class="form-group d-flex justify-content-start" style="width: 100%;">
@@ -31,8 +46,7 @@
 					</div>
 				</div>
 			</div>
-			<input name="return" value="" type="hidden"><input name="7c519d6abc4458bded19328f936cce5a" value="1" type="hidden">
-		</form>
+		{{ Form::close() }}
 	</div>
 </div>
 

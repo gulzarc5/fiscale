@@ -51,6 +51,15 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employee',
+        ],
+
+        'branch' => [
+            'driver' => 'session',
+            'provider' => 'branch',
+        ],
     ],
 
     /*
@@ -79,6 +88,16 @@ return [
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'branch' => [
+            'driver' => 'eloquent',
+            'model' => App\Branch::class,
+        ],
+
+        'employee' => [
+            'driver' => 'eloquent',
+            'model' => App\Employee::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
