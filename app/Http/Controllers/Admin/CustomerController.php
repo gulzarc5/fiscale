@@ -24,11 +24,16 @@ class CustomerController extends Controller
         return datatables()->of($query->get())
             ->addIndexColumn()
             ->addColumn('action', function($row){
-                $btn ='<a href="#" class="btn btn-info btn-sm" target="_blank">View</a>';
+                $btn ='<a href="'.route('admin.client_detail').'" class="btn btn-info btn-sm" target="_blank">View</a>';
                 return $btn;
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function viewClient()
+    {
+       return view('admin.customer.client_detail');
     }
 
     public function jobList()
