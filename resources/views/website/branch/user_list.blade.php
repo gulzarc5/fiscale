@@ -19,7 +19,26 @@
                            <td> Mobile </td>
                            <td> View Jobs</td>
                         </tr>
-                        <tr>
+                        @if (isset($users) && count($users) > 0)
+                        @php
+                            $user_count = 1;
+                        @endphp
+                            @foreach ($users as $item)
+                            <tr>
+                              <td>{{$user_count++}}</td>
+                              <td>{{$item->id}}</td>
+                              <td>{{$item->name}}</td>
+                              <td>{{$item->pan}}</td>
+                              <td>{{$item->mobile}}</td>
+                              <td class="view-btn"><a class="btn text-white rounded" href="{{route('branch.user_view',['user_id'=>encrypt($item->id)])}}"><i class="fa fa-eye"></i></a></td>
+                           </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                               <td colspan="6" align="center">No Data Found</td>
+                            </tr>
+                        @endif
+                        {{-- <tr>
                            <td>1</td>
                            <td>2144</td>
                            <td>Babu Rao</td>
@@ -50,7 +69,8 @@
                            <td>DD44555G</td>
                            <td>9854098540</td>
                            <td class="view-btn"><a class="btn text-white rounded" href="branch_tracking_details.php"><i class="fa fa-eye"></i></a></td>
-                        </tr>
+                        </tr> --}}
+
                      </tbody>
                   </table>
                </div>

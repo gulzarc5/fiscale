@@ -22,7 +22,16 @@ Route::group(['namespace' => 'Branch'], function () {
         Route::get('/registrationprint', 'RegisterController@registrationPrint')->name('branch.registration_print');
 
         Route::post('/register', 'RegisterController@registerUsers')->name('branch.register_user');
-        Route::get('/user/list', 'DeshboardController@index')->name('branch.deshboard');
+        Route::get('/user/list', 'DeshboardController@branchUsers')->name('branch.user_list');
+
+        Route::get('/user/view/{user_id}', 'DeshboardController@branchUserView')->name('branch.user_view');
+
+        Route::get('/search/client/job/form', 'JobController@searchClientAddJobForm')->name('branch.search_client_add_job');
+        Route::post('/add/job/form', 'JobController@addJobForm')->name('branch.add_job_form');
+        Route::post('/add/job', 'JobController@addJob')->name('branch.add_job');
+
+        Route::get('/track/job/form', 'JobController@trackJobForm')->name('branch.track_job_form');
+        Route::post('/track/job', 'JobController@trackJob')->name('branch.track_job');
 
         // Route::get('/close/jobs', 'JobController@closeJobForm')->name('employee.close_job_form');
     });

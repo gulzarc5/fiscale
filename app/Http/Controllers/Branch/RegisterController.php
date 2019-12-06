@@ -13,9 +13,9 @@ class RegisterController extends Controller
     public function registerUsers(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'dob' => ['required'],
-            'pan'  => ['required'],
+	        'name' => ['required', 'string', 'max:255'],
+            'dob' => ['required'],           
+            'pan'  => ['required','unique:client'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:client'],
             'mobile' =>  ['required', 'digits:10', 'numeric', 'unique:client'],
             'constitution' => ['required'],
@@ -42,15 +42,17 @@ class RegisterController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'mobile' => $request->input('mobile'),
-                'pan' => $request->input('pan'),
+                'pan' => strtoupper($request->input('pan')),
                 'father_name' => $request->input('father_name'),
                 'dob' => $request->input('dob'),
                 'gender' => $request->input('gender'),
                 'constitution' => $request->input('constitution'),
+                'created_by_id' => Auth::guard('branch')->user()->id,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         if ($user) {
+            
             $resident_addr = DB::table('address')
                 ->insertGetId([
                     'flat_no' =>  $request->input('flat_addr'),
@@ -80,16 +82,30 @@ class RegisterController extends Controller
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
 
-            $job = DB::table('job')
+            foreach ($job_type as $key => $value) {
+                DB::table('job')
                 ->insert([
-                    'job_type' =>  $request->input('job_type'),
+                    'client_id' => $user,
+                    'job_type' => $value,
                     'created_by_id' => Auth::guard('branch')->user()->id,
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
+            }
+
+            $branch_name = Auth::guard('branch')->user()->name;
+            $b = substr($branch_name, 0, 2);
+            $client_id = $b.$request->input('pan');
+            $data = null;
+            $length = 5 - intval(strlen((string) $user));
+            for ($i=0; $i < $length; $i++) { 
+                $data.='0';
+            } 
+            $client_id = $client_id.$data.$user;
             $update_client = DB::table('client')
                 ->where('id', $user)
                 ->update([
+                    'client_id' => $client_id,
                     'residential_addr_id' =>  $resident_addr,
                     'business_addr_id' => $business_addr,
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),

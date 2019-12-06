@@ -1,5 +1,4 @@
 @extends('website.branch.template.branch_master')
-<!-- Head & Header Section -->
 @section('content') 
    <div class="col p-t col-md-10">
       <div class="col-md-12">
@@ -245,29 +244,29 @@
             <div id="form-3" style="display: none;">
                <h4>Your Job Details</h4>
                <div id="job_desc_div">
-               <div class="row half-gutter">
-                  <div id="first-job-des" class="col-md-10">
-                     <div class="form-group" id="job_desc">
-                        <label>Job Description *</label>
-                        <select class="theme-input-style job-d text-uppercase" required name="job_type">
-                           <option selected="" disabled="" value="">--SELECT JOB DESCRIPTION FROM LIST--</option>
-                           @if (isset($job_type) && !empty($job_type))
-                              @foreach ($job_type as $item)
-                                 <option value="{{$item->id}}" {{ old('job_type') == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
-                              @endforeach
-                           @endif
-                          
-                        </select>
+                  <div class="row half-gutter">
+                     <div id="first-job-des" class="col-md-10">
+                        <div class="form-group" id="job_desc">
+                           <label>Job Description *</label>
+                           <select class="theme-input-style job-d text-uppercase" required name="job_type[]">
+                              <option selected="" disabled="" value="">--SELECT JOB DESCRIPTION FROM LIST--</option>
+                              @if (isset($job_type) && !empty($job_type))
+                                 @foreach ($job_type as $item)
+                                    <option value="{{$item->id}}" {{ old('job_type') == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
+                                 @endforeach
+                              @endif
+                           
+                           </select>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-md-2">
-                     <div class="form-group add-more">
-                        <label>Add More</label>
-                        <input id="add-more" style="background-color: #f4ba1f;" type="button" class=" btn rounded theme-input-style" value="+"> 
+                     <div class="col-md-2">
+                        <div class="form-group add-more">
+                           <label>Add More</label>
+                           <input id="add-more" style="background-color: #f4ba1f;" type="button" class=" btn rounded theme-input-style" value="+"> 
+                        </div>
                      </div>
                   </div>
                </div>
-            </div>
                <div class="col-md-12 text-right">
                   <button id="form-3-previous" class="btn rounded" type="button">&lt; PREVIOUS</button>
                   <button class="btn rounded" type="submit">SUBMIT &gt;</button>

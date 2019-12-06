@@ -128,3 +128,12 @@ nav.my ul li ul li a.active {
    padding: 18px 30px 30px;
    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
  }
+ .status{
+   color: #fff;
+   position: relative;
+   border: none;
+   border-radius: 0;
+   padding: 4px 8px;
+   overflow: hidden;
+   z-index: 0;
+ }

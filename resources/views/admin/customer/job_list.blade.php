@@ -8,7 +8,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Branch List</h2>
+                    <h2>Job List</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div>
@@ -17,14 +17,11 @@
                             <thead>
                             <tr>
                                 <th>Sl</th>
+                                <th>Job Description</th>
+                                <th>Customer ID</th>
                                 <th>Name</th>
                                 <th>Mobile</th>
-                                <th>Email</th>
-                                <th>Pin</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Address</th>
-                                <th>Status</th>
+                                <th>Pan</th>                                
                                 <th>Date Created</th>
                                 <th>action</th>
                             </tr>
@@ -49,23 +46,14 @@
             var table = $('#size_list').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.branch_list_ajax') }}",
+                ajax: "{{ route('admin.job_list_ajax') }}",
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'name', name: 'name' ,searchable: true},
-                    {data: 'mobile', name: 'mobile' ,searchable: true},   
-                    {data: 'email', name: 'email' ,searchable: true},            
-                    {data: 'pin', name: 'pin' ,searchable: true},  
-                    {data: 'state', name: 'state' ,searchable: true},   
-                    {data: 'city', name: 'city' ,searchable: true},  
-                    {data: 'address', name: 'address' ,searchable: true}, 
-                    {data: 'status', name: 'status', render:function(data, type, row){
-                      if (row.status == '1') {
-                        return "Active"
-                      }else{
-                        return "Not Active"
-                      }                        
-                    }},
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},                    
+                    {data: 'job_type_name', name: 'job_type_name',searchable: true},
+                    {data: 'id', name: 'id',searchable: true},
+                    {data: 'c_name', name: 'c_name' ,searchable: true},
+                    {data: 'c_mobile', name: 'c_mobile' ,searchable: true},              
+                    {data: 'c_pan', name: 'c_pan' ,searchable: true},   
                     {data: 'created_at', name: 'created_at' ,searchable: true},  
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]

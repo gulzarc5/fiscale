@@ -47,8 +47,21 @@ class BranchController extends Controller
 
     public function branchList()
     {
-        $branch = DB::table('branch')->orderBy('id','desc')->get();
-        return view('admin.branch.branch_list',compact('branch'));
+        return view('admin.branch.branch_list');
+    }
+
+    public function branchListAjax()
+    {
+        $query = DB::table('branch')->orderBy('id','desc');
+        return datatables()->of($query->get())
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $btn ='<a href="'.route('admin.edit_branch_form',['id'=>encrypt($row->id)]).'" class="btn btn-warning">Edit</a>
+                <a href="'.route('admin.change_pass_branch_form',['id'=>encrypt($row->id)]).'" class="btn btn-danger">Change Password</a>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     public function editBranchForm($id)
