@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DB;
 use auth;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class RegisterController extends Controller
 {
@@ -81,48 +82,73 @@ class RegisterController extends Controller
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
-
+            $job_type = $request->input('job_type');
             foreach ($job_type as $key => $value) {
-                DB::table('job')
-                ->insert([
+                $job_ins = DB::table('job')
+                ->insertGetId([
                     'client_id' => $user,
                     'job_type' => $value,
                     'created_by_id' => Auth::guard('branch')->user()->id,
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
+                if ($job_ins) {
+                    $length = 5 - intval(strlen((string) $job_ins));
+                    $job_id = 'FSP0101';
+                    for ($i=0; $i < $length; $i++) { 
+                        $job_id.='0';
+                    } 
+                    $job_id = $job_id.$job_ins;
+                    $update_job = DB::table('job')
+                        ->where('id', $job_ins)
+                        ->update([
+                            'job_id' =>  $job_id,
+                            'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                        ]);
+                }
             }
-
-            $branch_name = Auth::guard('branch')->user()->name;
-            $b = substr($branch_name, 0, 2);
-            $client_id = $b.$request->input('pan');
-            $data = null;
-            $length = 5 - intval(strlen((string) $user));
-            for ($i=0; $i < $length; $i++) { 
-                $data.='0';
-            } 
-            $client_id = $client_id.$data.$user;
             $update_client = DB::table('client')
                 ->where('id', $user)
                 ->update([
-                    'client_id' => $client_id,
                     'residential_addr_id' =>  $resident_addr,
                     'business_addr_id' => $business_addr,
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
-            return redirect()->route('branch.thank_you')->with('message', 'Client Registered Successfully');
+            $pan = strtoupper($request->input('pan'));
+
+            return redirect()->route('branch.thank_you',['pan'=>encrypt($pan),'client_id'=>encrypt($user)]);
         } else {
             return redirect()->back()->with('error', 'Something Wrong With Registration Please Try Again');
         }
     }
 
-    public function thankYou()
+    public function thankYou($pan,$client_id)
     {
-        return view('website.branch.thankyou');
+        try {
+            $pan = decrypt($pan);
+            $client_id = decrypt($client_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        return view('website.branch.thankyou',compact('pan','client_id'));
     }
 
-    public function registrationPrint()
+    public function registrationPrint($client_id)
     {
-        return view('website.branch.registration_print');
+        try {
+            $client_id = decrypt($client_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $client_personal = DB::table('client')->where('id',$client_id)->first();
+        $res_addr = null;
+        $business_addr = null;
+        $job_det = null;
+        if ($client_personal) {
+            $res_addr = DB::table('address')->where('id',$client_personal->residential_addr_id)->first();
+            $business_addr = DB::table('address')->where('id',$client_personal->business_addr_id)->first();
+            $job_det =  DB::table('job')->where('client_id',$client_personal->id)->get();
+        }
+        return view('website.branch.registration_print',compact('client_personal','res_addr','business_addr','job_det'));
     }
 }

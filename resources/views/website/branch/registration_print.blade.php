@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="{{asset('web/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/colors/theme-color-1.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/custom.css')}}">
+    <style>
+        .table-header-cl{
+            font-weight: bold !important;
+            color:black !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,126 +41,151 @@
                                 <h3>CLIENT REGISTRATION FORM</h3>
                         </div>
                 </div>
-                <div class="col-md-12 p-0">
-                    <div class="row">
-                            <div class="col-md-6">
-                                    <h4>REGISTRATION ID : 2164431346</h4>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <h4>DATE : 20/12/2019</h4>
-                            </div>
+                @if (isset($client_personal) && !empty($client_personal))
+                    <div class="col-md-12 p-0">
+                        <div class="row">
+                                <div class="col-md-6">
+                                        {{-- <h4>REGISTRATION ID : 2164431346</h4> --}}
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <h4>DATE : {{$client_personal->created_at}}</h4>
+                                </div>
+                        </div>
                     </div>
-                </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="text-center">
+                                <td colspan="4" class="table-header-cl"><b>USER PERSONAL DETAILS</b></td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">Name</th>
+                                <td>{{$client_personal->name}}</td>
+                                <th class="table-header-cl">Father's name</th>
+                                <td>{{$client_personal->father_name}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">D.O.B</th>
+                                <td>{{$client_personal->dob}}</td>
+                                <th class="table-header-cl">PAN</th>
+                                <td>{{$client_personal->pan}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">Constitution</th>
+                                <td>{{$client_personal->constitution}}</td>
+                                <th class="table-header-cl">Gender</th>
+                                <td>
+                                    @if ($client_personal->gender == 'M')
+                                        Male
+                                    @else
+                                        Female
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">Mobile</th>
+                                <td>{{$client_personal->mobile}}</td>
+                                <th class="table-header-cl">Email</th>
+                                <td>{{$client_personal->email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                @endif
                 <table class="table table-bordered">
                     <tbody>
+                        @if (isset($res_addr) && !empty($res_addr))
                         <tr class="text-center">
-                            <td colspan="4"><b>USER PERSONAL DETAILS</b></td>
+                            <td colspan="4" class="table-header-cl"><b>USER RESIDENTIAL ADDRESS</b></td>
                         </tr>
                         <tr>
-                            <th>Name</th>
-                            <td>Gulzar Choudhary</td>
-                            <th>Father's name</th>
-                            <td>Something</td>
+                            <th class="table-header-cl">Flat No/H No.</th>
+                            <td>{{$res_addr->flat_no}}</td>
+                            <th class="table-header-cl">Building/village</th>
+                            <td>{{$res_addr->village}}</td>
                         </tr>
                         <tr>
-                            <th>D.O.B</th>
-                            <td>20/12/1019</td>
-                            <th>PAN</th>
-                            <td>DZG555445</td>
+                            <th class="table-header-cl">P.O</th>
+                            <td>{{$res_addr->po}}</td>
+                            <th class="table-header-cl">P.S</th>
+                            <td>{{$res_addr->ps}}</td>
                         </tr>
                         <tr>
-                            <th>Constitution</th>
-                            <td>Unknown</td>
-                            <th>Gender</th>
-                            <td>Male</td>
+                            <th class="table-header-cl">Area</th>
+                            <td>{{$res_addr->area}}</td>
+                            <th class="table-header-cl">District</th>
+                            <td>{{$res_addr->dist}}</td>
                         </tr>
                         <tr>
-                            <th>Mobile</th>
-                            <td>9854098540</td>
-                            <th>Email</th>
-                            <td>ankm78@gmail.com</td>
+                            <th class="table-header-cl">State</th>
+                            <td>{{$res_addr->state}}</td>
+                            <th class="table-header-cl">Pin</th>
+                            <td>{{$res_addr->pin}}</td>
                         </tr>
+                        <tr>
+                            <th class="table-header-cl">Trade Name</th>
+                            <td colspan="3">{{$res_addr->trade_name}}</td>
+                        </tr>
+                        @endif
+                        @if (isset($res_addr) && !empty($res_addr))
+                        <tr>
+                            <th colspan="4" class="text-center table-header-cl">USER BUSINESS ADDRESS</th>
+                        </tr>
+                        <tr>
+                                <th class="table-header-cl">Flat No/H No.</th>
+                                <td>{{$res_addr->flat_no}}</td>
+                                <th class="table-header-cl">Building/village</th>
+                                <td>{{$res_addr->village}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">P.O</th>
+                                <td>{{$res_addr->po}}</td>
+                                <th class="table-header-cl">P.S</th>
+                                <td>{{$res_addr->ps}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">Area</th>
+                                <td>{{$res_addr->area}}</td>
+                                <th class="table-header-cl">District</th>
+                                <td>{{$res_addr->dist}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">State</th>
+                                <td>{{$res_addr->state}}</td>
+                                <th class="table-header-cl">Pin</th>
+                                <td>{{$res_addr->pin}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-header-cl">Trade Name</th>
+                                <td colspan="3">{{$res_addr->trade_name}}</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
-
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr class="text-center">
-                            <td colspan="4"><b>USER RESIDENTIAL ADDRESS</b></td>
-                        </tr>
-                        <tr>
-                            <th>Flat No/H No.</th>
-                            <td>11</td>
-                            <th>Building/village</th>
-                            <td>Guwahati</td>
-                        </tr>
-                        <tr>
-                            <th>P.O</th>
-                            <td>Beltola</td>
-                            <th>P.S</th>
-                            <td>Beltola</td>
-                        </tr>
-                        <tr>
-                            <th>Area</th>
-                            <td>Beltola</td>
-                            <th>District</th>
-                            <td>Kamrup</td>
-                        </tr>
-                        <tr>
-                            <th>State</th>
-                            <td>Assam</td>
-                            <th>Pin</th>
-                            <td>781028</td>
-                        </tr>
-                        <tr>
-                            <th>Trade Name</th>
-                            <td colspan="3">Webinfotech</td>
-                        </tr>
-                        <tr>
-                            <th colspan="4" class="text-center">USER BUSINESS ADDRESS</th>
-                        </tr>
-                        <tr>
-                            <th>Flat No/H No.</th>
-                            <td>11</td>
-                            <th>Building/village</th>
-                            <td>Guwahati</td>
-                        </tr>
-                        <tr>
-                            <th>P.O</th>
-                            <td>Beltola</td>
-                            <th>P.S</th>
-                            <td>Beltola</td>
-                        </tr>
-                        <tr>
-                            <th>Area</th>
-                            <td>Beltola</td>
-                            <th>District</th>
-                            <td>Kamrup</td>
-                        </tr>
-                        <tr>
-                            <th>State</th>
-                            <td>Assam</td>
-                            <th>Pin</th>
-                            <td>781028</td>
-                        </tr>
-                        <tr>
-                            <th>Trade Name</th>
-                            <td colspan="3">Webinfotech</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                @if (isset($job_det) && !empty($job_det))
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th colspan="4" class="text-center">USER JOB DETAIL</th>
+                            <th colspan="4" class="text-center table-header-cl">USER JOB DETAIL</th>
                         </tr>
                         <tr>
-                            <th>Job Description</th>
-                            <td>Income Tax</td>
+                            <th class="table-header-cl">Sl No. </th>
+                            <th class="table-header-cl">Job Id</th>
+                            <th class="table-header-cl">Job Description</th>
+                            <th class="table-header-cl">Date</th>
                         </tr>
+                        @php
+                            $job_count = 1 ; 
+                        @endphp
+                        @foreach ($job_det as $item)
+                            <tr>
+                                <td>{{$job_count++}}</td>
+                                <td>{{$item->job_id}}</td>
+                                <td>{{$item->job_type}}</td>
+                                <td>{{$item->created_at}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
         </div>
     </section>
@@ -173,6 +204,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK9f7sXWmqQ1E-ufRXV3VpXOn_ifKsDuc"></script>
     <script src="{{asset('web/js/menu.min.js')}}"></script>
     <script src="{{asset('web/js/scripts.js')}}"></script>
+
+    <script type="text/javascript">
+    window.print();
+    window.onafterprint = function(event) {
+        window.close();
+    };
+    </script>
 </body>
 
 </html>

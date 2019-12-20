@@ -64,7 +64,7 @@
                                  <button class="status btn-sm btn-success">Solved</button>
                               @endif
                            </td>
-                           <td class="view-btn"><a class="btn btn-success text-white rounded" href="branch_job_details.php"><i class="fa fa-eye"></i></a></td>
+                           <td class="view-btn"><a class="btn btn-success text-white rounded" href="{{route('branch.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a></td>
                         </tr>
                      @endforeach                      
                   @else

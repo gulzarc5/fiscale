@@ -2,7 +2,7 @@
 @section('content') 
 
    <div class="col p-t col-md-10">
-      <h1 data-animate="fadeInUp" data-delay=".3" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Enter <span>tracking</span> ID </h1>
+      <h1 data-animate="fadeInUp" data-delay=".3" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Enter <span>Job</span> ID </h1>
       @if (Session::has('message'))
          <div class="alert alert-success" >{{ Session::get('message') }}</div>
       @endif
@@ -11,7 +11,7 @@
       @endif
       <div class="primary-form">
          {{ Form::open(['method' => 'post','route'=>'branch.track_job']) }}
-            <input type="text" name="client_serach_id" class="theme-input-style home-search" placeholder="Enter your tracking id" required=""> 
+            <input type="text" name="job_id" class="theme-input-style home-search" placeholder="Enter your tracking id" required=""> 
             @if($errors->has('client_serach_id'))
                   <span role="alert" style="color:red">
                      <strong>{{ $errors->first('client_serach_id') }}</strong>

@@ -18,8 +18,8 @@ Route::group(['namespace' => 'Branch'], function () {
 
     Route::group(['middleware' => 'auth:branch', 'prefix' => 'branch'], function () {
         Route::get('/deshboard', 'DeshboardController@index')->name('branch.deshboard');
-        Route::get('/thankyou', 'RegisterController@thankYou')->name('branch.thank_you');
-        Route::get('/registrationprint', 'RegisterController@registrationPrint')->name('branch.registration_print');
+        Route::get('/thankyou/{pan}/{client_id}', 'RegisterController@thankYou')->name('branch.thank_you');
+        Route::get('/registrationprint/{client_id}', 'RegisterController@registrationPrint')->name('branch.registration_print');
 
         Route::post('/register', 'RegisterController@registerUsers')->name('branch.register_user');
         Route::get('/user/list', 'DeshboardController@branchUsers')->name('branch.user_list');
@@ -32,8 +32,8 @@ Route::group(['namespace' => 'Branch'], function () {
 
         Route::get('/track/job/form', 'JobController@trackJobForm')->name('branch.track_job_form');
         Route::post('/track/job', 'JobController@trackJob')->name('branch.track_job');
-
-        // Route::get('/close/jobs', 'JobController@closeJobForm')->name('employee.close_job_form');
+        Route::get('/job/thankyou/{client_id}', 'JobController@JobThankYou')->name('branch.job_thank_you');
+        Route::get('/job/view/{job_id}', 'JobController@JobView')->name('branch.job_view');
     });
 });
 Route::get('/', function () {

@@ -13,7 +13,6 @@
                      <tbody>
                         <tr>
                            <td> Sl. </td>
-                           <td> Id </td>
                            <td> Name </td>
                            <td> PAN </td>
                            <td> Mobile </td>
@@ -26,7 +25,6 @@
                             @foreach ($users as $item)
                             <tr>
                               <td>{{$user_count++}}</td>
-                              <td>{{$item->id}}</td>
                               <td>{{$item->name}}</td>
                               <td>{{$item->pan}}</td>
                               <td>{{$item->mobile}}</td>
