@@ -38,10 +38,11 @@ Route::group(['namespace'=>'Admin'],function(){
         Route::group(['prefix'=>'Customer'],function(){
             Route::get('List/', 'CustomerController@customerList')->name('admin.customer_list');
             Route::get('ajax/List/', 'CustomerController@customerAjaxList')->name('admin.customer_ajax_list');
-            Route::get('view/client', 'CustomerController@viewClient')->name('admin.client_detail');
+            Route::get('view/client/{client_id}', 'CustomerController@viewClient')->name('admin.client_detail');
 
             Route::get('job/list/', 'CustomerController@jobList')->name('admin.job_list');
             Route::get('job/list/ajx', 'CustomerController@jobListAjax')->name('admin.job_list_ajax');
+            Route::get('view/job/{client_id}', 'CustomerController@viewJob')->name('admin.job_detail');
 
         });
         

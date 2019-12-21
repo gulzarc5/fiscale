@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-clock-o"></i> Total Expired Jobs</span>
+        <span class="count_top"><i class="fa fa-clock-o"></i> Total Branch</span>
         <div class="count green">
             @if(isset($expire_jobs))
               {{$expire_jobs}}
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Live Jobs</span>
+          <span class="count_top"><i class="fa fa-user"></i> Total Employee</span>
           <div class="count green">
               @if(isset($live_jobs))
                 {{$live_jobs}}
@@ -30,7 +30,7 @@
           </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Resumes</span>
+        <span class="count_top"><i class="fa fa-user"></i> Total Client</span>
         <div class="count green">
             @if(isset($total_resumes))
               {{$total_resumes}}

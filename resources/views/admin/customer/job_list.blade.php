@@ -17,12 +17,14 @@
                             <thead>
                             <tr>
                                 <th>Sl</th>
+                                <th>Assigned Emp</th>
                                 <th>Job Description</th>
                                 <th>Customer ID</th>
                                 <th>Name</th>
                                 <th>Mobile</th>
                                 <th>Pan</th>                                
                                 <th>Date Created</th>
+                                <th>Punched By</th>
                                 <th>action</th>
                             </tr>
                             </thead>
@@ -48,13 +50,15 @@
                 serverSide: true,
                 ajax: "{{ route('admin.job_list_ajax') }}",
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},                    
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},      
+                    {data: 'assign_emp', name: 'assign_emp',searchable: true},              
                     {data: 'job_type_name', name: 'job_type_name',searchable: true},
                     {data: 'id', name: 'id',searchable: true},
                     {data: 'c_name', name: 'c_name' ,searchable: true},
                     {data: 'c_mobile', name: 'c_mobile' ,searchable: true},              
                     {data: 'c_pan', name: 'c_pan' ,searchable: true},   
-                    {data: 'created_at', name: 'created_at' ,searchable: true},  
+                    {data: 'created_at', name: 'created_at' ,searchable: true}, 
+                    {data: 'branch_name', name: 'branch_name' ,searchable: true}, 
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });            

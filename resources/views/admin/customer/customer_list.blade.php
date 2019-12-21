@@ -17,13 +17,13 @@
                             <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Customer ID</th>
                                 <th>Name</th>
                                 <th>Mobile</th>
                                 <th>Pan</th>
                                 <th>dob</th>
                                 <th>Gender</th>
                                 <th>Date Created</th>
+                                <th>Registered By</th>
                                 <th>action</th>
                             </tr>
                             </thead>
@@ -50,7 +50,6 @@
                 ajax: "{{ route('admin.customer_ajax_list') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'id', name: 'id',searchable: true},
                     {data: 'name', name: 'name' ,searchable: true},
                     {data: 'mobile', name: 'mobile' ,searchable: true},              
                     {data: 'pan', name: 'pan' ,searchable: true},    
@@ -63,6 +62,7 @@
                       }                        
                     }},
                     {data: 'created_at', name: 'created_at' ,searchable: true},  
+                    {data: 'branch_name', name: 'branch_name' ,searchable: true},  
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });            

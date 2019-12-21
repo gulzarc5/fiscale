@@ -52,6 +52,7 @@ class JobController extends Controller
             ->insertGetId([
                 'client_id' => $request->input('client_id'),
                 'job_type' => $value,
+                'created_by_id' => Auth::guard('branch')->user()->id,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);

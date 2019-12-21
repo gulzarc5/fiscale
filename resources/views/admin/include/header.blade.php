@@ -103,13 +103,13 @@
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-bar-chart-o"></i> Configuration <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-bar-chart-o"></i> Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('admin.add_employee_form')}}">Add New Job</a></li>
                       <li><a href="{{route('admin.employee_list')}}">Job List</a></li>
                       <li><a href="{{route('admin.employee_list')}}">Add Remarks To Job</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
 
                 </ul>
               </div>
