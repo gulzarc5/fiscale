@@ -8,7 +8,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Edit Branch</h2>
+                    <h2>Edit Service Point</h2>
                     <div class="clearfix"></div>
                 </div>
 
@@ -30,8 +30,8 @@
                                 <div class="form-row mb-10">
     
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                      <label for="name">Branch Name</label>
-                                      <input type="text" class="form-control" name="name"  placeholder="Enter Branch name" value="{{$branch->name}}" >
+                                      <label for="name">Service Point Name</label>
+                                      <input type="text" class="form-control" name="name"  placeholder="Enter Service Point name" value="{{$branch->name}}" >
                                         @if($errors->has('name'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('name') }}</strong>

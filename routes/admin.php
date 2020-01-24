@@ -39,10 +39,21 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('List/', 'CustomerController@customerList')->name('admin.customer_list');
             Route::get('ajax/List/', 'CustomerController@customerAjaxList')->name('admin.customer_ajax_list');
             Route::get('view/client/{client_id}', 'CustomerController@viewClient')->name('admin.client_detail');
+            Route::get('edit/client/{client_id}', 'CustomerController@clientEdit')->name('admin.client_edit');
 
             Route::get('job/list/', 'CustomerController@jobList')->name('admin.job_list');
             Route::get('job/list/ajx', 'CustomerController@jobListAjax')->name('admin.job_list_ajax');
             Route::get('view/job/{client_id}', 'CustomerController@viewJob')->name('admin.job_detail');
+            Route::post('job/assign/', 'CustomerController@jobAssign')->name('admin.job_assign');
+
+            Route::get('working/job/list/', 'CustomerController@workingJobList')->name('admin.working_job_list');
+            Route::get('working/job/list/ajx', 'CustomerController@workingJobListAjax')->name('admin.working_job_list_ajax');
+
+            Route::get('problem/job/list/', 'CustomerController@problemJobList')->name('admin.problem_job_list');
+            Route::get('problem/job/list/ajx', 'CustomerController@problemJobListAjax')->name('admin.problem_job_list_ajax');
+
+            Route::get('completed/job/list/', 'CustomerController@completedJobList')->name('admin.completed_job_list');
+            Route::get('completed/job/list/ajx', 'CustomerController@completedJobListAjax')->name('admin.completed_job_list_ajax');
 
         });
         

@@ -15,16 +15,15 @@
 .btn-login:hover {
   color: #fff !important;
 }
-.header-menu>ul>li.active>a: after, .header-menu>ul>li: hover>a: after,
-  .header-menu .btn-login>ul>li>a: after {
+.header-menu>ul>li.active>a:after, .header-menu>ul>li:hover>a:after,
+  .header-menu .btn-login>ul>li>a:after {
   display: none;
 }
 .btn-login:before,
 .btn-login:after {
   background-color: #ffffff00 !important;
 }
-.view-btn{
-}
+
 .sope--cart-table tr {
   text-align: center;
 }
@@ -136,4 +135,12 @@ nav.my ul li ul li a.active {
    padding: 4px 8px;
    overflow: hidden;
    z-index: 0;
+ }
+ .half-gutter :disabled {
+   opacity: .8;
+   background-color: #ddd;
+   cursor: not-allowed;
+ }
+ .form-margin .form-group{
+   margin-bottom: 0px !important;
  }

@@ -12,32 +12,41 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('branch.deshboard')}}"><span> Home</span></a>
+            </li>
+            <li>
                 <a href="#eins" data-toggle="collapse" class="collapsed">
-                    <span><i class="fa fa-user-circle-o"></i>User</span>
+                    <span> Client</span>
                 </a>
                 <ul class="collapse" id="eins">
                 <li>
-                    <a href="{{route('branch.deshboard')}}"><span><i class="fa fa-plus"></i> Add User</span></a>
+                    <a href="{{route('branch.add_client')}}"><span> Add Client</span></a>
                 </li>
                 <li>
-                    <a href="{{route('branch.user_list')}}"><span><i class="fa fa-list"></i> User List</span></a>
+                    <a href="{{route('branch.user_list')}}"><span> Client List</span></a>
                 </li>
                 </ul>
             </li>
             <li>
-                <a href="{{route('branch.track_job_form')}}"><span><i class="fa fa-map-marker"></i>Track</span></a>
+                <a href="{{route('branch.client_search_form')}}"><span> Client Search</span></a>
+            </li>
+            <li>
+                <a href="{{route('branch.track_job_form')}}"><span> Job Search</span></a>
             </li>
             <li>
                 <a href="#eins2" data-toggle="collapse" class="collapsed">
-                    <span><i class="fa fa-suitcase"></i>Job</span>
+                    <span> Job</span>
                 </a>
                 <ul class="collapse" id="eins2">
                     <li>
                         <a href="{{route('branch.search_client_add_job')}}">
-                            <span><i class="fa fa-plus"></i>Add Job</span>
+                            <span> Add Job</span>
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{route('branch.client_report_form')}}"><span> Report </span></a>
             </li>
             <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -47,6 +56,7 @@
                         @csrf
                     </form>
             </li>
+            
         </ul>
     </nav>
 </div>

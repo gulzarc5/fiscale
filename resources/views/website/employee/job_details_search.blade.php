@@ -3,12 +3,21 @@
 
    <div class="col p-t col-md-10">
          <center >
-            <h3>JOB DETAILS
-               @if (isset($job_id) && !empty($job_id))
-                  FOR JOB ID : <b>{{$job_id}}</b>
-               @endif
-            </h3>
+            <h3>JOB DETAILS</h3>
          </center>
+         @if (isset($job) && !empty($job))
+            <div class="row">
+               <div class="col-md-5">
+                  <p><b>Job Desc : </b>{{$job->job_type_name}}</p>
+               </div>
+               <div class="col-md-5">
+                  <p><b>Date : </b>{{$job->created_at}}</p>
+               </div>
+               <div class="col-md-2">
+                  <p><a href="{{route('employee.job_edit_form',['job_id'=>encrypt($job->id)])}}" class="btn btn-sm btn-warning">Edit</a></p></p>
+               </div>
+            </div>
+         @endif
       <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
          <div class="table-responsive">
             <table class="sope--cart-table table pt-sans">
@@ -40,7 +49,7 @@
                            <td>{{$item->remarks}}</td>
                            <td>
                                @if ($item->remarks_by == '2')
-                           <a  class="status btn-sm btn-warning" href="{{route('employee.remark_edit',['remark_id'=>encrypt($item->id),'job_id'=>encrypt($job_id)])}}">Edit</a>
+                           <a  class="status btn-sm btn-warning" href="{{route('employee.remark_edit',['remark_id'=>encrypt($item->id),'job_id'=>encrypt($job_id),'page'=>'job_srch'])}}">Edit</a>
                                 @endif
                             </td>
                         </tr>
@@ -60,6 +69,7 @@
             @csrf
             @if (isset($job_input_id) && !empty($job_input_id))                
                <input type="hidden" name="job_id" value="{{$job_input_id}}">
+               <input type="hidden" name="page" value="job_srch">
             @endif
              <div class="form-group">
                  <label>Add New Remarks *</label>
@@ -68,7 +78,7 @@
             @if (isset($job) && !empty($job))
                <div class="form-group" id="job_desc">
                   <label>Status *</label>
-                  <select class="theme-input-style job-d text-uppercase" required name="status" onchange="checkStatus()" id="status_c">
+                  <select class="theme-input-style job-d text-uppercase" required name="status" id="status_c" onchange="checkStatus()">
                      <option selected="" disabled="" value="">--SELECT JOB STATUS--</option>
                      <option value="1" {{ $job->status == "1" ? 'selected' : '' }}>Processing</option>
                      <option value="2" {{ $job->status == "2" ? 'selected' : '' }}>Working</option>
@@ -76,15 +86,13 @@
                      <option value="4" {{ $job->status == "4" ? 'selected' : '' }}>Completed</option>
                   </select>
                </div>
-               <div  class="form-group" id="date-div">
-                  
-               </div>
             @endif
+            <div  class="form-group" id="date-div">
+                  
+            </div>
              <button class="btn" type="submit">Add Remark</button>
          </form>
    </div>
-
-
 @endsection
 
 @section('script')

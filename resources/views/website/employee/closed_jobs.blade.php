@@ -1,51 +1,47 @@
 @extends('website.employee.template.employee_master')
-@section('main_content') 
+@section('content') 
 <div class="col p-t col-md-10">
-        <h3>Closed JOBS</h3>
     <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
-        <div class="table-responsive">
-            <table class="sope--cart-table table pt-sans">
+       <center><h3>Closed JOBS</h3></center>
+       <div class="table-responsive">
+             <table class="sope--cart-table table pt-sans">
                 <tbody>
+                   <tr>
+                         <td> Assigned Date </td>
+                         <td> Client Name </td>
+                         <td> Job Description </td>
+                         <td> Status </td>
+                         <td> Closed Date </td>
+                   </tr>
+                   @if (isset($job) && !empty($job) && count($job) > 0)
+                   @foreach ($job as $item)
+                      <tr>
+                         <td>{{$item->assigned_date}}</td>
+                         <td>{{$item->c_name}}</td>
+                         <td>{{$item->job_type_name}}</td>
+                         <td>
+                            @if ($item->status == '1')
+                                <button class="status btn-sm btn-warning">Processing</button>
+                            @elseif ($item->status == '2')
+                               <button class="status btn-sm btn-info">Working</button>
+                            @elseif($item->status == '3')
+                               <button class="status btn-sm btn-danger">Document Correction</button>
+                            @elseif($item->status == '4')
+                               <button class="status btn-sm btn-success">Completed</button>
+                            @endif
+                         </td>
+                         <td>{{$item->completed_date}}</td>
+                      </tr>
+                   @endforeach                      
+                @else
                     <tr>
-                        <td> Date </td>
-                        <td> Job Description </td>
-                        <td> Status </td>
-                        <td> View </td>
+                       <td colspan="5" align="center">No Job Found</td>
                     </tr>
-                    <tr>
-                        <td>20/10/19</td>
-                        <td>Income tax</td>
-                        <td>Something</td>
-                        <td class="view-btn"><a class="btn btn-warning text-white rounded" href="job-details.php"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>20/10/19</td>
-                        <td>Income tax</td>
-                        <td>Something</td>
-                        <td class="view-btn"><a class="btn btn-warning text-white rounded" href="job-details.php"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>20/10/19</td>
-                        <td>Income tax</td>
-                        <td>Something</td>
-                        <td class="view-btn"><a class="btn btn-warning text-white rounded" href="job-details.php"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>20/10/19</td>
-                        <td>Income tax</td>
-                        <td>Something</td>
-                        <td class="view-btn"><a class="btn btn-warning text-white rounded" href="job-details.php"><i class="fa fa-eye"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>20/10/18</td>
-                        <td>Income tax</td>
-                        <td>Something</td>
-                        <td class="view-btn"><a class="btn btn-warning text-white rounded" href="job-details.php"><i class="fa fa-eye"></i></a></td>
-                    </tr>
+                @endif
                 </tbody>
-            </table>
-        </div>
+             </table>
+       </div>
     </div>
-</div>
+ </div>
  
 @endsection

@@ -35,5 +35,16 @@
     <script src="{{asset('web/js/menu.min.js')}}"></script>
     <script src="{{asset('web/js/scripts.js')}}"></script>
     {{-- <script src="{{asset('web/js/custom.js')}}"></script> --}}
+    <script>
+       $(function(){
+        var url = window.location.pathname, 
+            urlRegExp = new RegExp(url.replace(/\/$/,'') + "$"); 
+            $('.my a').each(function(){
+                if(urlRegExp.test(this.href.replace(/\/$/,''))){
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

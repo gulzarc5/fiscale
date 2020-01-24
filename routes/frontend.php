@@ -8,6 +8,25 @@ Route::group(['namespace' => 'Employee'], function () {
         Route::get('/deshboard', 'DeshboardController@index')->name('employee.deshboard');
 
         Route::get('/close/jobs', 'JobController@closeJobForm')->name('employee.close_job_form');
+
+        Route::get('/job/view/{job_id}', 'JobController@JobView')->name('employee.job_view');
+        Route::post('/add/new/remark', 'JobController@addNewRemark')->name('employee.add_new_remark');
+        Route::get('/remark/edit/{remark_id}/{job_id}/{page?}', 'JobController@remarkEdit')->name('employee.remark_edit');
+        Route::post('/remark/update', 'JobController@remarkUpdate')->name('employee.remark_update');
+
+        Route::get('/job/search/form', 'JobController@JobSearchForm')->name('employee.job_search_form');
+        Route::post('/job/view/search', 'JobController@JobSearchView')->name('employee.job_search_view');
+        Route::get('/job/search/view/Page/{job_id}', 'JobController@JobSearchViewPage')->name('employee.job_search_view_page');
+        Route::get('/job/edit/form/{job_id}', 'JobController@JobEditForm')->name('employee.job_edit_form');
+        Route::post('/job/update', 'JobController@JobUpdate')->name('employee.job_update');
+
+        Route::get('/client/search/form', 'ClientController@ClientSearchForm')->name('employee.client_search_form');
+        Route::post('/client/search', 'ClientController@ClientSearch')->name('employee.client_search');
+        Route::get('/client/edit/form/{client_id}', 'ClientController@ClientEditForm')->name('employee.client_edit_form');
+        Route::post('/client/update', 'ClientController@ClientUpdate')->name('employee.client_update');
+
+        Route::get('/employee/report/form', 'JobController@employeeReportForm')->name('employee.employee_report_form');
+        Route::post('/employee/report', 'JobController@employeeReport')->name('employee.employee_report');
     });
 });
 
@@ -18,6 +37,10 @@ Route::group(['namespace' => 'Branch'], function () {
 
     Route::group(['middleware' => 'auth:branch', 'prefix' => 'branch'], function () {
         Route::get('/deshboard', 'DeshboardController@index')->name('branch.deshboard');
+
+        Route::post('/add/new/remark', 'DeshboardController@addNewRemark')->name('branch.add_new_remark');
+
+        Route::get('/add/client', 'DeshboardController@addClient')->name('branch.add_client');
         Route::get('/thankyou/{pan}/{client_id}', 'RegisterController@thankYou')->name('branch.thank_you');
         Route::get('/registrationprint/{client_id}', 'RegisterController@registrationPrint')->name('branch.registration_print');
 
@@ -34,6 +57,16 @@ Route::group(['namespace' => 'Branch'], function () {
         Route::post('/track/job', 'JobController@trackJob')->name('branch.track_job');
         Route::get('/job/thankyou/{client_id}', 'JobController@JobThankYou')->name('branch.job_thank_you');
         Route::get('/job/view/{job_id}', 'JobController@JobView')->name('branch.job_view');
+
+        Route::get('/client/edit/{client_id}', 'ClientController@clientEdit')->name('branch.client_edit');
+        Route::post('/client/update', 'ClientController@ClientUpdate')->name('branch.client_update');
+        
+        Route::get('/client/search/Form', 'ClientController@ClientSearchForm')->name('branch.client_search_form');
+        Route::post('/client/search', 'ClientController@ClientSearch')->name('branch.client_search');
+
+        Route::get('/client/report/Form', 'JobController@JobReportForm')->name('branch.client_report_form');
+        Route::post('/client/report', 'JobController@JobReport')->name('branch.client_report');
+
     });
 });
 Route::get('/', function () {

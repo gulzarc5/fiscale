@@ -84,22 +84,25 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i>Branch<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Service Point<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.add_branch_form')}}">Add New Branch</a></li>
-                      <li><a href="{{route('admin.branch_list')}}">Branch List</a></li>
+                      <li><a href="{{route('admin.add_branch_form')}}">Add New SP</a></li>
+                      <li><a href="{{route('admin.branch_list')}}">SP List</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-desktop"></i>Customer<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Client<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.customer_list')}}">Customer List</a></li>
+                      <li><a href="{{route('admin.customer_list')}}">Client List</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-desktop"></i>Job<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('admin.job_list')}}">Job List</a></li>
+                      <li><a href="{{route('admin.working_job_list')}}">Working Job List</a></li>                      
+                      <li><a href="{{route('admin.problem_job_list')}}">Correction Job List</a></li>                                            
+                      <li><a href="{{route('admin.completed_job_list')}}">Complete Job List</a></li>
                     </ul>
                   </li>
 

@@ -39,7 +39,7 @@ class BranchController extends Controller
             ]);
         
         if ($branch) {
-            return redirect()->back()->with('message','Branch Added Successfully');
+            return redirect()->back()->with('message','Service Point Added Successfully');
         }else{
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
@@ -99,7 +99,7 @@ class BranchController extends Controller
             ]);
         
         if ($branch) {
-            return redirect()->back()->with('message','Branch Updated Successfully');
+            return redirect()->back()->with('message','Service Point Updated Successfully');
         }else{
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }

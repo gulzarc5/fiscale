@@ -120,10 +120,6 @@
                             <th class="table-header-cl">Pin</th>
                             <td>{{$res_addr->pin}}</td>
                         </tr>
-                        <tr>
-                            <th class="table-header-cl">Trade Name</th>
-                            <td colspan="3">{{$res_addr->trade_name}}</td>
-                        </tr>
                         @endif
                         @if (isset($res_addr) && !empty($res_addr))
                         <tr>
@@ -153,10 +149,12 @@
                                 <th class="table-header-cl">Pin</th>
                                 <td>{{$res_addr->pin}}</td>
                             </tr>
+                            @if (isset($client_personal) && !empty($client_personal))
                             <tr>
                                 <th class="table-header-cl">Trade Name</th>
-                                <td colspan="3">{{$res_addr->trade_name}}</td>
+                                <td colspan="3">{{$client_personal->trade_name}}</td>
                             </tr>
+                            @endif
                         @endif
                     </tbody>
                 </table>

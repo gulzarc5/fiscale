@@ -81,6 +81,11 @@
                                         <strong>Email : </strong>{{$client_personal->email}}
                                         </address>
                                     </div>
+                                    <div class="col-sm-3 invoice-col">
+                                        <address class="font-15">
+                                        <strong>Trade Name : </strong>{{$client_personal->trade_name}}
+                                        </address>
+                                    </div>
                                 </div>
                             @endif
                             <!-- /.row -->
@@ -105,7 +110,6 @@
                             <br><strong>P.O. :</strong> {{$res_addr->po}} | <strong>P.S. :</strong> {{$res_addr->ps}}
                             <br><strong>City :</strong> {{$res_addr->dist}}
                             <br><strong>State :</strong> {{$res_addr->state}}
-                            <br><strong>Trade Name :</strong> {{$res_addr->trade_name}}
                         </address>
                     @endif
                    	
@@ -131,7 +135,6 @@
                             <br><strong>P.O. :</strong> {{$business_addr->po}} | <strong>P.S. :</strong> {{$business_addr->ps}}
                             <br><strong>City :</strong> {{$business_addr->dist}}
                             <br><strong>State :</strong> {{$business_addr->state}}
-                            <br><strong>Trade Name :</strong> {{$business_addr->trade_name}}
                         </address>
                     @endif
 
@@ -206,7 +209,10 @@
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">
                                 <div class="col-xs-12">
-                                    <button class="btn btn-warning pull-left" onclick="window.close()"></i> Close Window</button>
+                                    @if (isset($client_personal) && !empty($client_personal))
+                                        <a href="{{route('admin.client_edit',['client_id'=>encrypt($client_personal->id)])}}" class="btn btn-warning pull-left"></i> Edit </a>
+                                    @endif
+                                    <button class="btn btn-danger pull-left" onclick="window.close()"></i>Close Window</button>
                                 </div>
                             </div>
                         </section>

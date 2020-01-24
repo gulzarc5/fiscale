@@ -8,7 +8,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Job List</h2>
+                    <h2>Complete Job List</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div>
@@ -17,7 +17,8 @@
                             <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Assigned Emp</th>
+                                <th>Completed By</th>
+                                <th>Completed Date</th>
                                 <th>Job ID</th>
                                 <th>Job Description</th>
                                 <th>Client ID</th>
@@ -49,10 +50,11 @@
             var table = $('#size_list').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.job_list_ajax') }}",
+                ajax: "{{ route('admin.completed_job_list_ajax') }}",
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},      
-                    {data: 'assign_emp', name: 'assign_emp',searchable: true},    
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'assign_emp', name: 'assign_emp',searchable: true},
+                    {data: 'completed_date', name: 'completed_date',searchable: true},
                     {data: 'job_id', name: 'job_id',searchable: true},          
                     {data: 'job_type_name', name: 'job_type_name',searchable: true},
                     {data: 'c_id', name: 'c_id',searchable: true}, 

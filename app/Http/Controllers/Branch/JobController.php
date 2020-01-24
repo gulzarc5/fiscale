@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use DB;
 use auth;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClientJobReport;
 
 class JobController extends Controller
 {
@@ -58,7 +60,7 @@ class JobController extends Controller
             ]);
             if ($job_ins) {
                 $length = 5 - intval(strlen((string) $job_ins));
-                $job_id = 'FSP0101';
+                $job_id = Auth::guard('branch')->user()->branch_id;
                 for ($i=0; $i < $length; $i++) { 
                     $job_id.='0';
                 } 
@@ -110,9 +112,10 @@ class JobController extends Controller
         $comments = null;
         if ($job) {
             $comments = DB::table('job_remarks')->where('job_id',$job->id)->get();
+            $job_input_id = $job->id;
         }
 
-        return view('website.branch.branch_job_details',compact('job','comments','job_id'));
+        return view('website.branch.branch_job_details',compact('job','comments','job_id','job_input_id'));
     }
 
     public function JobThankYou($client_id)
@@ -132,4 +135,26 @@ class JobController extends Controller
             ->get();
         return view('website.branch.job_add_thankyou',compact('jobs'));
     }
+
+    public function JobReportForm()
+    {
+        return view('website.branch.report.complete_job_report');
+    }
+
+    public function JobReport(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+        $s_date = $request->input('start_date');
+        $e_date = $request->input('end_date');
+        
+        if (Carbon::parse($s_date)->gt(Carbon::parse(Carbon::parse($e_date)))){
+            return redirect()->back()->with('error','Please Select End Date Greater Then Start Date');
+        }else{
+            return Excel::download(new ClientJobReport($s_date,$e_date), 'report.xlsx');
+        }
+    }
+
 }

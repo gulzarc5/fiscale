@@ -1,5 +1,5 @@
 <div class="col-md-2">
-    <nav class="my">
+    <nav class="my" id="my">
         <ul>
             <li>
                 <a class="form-user-box" style="text-align: center; padding: 5px;">
@@ -12,10 +12,19 @@
                 </a>
             </li>
             <li>
-                <a href="{{route("employee.deshboard")}}"><span><i class="fa fa-window-maximize"></i>Open Jobs</span></a>
+                <a href="{{route("employee.deshboard")}}" ><span>Open Jobs</span></a>
             </li>
             <li>
-                <a href="{{route('employee.close_job_form')}}"><span><i class="fa fa-window-close"></i>Closed Jobs</span></a>
+                <a href="{{route('employee.close_job_form')}}"><span>Closed Jobs</span></a>
+            </li>
+            <li>
+                <a href="{{route('employee.job_search_form')}}"></i>Search Jobs</span></a>
+            </li>
+            <li>
+                <a href="{{route('employee.client_search_form')}}"></i>Search Client</span></a>
+            </li>
+            <li>
+                <a href="{{route('employee.employee_report_form')}}"></i>Report</span></a>
             </li>
             <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span><i class="fa fa-power-off"></i>Logout</span></a>

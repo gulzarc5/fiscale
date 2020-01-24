@@ -463,8 +463,8 @@ textarea#text-area {
 
 .sope--cart-table tbody tr:first-child td {
     background: #ecf7fe;
-    padding-bottom: 19px;
-    padding-top: 19px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
     color: #31333e;
     border: 0;
@@ -480,8 +480,8 @@ textarea#text-area {
 }
 
 .sope--cart-table tbody tr:not(:first-child) td {
-    padding-bottom: 31px;
-    padding-top: 31px
+    padding-bottom: 8px;
+    padding-top: 3px;
 }
 
 .sope--cart-table tbody tr td:first-child {

@@ -157,7 +157,6 @@ function sameCheck(){
         $("#district").val($("#district_addr").val());
         $("#state").val($("#state_addr").val());
         $("#pin").val($("#pin_addr").val());
-        $("#trade_name").val($("#trade_name_addr").val());
     }else{
         $("#flat").val("");
         $("#area").val("");
@@ -167,7 +166,6 @@ function sameCheck(){
         $("#district").val("");
         $("#state").val("");
         $("#pin").val("");
-        $("#trade_name").val("");
     }
 }
 

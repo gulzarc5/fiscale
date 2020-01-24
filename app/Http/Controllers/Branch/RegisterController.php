@@ -17,7 +17,6 @@ class RegisterController extends Controller
 	        'name' => ['required', 'string', 'max:255'],
             'dob' => ['required'],           
             'pan'  => ['required','unique:client'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:client'],
             'mobile' =>  ['required', 'digits:10', 'numeric', 'unique:client'],
             'constitution' => ['required'],
             'gender' => ['required'],
@@ -47,7 +46,8 @@ class RegisterController extends Controller
                 'father_name' => $request->input('father_name'),
                 'dob' => $request->input('dob'),
                 'gender' => $request->input('gender'),
-                'constitution' => $request->input('constitution'),
+                'constitution' => $request->input('constitution'),                
+                'trade_name' => $request->input('trade_name'),
                 'created_by_id' => Auth::guard('branch')->user()->id,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
@@ -64,7 +64,6 @@ class RegisterController extends Controller
                     'dist' =>  $request->input('district_addr'),
                     'state' =>  $request->input('state_addr'),
                     'pin' =>  $request->input('pin_addr'),
-                    'trade_name' => $request->input('trade_name_addr'),
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
@@ -78,7 +77,6 @@ class RegisterController extends Controller
                     'dist' =>  $request->input('district'),
                     'state' =>  $request->input('state'),
                     'pin' =>  $request->input('pin'),
-                    'trade_name' => $request->input('trade_name'),
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
@@ -94,7 +92,7 @@ class RegisterController extends Controller
                 ]);
                 if ($job_ins) {
                     $length = 5 - intval(strlen((string) $job_ins));
-                    $job_id = 'FSP0101';
+                    $job_id = Auth::guard('branch')->user()->branch_id;
                     for ($i=0; $i < $length; $i++) { 
                         $job_id.='0';
                     } 

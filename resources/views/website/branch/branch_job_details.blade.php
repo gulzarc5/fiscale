@@ -10,45 +10,13 @@
             </h3>
          </center>
       <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
-         @if (isset($job) && !empty($job))
-         <div class="row">
-            <div class="col-md-4">
-               <p><b>Client Name : </b>{{$job->cl_name}}</p>
-            </div>
-            <div class="col-md-4">
-               <p><b>Client PAN : </b>{{$job->cl_pan}}</p>
-            </div>
-            <div class="col-md-4">
-               <p><b>Client Mobile : </b>{{$job->cl_mobile}}</p>
-            </div>
-            
-            <div class="col-md-4">
-               <p><b>Description : </b>{{$job->job_type_name}}</p>
-            </div>
-            <div class="col-md-4">
-               <p><b>Status : </b>
-                  @if ($job->status == '1')
-                        <button class="status btn-sm btn-warning">Processing</button>
-                  @elseif ($job->status == '2')
-                     <button class="status btn-sm btn-info">Working</button>
-                  @elseif($job->status == '3')
-                     <button class="status btn-sm btn-danger">Document Correction</button>
-                  @elseif($job->status == '3')
-                     <button class="status btn-sm btn-success">Solved</button>
-                  @endif
-               </p>
-            </div>
-            <div class="col-md-4">
-               <p><b>Date Created : </b>{{$job->created_at}}</p>
-            </div>
-         </div>
-         @endif
          <div class="table-responsive">
             <table class="sope--cart-table table pt-sans">
                <tbody>
                   <tr>
                      <td> Sl. </td>
                      <td> Date </td>
+                     <td> Commented By </td>
                      <td> Remarks </td>
                   </tr>
                   @if (isset($comments) && !empty($comments) && (count($comments) > 0))
@@ -59,18 +27,40 @@
                         <tr>
                            <td>{{ $remark_count++ }}</td>
                            <td>{{$item->created_at}}</td>
+                           <td>
+                              @if ($item->remarks_by == '1')
+                                  Admin
+                              @elseif ($item->remarks_by == '2')
+                                  Employee
+                              @else
+                                 Branch
+                              @endif
+                           </td>
                            <td>{{$item->remarks}}</td>
                         </tr>
                      @endforeach
                   @else
                      <tr>
-                        <td colspan="3" align="celter">No Remarks Found</td>
+                        <td colspan="4" align="celter">No Remarks Found</td>
                      </tr>
                   @endif
                </tbody>
             </table>
          </div>
       </div>
+
+         <div class="form-response"></div>
+         <form action="{{route('branch.add_new_remark')}}" method="post">
+            @csrf
+            @if (isset($job_input_id) && !empty($job_input_id))                
+               <input type="hidden" name="job_id" value="{{$job_input_id}}">
+            @endif
+             <div class="form-group">
+                 <label>Add New Remarks *</label>
+                 <textarea name="message" placeholder="Type Remarks" class="theme-input-style" required></textarea>
+             </div>
+             <button class="btn" type="submit">Add Remark</button>
+         </form>
    </div>
 
 

@@ -23,7 +23,7 @@
          {{ Form::open(['method' => 'post','route'=>'branch.register_user']) }}
 	  
             <div id="form-1">
-               <h4>Enter User Personal Details</h4>
+               <h4>Enter Client Personal Details</h4>
                <div class="row half-gutter">
                   <div class="col-md-4">
                      <div class="form-group">
@@ -98,7 +98,7 @@
             </div>
             <div class="form-response"></div>
             <div id="form-2" style="display: none;">
-               <h4>Enter Your Residential Address</h4>
+               <h4>Enter Client Residential Address</h4>
                <div class="row half-gutter">
                   <div class="col-md-4">
                      <div class="form-group">
@@ -156,15 +156,9 @@
                         <span id="pin_addr_error"></span>
                      </div>
                   </div>
-                  <div class="col-md-8">
-                     <div class="form-group">
-                        <label>Trade Name (if any) </label>
-                        <input type="text" name="trade_name_addr" id="trade_name_addr" placeholder="Enter your trade name" class="theme-input-style" value="{{old('trade_name_addr')}}"> 
-                     </div>
-                  </div>
                  
                   <div class="col-md-12">
-                     <h4>Enter Your Business Address</h4>
+                     <h4>Enter Client Business Address</h4>
                   </div>
                   <div class="col-md-12">
                      <div class="form-group">
@@ -242,7 +236,7 @@
             </div>
             <div class="form-response"></div>
             <div id="form-3" style="display: none;">
-               <h4>Your Job Details</h4>
+               <h4>Client Job Details</h4>
                <div id="job_desc_div">
                   <div class="row half-gutter">
                      <div id="first-job-des" class="col-md-10">
