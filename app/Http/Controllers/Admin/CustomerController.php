@@ -26,7 +26,7 @@ class CustomerController extends Controller
         return datatables()->of($query->get())
             ->addIndexColumn()
             ->addColumn('action', function($row){
-                $btn ='<a href="'.route('admin.client_detail',['client_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>';
+                $btn ='<a href="'.route('admin.client_edit',['client_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm" target="_blank">Edit</a><a href="'.route('admin.client_detail',['client_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>';
                 return $btn;
             })
             ->rawColumns(['action'])
@@ -112,12 +112,13 @@ class CustomerController extends Controller
                 </form>';
                 return $btn;
                 }else{
-                    $btn = "Assigned";
+                    $btn = $row->employee_name;
                     return $btn;
                 }
             })
             ->addColumn('action', function($row){
-                $btn ='<a href="'.route('admin.job_detail',[''=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
+                $btn ='<a href="'.route('admin.job_edit',[''=>encrypt($row->id)]).'" class="btn btn-warning btn-sm" target="_blank">Edit</a>
+                <a href="'.route('admin.job_detail',[''=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
                 ';
                 return $btn;
             })
@@ -147,6 +148,43 @@ class CustomerController extends Controller
        return view('admin.customer.job_detail',compact('job_det','remarks','jod_det_id'));
     }
 
+    public function editJob($job_id)
+    {
+        try {
+            $job_id = decrypt($job_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $job =  DB::table('job')
+            ->select('job.*','job_type.name as job_type_name','client.name as cl_name','client.pan as cl_pan','client.mobile as cl_mobile')
+            ->leftjoin('client','client.id','=','job.client_id')
+            ->leftjoin('job_type','job_type.id','=','job.job_type')
+            ->where('job.id',$job_id)
+            ->first();
+        $job_type = DB::table('job_type')->get();
+        return view('admin.customer.job_edit',compact('job','job_type'));
+    }
+
+    public function updateJob(Request $request)
+    {
+        $request->validate([
+            'job_id' => 'required',
+            'job_type' => 'required',
+        ]);
+
+        $update = DB::table('job')
+            ->where('id',$request->input('job_id'))
+            ->update([
+                'job_type' => $request->input('job_type'),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($update) {
+            return redirect()->back()->with('message','Job Updated Successfully');
+        }else{
+            return redirect()->back()->with('error','Something Went Wrong Please Try Again');
+        }
+    }
     
     public function clientEdit($client_id)
     {
@@ -163,6 +201,76 @@ class CustomerController extends Controller
             $business = DB::table('address')->where('id',$client->business_addr_id)->first();
         }
         return view('admin.customer.client_edit',compact('client','job_type','residential','business'));
+    }
+
+    public function ClientUpdate(Request $request)
+    {
+        $request->validate([
+            'client_id' => 'required',
+            'name' => 'required',
+            'dob' => 'required',
+            'pan' => 'required',
+            'constitution' => 'required',
+            'gender' => 'required',
+            'mobile' => 'required',
+            'village_addr' => 'required',
+            'po_addr' => 'required',
+            'ps_addr' => 'required',
+            'district_addr' => 'required',
+            'state_addr' => 'required',
+            'pin_addr' => 'required',
+            'village' => 'required',
+            'po' => 'required',
+            'ps' => 'required',
+            'district' => 'required',
+            'state' => 'required',
+            'pin' => 'required',
+            'res_addr_id' => 'required',
+            'business_addr_id' => 'required',
+        ]);
+        $user_update = DB::table('client')
+            ->where('id',$request->input('client_id'))
+            ->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'mobile' => $request->input('mobile'),
+                'pan' => strtoupper($request->input('pan')),
+                'father_name' => $request->input('father_name'),
+                'dob' => $request->input('dob'),
+                'gender' => $request->input('gender'),
+                'constitution' => $request->input('constitution'),                
+                'trade_name' => $request->input('trade_name'),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+
+        $resident_addr = DB::table('address')
+            ->where('id', $request->input('res_addr_id'))
+            ->update([
+                'flat_no' =>  $request->input('flat_addr'),
+                'village' =>  $request->input('village_addr'),
+                'po' =>  $request->input('po_addr'),
+                'ps' =>  $request->input('ps_addr'),
+                'area' =>  $request->input('area_addr'),
+                'dist' =>  $request->input('district_addr'),
+                'state' =>  $request->input('state_addr'),
+                'pin' =>  $request->input('pin_addr'),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        $business_addr = DB::table('address')
+            ->where('id', $request->input('business_addr_id'))
+            ->update([
+                'flat_no' =>  $request->input('flat'),
+                'village' =>  $request->input('village'),
+                'po' =>  $request->input('po'),
+                'ps' =>  $request->input('ps'),
+                'area' =>  $request->input('area'),
+                'dist' =>  $request->input('district'),
+                'state' =>  $request->input('state'),
+                'pin' =>  $request->input('pin'),
+                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        return redirect()->back();        
     }
 
     public function jobAssign(Request $request)
@@ -396,5 +504,39 @@ class CustomerController extends Controller
             })
             ->rawColumns(['action','assign_emp'])
             ->make(true);
+    }
+
+    public function updateRemark(Request $request)
+    {
+        $request->validate([
+            'remark' => 'required',
+            'rem_id' => 'required',
+        ]);
+        $remark_update = DB::table('job_remarks')
+            ->where('id',$request->input('rem_id'))
+            ->update([
+                'remarks_by'=>1,
+                'remarks' => strval($request->input('remark')),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        return 1;
+    }
+
+    public function addRemark(Request $request)
+    {
+        $request->validate([
+            'remark' => 'required',
+            'job_id' => 'required',
+        ]);
+        $remark_update = DB::table('job_remarks')
+        ->insert([
+            'remarks_by'=>1,
+            'job_id' => $request->input('job_id'), 
+            'remarks' => $request->input('remark'),
+            'created_by_id' => 'A',
+            'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+        ]);
+        return redirect()->back();
     }
 }

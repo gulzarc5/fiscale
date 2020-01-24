@@ -40,11 +40,17 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('ajax/List/', 'CustomerController@customerAjaxList')->name('admin.customer_ajax_list');
             Route::get('view/client/{client_id}', 'CustomerController@viewClient')->name('admin.client_detail');
             Route::get('edit/client/{client_id}', 'CustomerController@clientEdit')->name('admin.client_edit');
+            Route::post('edit/update', 'CustomerController@ClientUpdate')->name('admin.client_update');
 
             Route::get('job/list/', 'CustomerController@jobList')->name('admin.job_list');
             Route::get('job/list/ajx', 'CustomerController@jobListAjax')->name('admin.job_list_ajax');
-            Route::get('view/job/{client_id}', 'CustomerController@viewJob')->name('admin.job_detail');
+            Route::get('view/job/{job_id}', 'CustomerController@viewJob')->name('admin.job_detail');
+            Route::get('edit/job/{job_id}', 'CustomerController@editJob')->name('admin.job_edit');
+            Route::post('update/job', 'CustomerController@updateJob')->name('admin.job_update');
             Route::post('job/assign/', 'CustomerController@jobAssign')->name('admin.job_assign');
+
+            Route::post('update/remark', 'CustomerController@updateRemark')->name('admin.remark_update');
+            Route::post('add/remark', 'CustomerController@addRemark')->name('admin.remark_add');
 
             Route::get('working/job/list/', 'CustomerController@workingJobList')->name('admin.working_job_list');
             Route::get('working/job/list/ajx', 'CustomerController@workingJobListAjax')->name('admin.working_job_list_ajax');
