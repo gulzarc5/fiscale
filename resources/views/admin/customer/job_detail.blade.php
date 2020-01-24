@@ -171,7 +171,7 @@
         function editRemark(id){
             var remark = $("#rem"+id).html();
             $("#rem"+id).html('<textarea id="remVal'+id+'">'+remark+'</textarea>');
-            $("#edt"+id).html('<a class="btn btn-sm btn-warning" onclick="updateRemark('+id+')">Save</a>');
+            $("#edt"+id).html('<a class="btn btn-sm btn-info" onclick="updateRemark('+id+')">Save</a>');
         }
         function updateRemark(id){
             var loader = "{{asset('admin/loader.gif')}}"; 
