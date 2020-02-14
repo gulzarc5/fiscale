@@ -15,7 +15,7 @@
                @endif
 
                <div class="row half-gutter">
-                  <div class="col-md-5">
+                  <div class="col-md-3">
                      <div class="form-group">
                         <label>Start Date</label>
                      <input type="date" name="start_date" value="{{old('start_date')}}" class="theme-input-style"> 
@@ -26,13 +26,29 @@
                         @enderror
                      </div>
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-3">
                      <div class="form-group">
                         <label>End Date</label>
                         <input type="date" name="end_date" value="{{old('end_date')}}"  class="theme-input-style"> 
                         @if($errors->has('end_date'))
                               <span role="alert" style="color:red">
                                  <strong>{{ $errors->first('end_date') }}</strong>
+                              </span>
+                        @enderror
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Select Type</label>
+                        <select name="type" class="theme-input-style">
+                           <option value="">--Select Type--</option>
+                           <option value="1">Pending</option>
+                           <option value="2">Correction</option>
+                           <option value="3">Closed</option>
+                        </select> 
+                        @if($errors->has('type'))
+                              <span role="alert" style="color:red">
+                                 <strong>{{ $errors->first('type') }}</strong>
                               </span>
                         @enderror
                      </div>

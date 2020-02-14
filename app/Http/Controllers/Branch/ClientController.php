@@ -118,8 +118,14 @@ class ClientController extends Controller
             $sql_search = DB::table('client')->where('pan',$search_key);
         }
         if ($sql_search->count() > 0) {
-            $client = $sql_search->first();
-            return redirect()->route('branch.client_edit',['client_id'=>encrypt($client->id)]);
+            $user = $sql_search->first();    
+            $job = DB::table('job')
+                ->leftjoin('job_type','job_type.id','=','job.job_type')
+                ->select('job.*','job_type.name as job_type_name')
+                ->where('client_id',$user->id)->get();
+    
+            $page = "1";
+            return view('website.branch.branch_tracking_details',compact('user','job','page'));
         }else{
             return redirect()->back()->with('error','Sorry No Client Found');
         }

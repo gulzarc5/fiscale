@@ -4,7 +4,7 @@
    <div class="col p-t col-md-10">
       <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
          @if (isset($page) && !empty($page))
-            <h1>User Details</h1>
+            <h1>Client Details</h1>
          @else
             <h1>Tracking Details</h1>
          @endif
@@ -35,6 +35,9 @@
                      </b>FeMale</p>
                   @endif
             </div>
+            <div class="col-md-6">
+            <a href="{{route('branch.client_edit',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right">Edit Client Info</a>
+            </div>
          </div>
       @endif
       
@@ -57,7 +60,7 @@
                               @if ($item->status == '1')
                                   <button class="status btn-sm btn-warning">Processing</button>
                               @elseif ($item->status == '2')
-                                 <button class="status btn-sm btn-info">Working</button>
+                                 <button class="status btn-sm btn-warning">Processing</button>
                               @elseif($item->status == '3')
                                  <button class="status btn-sm btn-danger">Document Correction</button>
                               @elseif($item->status == '3')

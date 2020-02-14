@@ -4,7 +4,7 @@
    <div class="col p-t col-md-10">
       <div class="add-job-form contact-page-form animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
          <div class="form-response"></div>
-         {{ Form::open(['method' => 'post','route'=>'branch.add_job_form']) }}
+         {{ Form::open(['method' => 'post','route'=>'branch.add_job_client_search']) }}
             <div id="">
                <h4>Search Client</h4>
                @if (Session::has('message'))

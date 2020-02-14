@@ -52,6 +52,24 @@ class EmployeeController extends Controller
     public function employeeList()
     {
         $employee = DB::table('employee')->orderBy('id','desc')->get();
+        $year = Carbon::now()->setTimezone('Asia/Kolkata')->format('Y');
+        foreach ($employee as $key => $value) {
+            $value->completed_job = DB::table('job')                
+                ->where('job.status',4)
+                ->whereYear('completed_date', '=', $year)
+                ->where('assign_to_id',$value->id)
+                ->count();
+            $value->open_job = DB::table('job')                
+                ->where('job.status','<',3)
+                ->where('assign_to_id',$value->id)
+                ->where('employee_assignment_status',1)
+                ->count();
+            $value->correction = DB::table('job')                
+                ->where('job.status',3)
+                ->where('assign_to_id',$value->id)
+                ->where('employee_assignment_status',1)
+                ->count();
+        }
         return view('admin.employee.employee_list',compact('employee'));
     }
 
@@ -131,5 +149,21 @@ class EmployeeController extends Controller
         }else{
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
+    }
+
+    public function statusUpdateEmployee($id,$status)
+    {
+        try {
+            $id = decrypt($id);
+            $status = decrypt($status);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $employee = DB::table('employee')->where('id',$id)
+            ->update([
+                'status'=>$status,
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        return redirect()->back();
     }
 }

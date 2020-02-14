@@ -33,6 +33,15 @@
       </div>
       <div class="submit-job-form contact-page-form animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
          <div class="form-response"></div>
+         @if (Session::has('message'))
+            <div class="alert alert-success" >{{ Session::get('message') }}</div>
+         @endif
+         @if (Session::has('error'))
+            <div class="alert alert-danger" >{{ Session::get('error') }}</div>
+         @endif
+         @if($errors->any())
+            {!! implode('', $errors->all('<p style="color:red">:message</p>')) !!}
+         @endif
             {{ Form::open(['method' => 'post','route'=>'branch.add_job']) }}
             <input type="hidden" name="client_id" value="{{$client->id}}">
             <div id="">
@@ -41,7 +50,7 @@
                            <div id="first-job-des" class="col-md-10">
                               <div class="form-group" id="job_desc">
                                  <label>Job Description *</label>
-                                 <select class="theme-input-style job-d text-uppercase" required name="job_type[]">
+                                 <select class="job_desc theme-input-style job-d text-uppercase" required name="job_type[]">
                                     <option selected="" disabled="" value="">--SELECT JOB DESCRIPTION FROM LIST--</option>
                                     @if (isset($job_type) && !empty($job_type))
                                        @foreach ($job_type as $item)
@@ -72,4 +81,9 @@
 
 @section('script')
    <script src="{{asset('web/js/brance_wizered.js')}}"></script>
+   <script>
+      $(document).ready(function() {
+         $('.job_desc').select2();
+      });
+   </script>
 @endsection

@@ -211,8 +211,10 @@
                                 <div class="col-xs-12">
                                     @if (isset($client_personal) && !empty($client_personal))
                                         <a href="{{route('admin.client_edit',['client_id'=>encrypt($client_personal->id)])}}" class="btn btn-warning pull-left"></i> Edit </a>
+                                        <a href="{{route('admin.customer_info export',['id'=>$client_personal->id])}}" class="btn btn-info">Export Data</a>
                                     @endif
                                     <button class="btn btn-danger pull-left" onclick="window.close()"></i>Close Window</button>
+                                    
                                 </div>
                             </div>
                         </section>

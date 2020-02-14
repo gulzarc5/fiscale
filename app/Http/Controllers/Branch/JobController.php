@@ -10,6 +10,7 @@ use auth;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ClientJobReport;
+use Validator;
 
 class JobController extends Controller
 {
@@ -17,15 +18,14 @@ class JobController extends Controller
     {
         return view('website.branch.branch_add_job');
     }
-
-    public function addJobForm(Request $request)
+    
+    public function addJobClientSearch(Request $request)
     {
         $request->validate([
             'client_serach_id' => 'required',
         ]);
 
         $search_key = $request->input('client_serach_id');
-        
         if (is_numeric($search_key)) {
             $sql_search = DB::table('client')->where('mobile',$search_key);            
         }else{
@@ -33,11 +33,22 @@ class JobController extends Controller
         }
         if ($sql_search->count() > 0) {
             $client = $sql_search->first();
-            $job_type = DB::table('job_type')->get();
-            return view('website.branch.branch_submit_job',compact('client','job_type'));
+            return redirect()->route('branch.add_job_form',['client_id'=>encrypt($client->id)]);
         }else{
             return redirect()->back()->with('error','Sorry No Client Found');
         }
+    }
+
+    public function addJobForm($client_id)
+    {
+        try {
+            $client_id = decrypt($client_id);
+        }catch(DecryptException $e) {
+            abort(404);
+        }        
+        $job_type = DB::table('job_type')->get();
+        $client = DB::table('client')->where('id',$client_id)->first();
+        return view('website.branch.branch_submit_job',compact('client','job_type'));
     }
 
     public function addJob(Request $request)
@@ -46,6 +57,13 @@ class JobController extends Controller
             'job_type' => 'required',
             'client_id' => 'required',
         ]);
+        $validator = Validator::make($request->all(), [
+            'job_type.*' => 'distinct',
+        ]);        
+        if ($validator->fails()) { 
+            return redirect()
+            ->back()->with('error','Job Description Should Be Distinct If You Are Punching More Then One Job')->withInput();
+        } 
 
         $job_type = array_unique($request->input('job_type'));
 
@@ -146,14 +164,16 @@ class JobController extends Controller
         $request->validate([
             'start_date' => 'required',
             'end_date' => 'required',
+            'type' => 'required',
         ]);
         $s_date = $request->input('start_date');
         $e_date = $request->input('end_date');
+        $type = $request->input('type');
         
         if (Carbon::parse($s_date)->gt(Carbon::parse(Carbon::parse($e_date)))){
             return redirect()->back()->with('error','Please Select End Date Greater Then Start Date');
         }else{
-            return Excel::download(new ClientJobReport($s_date,$e_date), 'report.xlsx');
+            return Excel::download(new ClientJobReport($s_date,$e_date,$type), 'report.xlsx');
         }
     }
 

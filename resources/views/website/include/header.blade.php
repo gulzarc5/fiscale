@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{asset('web/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/colors/theme-color-1.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/custom.css')}}">
+    <link href="{{asset('select2/css/select2.css')}}" rel="stylesheet" />
+
 </head>
 <body>
     <header class="header">
@@ -36,8 +38,8 @@
                                         <ul>
                                             <li class="active"><a href="{{route('website.web.index')}}">Home</a></li>
                                             <li><a href="{{route('website.web.contact')}}">Contact</a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('employee.loginForm')}}">Employee login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('branch.loginForm')}}">Branch login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('employee.loginForm')}}">Member login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('branch.loginForm')}}">SP login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
                                         </ul>
                                     </div>
                                 </nav>

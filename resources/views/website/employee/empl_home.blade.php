@@ -30,7 +30,10 @@
                                  <button class="status btn-sm btn-success">Solved</button>
                               @endif
                            </td>
-                           <td class="view-btn"><a class="btn btn-success text-white rounded" href="{{route('employee.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a></td>
+                           <td class="view-btn reject-btn">
+                              <a class="btn btn-success text-white rounded" href="{{route('employee.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a>
+                              <a class="btn btn-danger text-white rounded" href="{{route('employee.reject_job',['job_id'=>encrypt($item->id)])}}">Reject</a>
+                           </td>
                         </tr>
                      @endforeach                      
                   @else

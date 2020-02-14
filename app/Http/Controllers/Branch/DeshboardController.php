@@ -56,7 +56,11 @@ class DeshboardController extends Controller
     public function branchUsers()
     {
         $user_id = Auth::guard('branch')->id();
-        $users = DB::table('client')->where('created_by_id',$user_id)->get();
+        $users = DB::table('client')
+            ->where('created_by_id',$user_id)
+            ->orderBy('id','desc')
+            ->limit(50)
+            ->get();
         return view('website.branch.user_list',compact('users'));
     }
 

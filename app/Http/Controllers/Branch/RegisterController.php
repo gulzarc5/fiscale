@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use DB;
 use auth;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Validator;;
 
 class RegisterController extends Controller
 {
@@ -21,7 +22,6 @@ class RegisterController extends Controller
             'constitution' => ['required'],
             'gender' => ['required'],
             'mobile' => ['required'],
-
             'village_addr' => ['required'],
             'po_addr' => ['required'],
             'ps_addr' => ['required'],
@@ -36,6 +36,15 @@ class RegisterController extends Controller
             'state' => ['required'],
             'pin' => ['required'],
         ]);
+
+        $validator = Validator::make($request->all(), [
+            'job_type.*' => 'distinct',
+        ]);
+        
+        if ($validator->fails()) { 
+            return redirect()
+            ->back()->with('error','Job Description Should Be Distinct If You Are Punching More Then One Job')->withInput();
+        } 
 
         $user = DB::table('client')
             ->insertGetId([

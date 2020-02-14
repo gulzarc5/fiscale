@@ -75,7 +75,7 @@
                  <label>Add New Remarks *</label>
                  <textarea name="message" placeholder="Type Remarks" class="theme-input-style" required></textarea>
              </div>
-            @if (isset($job) && !empty($job))
+            @if (isset($job) && !empty($job) && ($job->assign_to_id == Auth::guard('employee')->id()))
                <div class="form-group" id="job_desc">
                   <label>Status *</label>
                   <select class="theme-input-style job-d text-uppercase" required name="status" id="status_c" onchange="checkStatus()">

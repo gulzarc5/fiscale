@@ -5,7 +5,7 @@
 <div class="container">
    <div class="login-form mx-auto d-block w-100">
       <div class="page-header text-center">
-         <h1>Employee Login</h1>
+         <h1>Member Login</h1>
       </div>
       {{ Form::open(array('route' => 'employee.login', 'method' => 'post')) }}
          <div class="form-group">

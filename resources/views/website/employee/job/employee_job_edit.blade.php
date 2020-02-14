@@ -36,7 +36,7 @@
                            <div id="first-job-des" class="col-md-10">
                               <div class="form-group" id="job_desc">
                                  <label>Job Description *</label>
-                                 <select class="theme-input-style job-d text-uppercase" required name="job_type">
+                                 <select class="job_desc theme-input-style job-d text-uppercase" required name="job_type">
                                     <option selected="" disabled="" value="">--SELECT JOB DESCRIPTION FROM LIST--</option>
                                     @if (isset($job_type) && !empty($job_type))
                                        @foreach ($job_type as $item)
@@ -66,4 +66,9 @@
 
 @section('script')
    <script src="{{asset('web/js/brance_wizered.js')}}"></script>
+   <script>
+      $(document).ready(function() {
+         $('.job_desc').select2();
+      });
+   </script>
 @endsection

@@ -62,7 +62,7 @@
                       }                        
                     }},
                     {data: 'created_at', name: 'created_at' ,searchable: true},  
-                    {data: 'branch_name', name: 'branch_name' ,searchable: true},  
+                    {data: 'b_branch_id', name: 'b_branch_id' ,searchable: true},  
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });            

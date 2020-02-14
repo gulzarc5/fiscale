@@ -29,13 +29,17 @@ class ClientController extends Controller
             $sql_search = DB::table('client')->where('pan',$search_key);
         }
         if ($sql_search->count() > 0) {
-            $client = $sql_search->first();
-            return redirect()->route('employee.client_edit_form',['client_id'=>encrypt($client->id)]);
+            $user = $sql_search->first();
+            $job = DB::table('job')
+                ->leftjoin('job_type','job_type.id','=','job.job_type')
+                ->select('job.*','job_type.name as job_type_name')
+                ->where('client_id',$user->id)->get();
+            return view('website.employee.client.client_details',compact('user','job'));
         }else{
             return redirect()->back()->with('error','Sorry No Client Found');
         }
     }
-
+    
     public function ClientEditForm($client_id)
     {
         try {

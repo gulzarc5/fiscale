@@ -139,6 +139,8 @@ $(document).ready(function() {
                     '</div>'+
                 '</div></div>'
              $('#job_desc_div').append(job_desc_html);
+
+        $('.job_desc').select2();
     });
     $('a').click(function() {
              $(this).toggleClass('active');

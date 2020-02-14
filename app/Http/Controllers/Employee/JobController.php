@@ -54,7 +54,6 @@ class JobController extends Controller
         $request->validate([
             'job_id' => 'required',
             'message' => 'required',
-            'status' => 'required',
         ]);
         $employee_id = Auth::guard('employee')->user()->id;
 
@@ -68,13 +67,16 @@ class JobController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         $date = $request->input('comp_date');
-
-        $job_status_update = DB::table('job')
+        $status = $request->input('status');
+        if (isset($status) && !empty($status)) {
+            $job_status_update = DB::table('job')
             ->where('id',$request->input('job_id'))
             ->update([
-                'status'=>$request->input('status'),
+                'status'=>$status,
                 'completed_date' => $request->input('comp_date'),
             ]);
+        }
+       
         return redirect()->back();
     }
 
@@ -207,14 +209,31 @@ class JobController extends Controller
         $request->validate([
             'start_date' => 'required',
             'end_date' => 'required',
+            'type' => 'required',
         ]);
         $s_date = $request->input('start_date');
         $e_date = $request->input('end_date');
+        $type = $request->input('type');
         
         if (Carbon::parse($s_date)->gt(Carbon::parse(Carbon::parse($e_date)))){
             return redirect()->back()->with('error','Please Select End Date Greater Then Start Date');
         }else{
-            return Excel::download(new EmployeeReport($s_date,$e_date), 'report.xlsx');
+            return Excel::download(new EmployeeReport($s_date,$e_date,$type), 'report.xlsx');
         }
+    }
+
+    public function rejectJob($job_id)
+    {
+        try {
+            $job_id = decrypt($job_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $job = DB::table('job')
+            ->where('id',$job_id)
+            ->update([
+                'employee_assignment_status' => 2,
+            ]);
+        return redirect()->back();
     }
 }

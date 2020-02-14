@@ -43,8 +43,8 @@
       <div class="col-md-12 col-sm-12 col-xs-12 tile_stats_count" style="display:flex;justify-content:center">
         <h3>Jobs</h3>
       </div>
-      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Working Jobs</span>
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Pending Jobs</span>
         <div class="count green">
           @if(isset($working_jobs))
             {{$working_jobs}}
@@ -52,7 +52,25 @@
         </div>
       </div>
 
-      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Assigned Jobs</span>
+        <div class="count green">
+          @if(isset($working_jobs))
+            {{$working_jobs}}
+          @endif
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Employee Rejected Jobs</span>
+        <div class="count green">
+          @if(isset($working_jobs))
+            {{$working_jobs}}
+          @endif
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Correction Jobs</span>
         <div class="count green">
           @if(isset($correction_jobs))
@@ -61,7 +79,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Completed Jobs</span>
         <div class="count green">
           @if(isset($completed_jobs))

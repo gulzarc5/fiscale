@@ -16,6 +16,7 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('Edit/Form/{id}', 'EmployeeController@editEmployeeForm')->name('admin.edit_employee_form');
             Route::post('Update/Emp', 'EmployeeController@updateEmployee')->name('admin.update_employee');
             Route::get('Change/Pass/Form/{id}', 'EmployeeController@employeePassChange')->name('admin.change_pass_employee_form');
+            Route::get('status/update/{id}/{status}', 'EmployeeController@statusUpdateEmployee')->name('admin.employee_status_update');
 
             Route::post('Change/Pass/', 'EmployeeController@employeePassChangeSubmit')->name('admin.change_pass_employee');
 
@@ -30,6 +31,15 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('Edit/Form/{id}', 'BranchController@editBranchForm')->name('admin.edit_branch_form');
             Route::post('Update/branch', 'BranchController@updateBranch')->name('admin.update_branch');
             Route::get('Change/Pass/Form/{id}', 'BranchController@branchPassChange')->name('admin.change_pass_branch_form');
+
+            Route::get('status/update/{id}/{status}', 'BranchController@updateStatusBranch')->name('admin.update_status_branch');
+
+            Route::get('pending/payment/request', 'BranchController@pandingPaymentRequest')->name('admin.pending_payment_request');
+            Route::get('pending/payment/request/ajax', 'BranchController@pandingPaymentRequestAjax')->name('admin.pending_payment_request_ajax');
+            Route::get('view/payment/request/{request_id}', 'BranchController@viewPaymentRequest')->name('admin.view_payment_request');
+            Route::get('payment/request/process/{request_id}/{request_type}', 'BranchController@processPaymentRequest')->name('admin.process_payment_request');
+
+            Route::get('payment/request/image/{request_id}', 'BranchController@imagePaymentRequest')->name('admin.image_payment_request');
 
             Route::post('Change/Pass/', 'BranchController@branchPassChangeSubmit')->name('admin.change_pass_branch');
 
@@ -60,6 +70,11 @@ Route::group(['namespace'=>'Admin'],function(){
 
             Route::get('completed/job/list/', 'CustomerController@completedJobList')->name('admin.completed_job_list');
             Route::get('completed/job/list/ajx', 'CustomerController@completedJobListAjax')->name('admin.completed_job_list_ajax');
+
+            Route::get('empRejected/job/list/', 'CustomerController@empRejectedJobList')->name('admin.empRejected_job_list');
+            Route::get('empRejected/job/list/ajx', 'CustomerController@empRejectedJobListAjax')->name('admin.empRejected_job_list_ajax');
+
+            Route::get('customer/detail/export/{id}','CustomerController@customerInfoExport')->name('admin.customer_info export');
 
         });
         

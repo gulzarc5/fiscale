@@ -6,6 +6,7 @@ Route::group(['namespace' => 'Employee'], function () {
 
     Route::group(['middleware' => 'auth:employee', 'prefix' => 'employee'], function () {
         Route::get('/deshboard', 'DeshboardController@index')->name('employee.deshboard');
+        Route::get('/reject/job/{job_id}','JobController@rejectJob')->name('employee.reject_job');
 
         Route::get('/close/jobs', 'JobController@closeJobForm')->name('employee.close_job_form');
 
@@ -50,7 +51,8 @@ Route::group(['namespace' => 'Branch'], function () {
         Route::get('/user/view/{user_id}', 'DeshboardController@branchUserView')->name('branch.user_view');
 
         Route::get('/search/client/job/form', 'JobController@searchClientAddJobForm')->name('branch.search_client_add_job');
-        Route::post('/add/job/form', 'JobController@addJobForm')->name('branch.add_job_form');
+        Route::post('/add/job/client/search', 'JobController@addJobClientSearch')->name('branch.add_job_client_search');
+        Route::get('add/job/form/{client_id}','JobController@addJobForm')->name('branch.add_job_form');
         Route::post('/add/job', 'JobController@addJob')->name('branch.add_job');
 
         Route::get('/track/job/form', 'JobController@trackJobForm')->name('branch.track_job_form');
@@ -66,6 +68,16 @@ Route::group(['namespace' => 'Branch'], function () {
 
         Route::get('/client/report/Form', 'JobController@JobReportForm')->name('branch.client_report_form');
         Route::post('/client/report', 'JobController@JobReport')->name('branch.client_report');
+
+        Route::get('/payment/request/list', 'TransactionController@paymentRequestList')->name('branch.payment_request_list');
+        Route::get('/payment/request/add/form', 'TransactionController@paymentRequestAddForm')->name('branch.payment_request_add_form');
+        Route::post('/payment/request/add', 'TransactionController@paymentRequestAdd')->name('branch.payment_request_add');
+
+        Route::get('/wallet/history', 'TransactionController@walletHistory')->name('branch.wallet_history');
+        Route::get('/wallet/balance/add/form', 'TransactionController@walletBalanceAddForm')->name('branch.wallet_balance_add');
+        Route::post('/wallet/balance/add', 'TransactionController@walletBalanceAdd')->name('branch.wallet_balance_add_submit');
+
+        Route::get('/wallet/pay/success/{id}', 'TransactionController@walletPaySuccess')->name('branch.wallet_pay_success');
 
     });
 });

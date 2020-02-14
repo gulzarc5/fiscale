@@ -42,14 +42,14 @@
                   <div class="col-md-4">
                      <div class="form-group">
                         <label>D.O.B *</label>
-                        <input type="date" name="dob" placeholder="Enter your dob" class="theme-input-style" id="dob" value="{{old('father_name')}}"> 
+                        <input type="date" name="dob" placeholder="Enter your dob" class="theme-input-style" id="dob" value="{{old('dob')}}"> 
                         <span id="dob_error"></span>
                      </div>
                   </div>
                   <div class="col-md-4">
                      <div class="form-group">
                         <label>PAN *</label>
-                        <input type="text" name="pan" id="pan" placeholder="Enter your pan" class="theme-input-style" value="{{old('father_name')}}">
+                        <input type="text" name="pan" id="pan" placeholder="Enter your pan" class="theme-input-style" value="{{old('pan')}}">
                         <span id="pan_error"></span>
                      </div>
                   </div>
@@ -71,8 +71,9 @@
                         <label>Gender *</label>
                         <select class="theme-input-style" id="gender" name="gender">
                            <option selected="" disabled="">--SELECT YOUR GENDER--</option>
-                           <option value="M" {{ old('constitution') == "M" ? 'selected' : '' }}>Male</option>
-                           <option value="F" {{ old('constitution') == "F" ? 'selected' : '' }}>Female</option>
+                           <option value="M" {{ old('gender') == "M" ? 'selected' : '' }}>Male</option>
+                           <option value="F" {{ old('gender') == "F" ? 'selected' : '' }}>Female</option>
+                           <option value="O" {{ old('gender') == "O" ? 'selected' : '' }}>Other</option>
                         </select>
                         <span id="gender_error"></span>
                      </div>
@@ -152,7 +153,7 @@
                   <div class="col-md-4">
                      <div class="form-group">
                         <label>Pin *</label>
-                        <input type="text" name="pin_addr" id="pin_addr" placeholder="Enter your pin" class="theme-input-style" value="{{old('pin_addr')}}"> 
+                        <input type="number" name="pin_addr" id="pin_addr" placeholder="Enter your pin" class="theme-input-style" value="{{old('pin_addr')}}"> 
                         <span id="pin_addr_error"></span>
                      </div>
                   </div>
@@ -218,7 +219,7 @@
                   <div class="col-md-4">
                      <div class="form-group">
                         <label>Pin *</label>
-                        <input type="text" name="pin" id="pin" placeholder="Enter your pin" class="theme-input-style" value="{{old('pin')}}"> 
+                        <input type="number" name="pin" id="pin" placeholder="Enter your pin" class="theme-input-style" value="{{old('pin')}}"> 
                         <span id="pin_error"></span>
                      </div>
                   </div>
@@ -242,7 +243,7 @@
                      <div id="first-job-des" class="col-md-10">
                         <div class="form-group" id="job_desc">
                            <label>Job Description *</label>
-                           <select class="theme-input-style job-d text-uppercase" required name="job_type[]">
+                           <select class="job_desc theme-input-style job-d text-uppercase" required name="job_type[]">
                               <option selected="" disabled="" value="">--SELECT JOB DESCRIPTION FROM LIST--</option>
                               @if (isset($job_type) && !empty($job_type))
                                  @foreach ($job_type as $item)
@@ -273,4 +274,9 @@
 
 @section('script')
    <script src="{{asset('web/js/brance_wizered.js')}}"></script>
+   <script>
+      $(document).ready(function() {
+         $('.job_desc').select2();
+      });
+   </script>
 @endsection

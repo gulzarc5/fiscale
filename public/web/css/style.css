@@ -3438,3 +3438,9 @@ h1 span {
 [data-animate].animated {
     visibility: visible
 }
+.reject-btn .btn:before{
+ background-color: transparent;
+}
+.reject-btn .btn{
+    border-color: transparent;
+   }

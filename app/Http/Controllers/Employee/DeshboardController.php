@@ -20,6 +20,7 @@ class DeshboardController extends Controller
         ->leftjoin('branch','branch.id','=','job.created_by_id')
         ->leftjoin('job_type','job_type.id','=','job.job_type')
         ->where('job.status','!=',4)
+        ->where('job.employee_assignment_status',1)
         ->where('job.assign_to_id',$emp_id)
         ->orderBy('job.assigned_date','desc')->get();
         return view('website.employee.empl_home',compact('job'));

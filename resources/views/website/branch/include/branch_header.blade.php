@@ -17,5 +17,7 @@
     <link rel="stylesheet" href="{{asset('web/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/colors/theme-color-1.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/custom.css')}}">
+    
+    <link href="{{asset('select2/css/select2.css')}}" rel="stylesheet" />
 </head>
 <body>

@@ -47,7 +47,7 @@
                      @endforeach
                   @else
                      <tr>
-                        <td colspan="3" align="celter">No Remarks Found</td>
+                        <td colspan="5" align="celter">No Remarks Found</td>
                      </tr>
                   @endif
                </tbody>
@@ -65,7 +65,7 @@
                  <label>Add New Remarks *</label>
                  <textarea name="message" placeholder="Type Remarks" class="theme-input-style" required></textarea>
              </div>
-            @if (isset($job) && !empty($job))
+            @if (isset($job) && !empty($job) && ($job->assign_to_id == Auth::guard('employee')->id()))
                <div class="form-group" id="job_desc">
                   <label>Status *</label>
                   <select class="theme-input-style job-d text-uppercase" required name="status" onchange="checkStatus()" id="status_c">

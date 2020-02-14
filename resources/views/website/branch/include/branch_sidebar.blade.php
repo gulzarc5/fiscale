@@ -46,6 +46,23 @@
                 </ul>
             </li>
             <li>
+                <a href="#eins3" data-toggle="collapse" class="collapsed">
+                    <span> Transactions </span>
+                </a>
+                <ul class="collapse" id="eins3">
+                    <li>
+                        <a href="{{route('branch.wallet_history')}}">
+                            <span>Wallet</span>
+                        </a>
+                    </li>
+                    {{-- <li>
+                        <a href="{{route('branch.payment_request_list')}}">
+                            <span>Payment Request</span>
+                        </a>
+                    </li> --}}
+                </ul>
+            </li>
+            <li>
                 <a href="{{route('branch.client_report_form')}}"><span> Report </span></a>
             </li>
             <li>

@@ -90,6 +90,7 @@
                            <option selected="" disabled="">--SELECT YOUR GENDER--</option>
                            <option value="M" {{ $client->gender == "M" ? 'selected' : '' }}>Male</option>
                            <option value="F" {{ $client->gender == "F" ? 'selected' : '' }}>Female</option>
+                           <option value="F" {{ $client->gender == "O" ? 'selected' : '' }}>Other</option>
                         </select>
                         @if($errors->has('gender'))
                            <span class="invalid-feedback" role="alert" style="color:red">

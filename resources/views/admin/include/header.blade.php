@@ -99,20 +99,25 @@
 
                   <li><a><i class="fa fa-desktop"></i>Job<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.job_list')}}">Job List</a></li>
-                      <li><a href="{{route('admin.working_job_list')}}">Working Job List</a></li>                      
+                      <li><a href="{{route('admin.job_list')}}">Pending Job List</a></li>
+                      <li><a href="{{route('admin.working_job_list')}}">Assigned Job List</a></li>     
+                      <li><a href="{{route('admin.empRejected_job_list')}}">Rejected Job List</a></li>                      
                       <li><a href="{{route('admin.problem_job_list')}}">Correction Job List</a></li>                                            
                       <li><a href="{{route('admin.completed_job_list')}}">Complete Job List</a></li>
                     </ul>
                   </li>
-
-                  {{-- <li><a><i class="fa fa-bar-chart-o"></i> Configuration <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Payment Request<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.add_employee_form')}}">Add New Job</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">Job List</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">Add Remarks To Job</a></li>
+                      <li><a href="{{route('admin.pending_payment_request')}}">Panding Request</a></li>
+                      <li><a href="{{route('admin.working_job_list')}}">Accepted Request</a></li>
                     </ul>
-                  </li> --}}
+                  </li>
+
+                  <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{route('admin.pending_payment_request')}}">Job Report</a></li>
+                    </ul>
+                  </li>
 
                 </ul>
               </div>
