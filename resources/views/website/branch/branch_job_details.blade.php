@@ -2,13 +2,46 @@
 @section('content') 
 
    <div class="col p-t col-md-10">
-         <center style="padding-top: 20px;">
-            <h3>JOB DETAILS
-               @if (isset($job_id) && !empty($job_id))
-                  FOR JOB ID : <b>{{$job_id}}</b>
-               @endif
+      @if (isset($job) && !empty($job))      
+      <div class="row">
+         <div class="col-md-12">
+            <h3 style="float:left">JOB DETAILS            
+                  FOR JOB ID : <b>{{$job->job_id}}</b>            
             </h3>
-         </center>
+            <a target="_blank" href="{{route('branch.client_edit',['client_id'=>encrypt($job->client_id)])}}" class="btn btn-sm btn-info" style="float:right;margin-right: 5px;">View Client Info</a>
+         </div>
+         <div class="col-md-4">
+         <p> <b>Name : </b>{{$job->cl_name}}</p>
+         </div>
+         <div class="col-md-4">
+            <p<b>D.O.B/D.O.I : </b>{{$job->dob}}</p<b>
+         </div>
+         <div class="col-md-4">
+            <p><b>PAN : </b>{{$job->cl_pan}}</p>
+         </div>
+         <div class="col-md-4">
+            <p><b>Mobile : </b>{{$job->cl_mobile}}</p>
+         </div>
+         <div class="col-md-4">
+            <p><b>Constitution : </b>{{$job->constitution}}</p>
+         </div>
+         <div class="col-md-4">
+            <p><b>Gender : </b>
+               @if ($job->gender == 'M')
+                  Male
+               @else
+                  Female
+               @endif
+            </p>
+         </div>  
+         <div class="col-md-4">
+            <p><b>Job Desc : </b>{{$job->job_type_name}}</p>
+         </div>
+         <div class="col-md-4">
+            <p><b>Date : </b>{{$job->created_at}}</p>
+         </div>  
+      </div>
+   @endif
       <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
          <div class="table-responsive">
             <table class="sope--cart-table table pt-sans">

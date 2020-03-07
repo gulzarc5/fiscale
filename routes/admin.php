@@ -22,6 +22,24 @@ Route::group(['namespace'=>'Admin'],function(){
 
         });
 
+        Route::group(['prefix'=>'Executive'],function(){
+            Route::get('Add/New/', 'ExecutiveController@addExecutiveForm')->name('admin.add_executive_form');
+            Route::post('Add/Exe', 'ExecutiveController@addExecutive')->name('admin.add_executive');
+            Route::get('List/', 'ExecutiveController@executiveList')->name('admin.executive_list');
+            Route::get('Edit/Form/{id}', 'ExecutiveController@editExecutiveForm')->name('admin.edit_executive_form');
+            Route::post('Update/Exe', 'ExecutiveController@updateExecutive')->name('admin.update_executive');
+            Route::get('Change/Pass/Form/{id}', 'ExecutiveController@executivePassChange')->name('admin.change_pass_executive_form');
+            Route::get('status/update/{id}/{status}', 'ExecutiveController@statusUpdateExecutive')->name('admin.executive_status_update');
+
+            Route::post('Change/Pass/', 'ExecutiveController@executivePassChangeSubmit')->name('admin.change_pass_executive');
+        });
+
+        Route::group(['prefix'=>'Wallet'],function(){
+            Route::get('executive/report/Form','ExecutiveWalletController@executiveJobReportForm')->name('admin.executive_job_report_form');
+            Route::get('employee/report/Form','EmployeeWalletController@employeeJobReportForm')->name('admin.employee_job_report_form');
+        });
+
+
         Route::group(['prefix'=>'Branch'],function(){
             Route::get('Add/New/', 'BranchController@addBranchForm')->name('admin.add_branch_form');
             Route::post('Add/branch', 'BranchController@addBranch')->name('admin.add_branch');

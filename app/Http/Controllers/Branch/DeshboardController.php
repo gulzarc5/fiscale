@@ -16,11 +16,11 @@ class DeshboardController extends Controller
         $branch_id = Auth::guard('branch')->user()->id;
 
         $job = DB::table('job')
-        ->select('job.*','client.client_id as c_id','client.name as c_name','job_type.name as job_type_name','employee.name as employee_name')
+        ->select('job.*','client.client_id as c_id','client.name as c_name','client.pan as pan','job_type.name as job_type_name','employee.name as employee_name')
         ->leftjoin('client','client.id','=','job.client_id')
         ->leftjoin('employee','employee.id','=','job.assign_to_id')
         ->leftjoin('job_type','job_type.id','=','job.job_type')
-        ->where('job.status',3)
+        ->where('job.status','!=',4)
         ->where('job.created_by_id',$branch_id)
         ->orderBy('job.id','desc')->get();
         return view('website.branch.correction_job_list',compact('job'));

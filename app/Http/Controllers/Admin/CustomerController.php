@@ -110,7 +110,7 @@ class CustomerController extends Controller
                                 <input type="hidden" name="job_id" value="'.$row->id.'">
                                 <div class="modal-body dispatch-order">
                                     <div class="form-group" style="width: 100%;">                   <label>Select Employee</label><br>
-                                        <select name="emp_id" class="form-control" style="width: 100%;">'.$emp_data.'</select>
+                                        <select name="emp_id" class="form-control job_desc" style="width: 100%;">'.$emp_data.'</select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -366,7 +366,7 @@ class CustomerController extends Controller
                 </form>';
                 return $btn;
                 }else{
-                    $btn = "Assigned";
+                    $btn = $row->employee_name;
                     return $btn;
                 }
             })
@@ -437,7 +437,7 @@ class CustomerController extends Controller
                 </form>';
                 return $btn;
                 }else{
-                    $btn = "Assigned";
+                    $btn = $row->employee_name;
                     return $btn;
                 }
             })
@@ -509,7 +509,7 @@ class CustomerController extends Controller
                 </form>';
                 return $btn;
                 }else{
-                    $btn = "Assigned";
+                    $btn = $row->employee_name;
                     return $btn;
                 }
             })

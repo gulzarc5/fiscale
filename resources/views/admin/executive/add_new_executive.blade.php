@@ -1,11 +1,6 @@
 @extends('admin.template.admin_master')
 
 @section('content')
-<style>
-    .select2-selection {
-  height: 34px !important;
-}
-</style>
 
 <div class="right_col" role="main">
     <div class="row">
@@ -13,7 +8,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Add New Service Point</h2>
+                    <h2>Add New Executive</h2>
                     <div class="clearfix"></div>
                 </div>
 
@@ -27,30 +22,13 @@
 
                 <div>
                     <div class="x_content">
-                        {{ Form::open(['method' => 'post','route'=>'admin.add_branch']) }}
+                        {{ Form::open(['method' => 'post','route'=>'admin.add_executive']) }}
 
                          <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
-                                <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
-                                    <label for="name">Select Executive</label>
-                                    <select class="form-control executive" name="executive_id">
-                                        <option value="">--Select Executive--</option>
-                                        @if (isset($executive) && !empty($executive))
-                                            @foreach ($executive as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach
-                                        @endif
-                                        
-                                    </select>
-                                      @if($errors->has('name'))
-                                          <span class="invalid-feedback" role="alert" style="color:red">
-                                              <strong>{{ $errors->first('name') }}</strong>
-                                          </span>
-                                      @enderror
-                                </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                  <label for="name">Service Point Name</label>
-                                  <input type="text" class="form-control" name="name"  placeholder="Enter Service Point name" value="{{ old('name')}}" >
+                                  <label for="name">Executive Name</label>
+                                  <input type="text" class="form-control" name="name"  placeholder="Enter Executive name" value="{{ old('name')}}" >
                                     @if($errors->has('name'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -60,24 +38,40 @@
 
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="mobile">Mobile Number</label>
-                                    <input type="text" class="form-control" name="mobile"  placeholder="Enter Branch Mobile Number" value="{{ old('mobile')}}" >
+                                    <input type="text" class="form-control" name="mobile"  placeholder="Enter Executive Mobile Number" value="{{ old('mobile')}}" >
                                     @if($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('mobile') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-
+                            </div>
+                            <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email"  placeholder="Enter Branch Email Id" value="{{ old('email')}}" >
-                                    @if($errors->has('email'))
+                                    <label for="email_id">Email</label>
+                                    <input type="text" class="form-control" name="email_id"  placeholder="Enter Executive Email Id" value="{{ old('email_id')}}" >
+                                    @if($errors->has('email_id'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('email_id') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div>                               
 
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                    <label for="size_wearing">Gender</label>
+                                    <p style="padding-bottom: 6px; margin-top: 8px;">
+                                      Male:
+                                      <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required /> FeMale:
+                                      <input type="radio" class="flat" name="gender" id="genderF" value="F" />
+                                    </p>
+                                    @if($errors->has('gender'))
+                                          <span class="invalid-feedback" role="alert" style="color:red">
+                                              <strong>{{ $errors->first('gender') }}</strong>
+                                          </span>
+                                    @enderror
+                                </div> 
+                            </div>
+                            <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="password">Password</label>
                                     <input type="text" class="form-control" name="password"  placeholder="Enter Password" value="{{ old('password')}}" >
@@ -97,7 +91,8 @@
                                         </span>
                                     @enderror
                                 </div>
-
+                            </div>
+                            <div class="form-row mb-10">
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="city">City</label>
                                     <input type="text" class="form-control" name="city"  placeholder="Enter City Name" value="{{ old('city')}}" >
@@ -117,7 +112,8 @@
                                         </span>
                                     @enderror
                                 </div>
-
+                            </div>
+                            <div class="form-row mb-10">
                                 <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                     <label for="address">Address</label>
                                     <textarea type="text" class="form-control" name="address">{{ old('address')}}</textarea>
@@ -145,14 +141,4 @@
 </div>
 
 
-@endsection
-
-
-@section('script')
-<script src="{{asset('select2/js/select2.min.js')}}"></script>
-   <script>
-      $(document).ready(function() {
-         $('.executive').select2();
-      });
-   </script>
 @endsection

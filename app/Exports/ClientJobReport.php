@@ -57,7 +57,7 @@ class ClientJobReport implements FromArray,ShouldAutoSize,WithEvents
         $date_to = Carbon::parse($this->end_date)->endOfDay();
 
         $job = DB::table('job')
-            ->select('job.*','client.client_id as c_id','client.name as c_name','job_type.name as job_type_name','branch.name as branch_name')
+            ->select('job.*','client.pan as pan','client.name as c_name','job_type.name as job_type_name','branch.name as branch_name')
             ->leftjoin('client','client.id','=','job.client_id')
             ->leftjoin('branch','branch.id','=','job.created_by_id')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
@@ -83,7 +83,7 @@ class ClientJobReport implements FromArray,ShouldAutoSize,WithEvents
             $data [] = ["Branch Report Of Closed Jobs"];
         }
        
-        $data[] = ['Sl No','Job Id','Client Id','Client Name','Job Description','Date','Status','Close Date']; 
+        $data[] = ['Sl No','Job Id','Client PAN','Client Name','Job Description','Date','Status','Close Date']; 
         $count = 1;
         foreach ($job as $key => $value) {
             $status = "Processing";
@@ -93,7 +93,7 @@ class ClientJobReport implements FromArray,ShouldAutoSize,WithEvents
                 $status = "Closed";
             }
             
-            $data[] = [ $count,$value->job_id, $value->c_id,  $value->c_name,  $value->job_type_name,  $value->created_at, $status,$value->completed_date,];
+            $data[] = [ $count,$value->job_id, $value->pan,  $value->c_name,  $value->job_type_name,  $value->created_at, $status,$value->completed_date,];
             $count++;
         }
         return $data;

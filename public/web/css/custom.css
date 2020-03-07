@@ -145,3 +145,17 @@ nav.my ul li ul li a.active {
  .form-margin .form-group{
    margin-bottom: 0px !important;
  }
+ #form-1 .row.half-gutter .form-group p {
+  margin-bottom: 15px;
+  line-height: 1;
+ }
+ #form-1 .row.half-gutter .form-group p strong{
+  color:black;
+ }
+ .jobtran {
+  padding: 18px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+.jobtran .row.half-gutter .form-group {
+  margin-bottom: 1rem !important;
+}

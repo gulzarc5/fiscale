@@ -24,6 +24,19 @@
                 <a href="{{route('employee.client_search_form')}}"></i>Search Client</span></a>
             </li>
             <li>
+                <a href="#eins2" data-toggle="collapse" class="collapsed">
+                    <span> Transaction</span>
+                </a>
+                <ul class="collapse" id="eins2">
+                    <li><a href="{{route('employee.job_transaction_form')}}">
+                            <span> Job </span>
+                    </a></li>
+                    <li><a href="#">
+                        <span> Wallet </span>
+                </a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="{{route('employee.employee_report_form')}}"></i>Report</span></a>
             </li>
             <li>

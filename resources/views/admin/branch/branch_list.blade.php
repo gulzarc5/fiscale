@@ -20,7 +20,8 @@
                                 <th>Name</th>
                                 <th>Mobile</th>
                                 <th>Email</th>
-                                <th>Pin</th>
+                                <th>Pin</th>                                
+                                <th>Marketing Executive</th>
                                 <th>State</th>
                                 <th>City</th>
                                 <th>Address</th>
@@ -55,7 +56,8 @@
                     {data: 'name', name: 'name' ,searchable: true},
                     {data: 'mobile', name: 'mobile' ,searchable: true},   
                     {data: 'email', name: 'email' ,searchable: true},            
-                    {data: 'pin', name: 'pin' ,searchable: true},  
+                    {data: 'pin', name: 'pin' ,searchable: true},              
+                    {data: 'e_name', name: 'e_name' ,searchable: true},
                     {data: 'state', name: 'state' ,searchable: true},   
                     {data: 'city', name: 'city' ,searchable: true},  
                     {data: 'address', name: 'address' ,searchable: true}, 

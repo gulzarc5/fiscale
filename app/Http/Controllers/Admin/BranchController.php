@@ -15,13 +15,15 @@ class BranchController extends Controller
 {
     public function addBranchForm()
     {
-        return view('admin.branch.add_new_branch');
+        $executive = DB::table('executive')->where('status',1)->get();
+        return view('admin.branch.add_new_branch',compact('executive'));
     }
 
     public function addBranch(Request $request)
     {
         $request->validate([
             'name' => 'required',
+            'executive_id' => 'required|numeric',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:branch'],
             'password' => ['required', 'string', 'min:8'],
         ]);
@@ -29,6 +31,7 @@ class BranchController extends Controller
         $branch = DB::table('branch')
             ->insertGetId([
                 'name' => $request->input('name'),
+                'executive_id' => $request->input('executive_id'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
                 'mobile' => $request->input('mobile'),
@@ -41,6 +44,11 @@ class BranchController extends Controller
             ]);
         
         if ($branch) {
+            DB::table('branch')
+                ->where('id',$branch)
+                ->update([
+                    'branch_id' => 'FSP'.$branch,
+                ]);
             DB::table('wallet')
                 ->insert([
                     'user_id' => $branch,
@@ -61,7 +69,10 @@ class BranchController extends Controller
 
     public function branchListAjax()
     {
-        $query = DB::table('branch')->orderBy('id','desc');
+        $query = DB::table('branch')
+            ->select('branch.*','executive.name as e_name')
+            ->leftjoin('executive','executive.id','=','branch.executive_id')
+            ->orderBy('branch.id','desc');
         return datatables()->of($query->get())
             ->addIndexColumn()
             ->addColumn('action', function($row){
@@ -85,15 +96,16 @@ class BranchController extends Controller
         }catch(DecryptException $e) {
             return redirect()->back();
         }
-
+        $executive = DB::table('executive')->where('status',1)->get();
         $branch = DB::table('branch')->where('id',$id)->first();
-        return view('admin.branch.branch_edit',compact('branch'));
+        return view('admin.branch.branch_edit',compact('branch','executive'));
 
     }
 
     public function updateBranch(Request $request)
     {
         $request->validate([
+            'executive_id' => 'required|numeric',
             'name' => 'required',
             'id' => 'required',
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -102,6 +114,7 @@ class BranchController extends Controller
         $branch = DB::table('branch')
             ->where('id',$request->input('id'))
             ->update([
+                'executive_id'=>$request->input('executive_id'),
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'mobile' => $request->input('mobile'),

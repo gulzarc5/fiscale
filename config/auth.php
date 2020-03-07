@@ -60,6 +60,11 @@ return [
             'driver' => 'session',
             'provider' => 'branch',
         ],
+
+        'executive' => [
+            'driver' => 'session',
+            'provider' => 'executive',
+        ],
     ],
 
     /*
@@ -98,6 +103,11 @@ return [
         'employee' => [
             'driver' => 'eloquent',
             'model' => App\Employee::class,
+        ],
+
+        'executive' => [
+            'driver' => 'eloquent',
+            'model' => App\Executive::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

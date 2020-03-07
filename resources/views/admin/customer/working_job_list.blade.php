@@ -21,8 +21,8 @@
                                 <th>Assigned Date</th>
                                 <th>Job ID</th>
                                 <th>Job Description</th>
-                                <th>Client ID</th>
-                                <th>Punched By</th>
+                                <th>SP Name</th>
+                                <th>SP ID</th>
                                 <th>Name</th>
                                 <th>Mobile</th>
                                 <th>Pan</th>                                
@@ -57,7 +57,7 @@
                     {data: 'assigned_date', name: 'assigned_date',searchable: true},
                     {data: 'job_id', name: 'job_id',searchable: true},          
                     {data: 'job_type_name', name: 'job_type_name',searchable: true},
-                    {data: 'c_id', name: 'c_id',searchable: true}, 
+                    {data: 'branch_name', name: 'branch_name',searchable: true}, 
                     {data: 'branch_id', name: 'branch_id' ,searchable: true}, 
                     {data: 'c_name', name: 'c_name' ,searchable: true},
                     {data: 'c_mobile', name: 'c_mobile' ,searchable: true},              

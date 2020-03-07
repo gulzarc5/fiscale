@@ -27,7 +27,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee = DB::table('employee')
-            ->insert([
+            ->insertGetId([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
@@ -43,6 +43,12 @@ class EmployeeController extends Controller
             ]);
         
         if ($employee) {
+            DB::table('employee_wallet')
+            ->insert([
+                'emp_id'=>$employee,
+                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
             return redirect()->back()->with('message','Employee Added Successfully');
         }else{
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');

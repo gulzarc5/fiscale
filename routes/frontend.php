@@ -28,6 +28,9 @@ Route::group(['namespace' => 'Employee'], function () {
 
         Route::get('/employee/report/form', 'JobController@employeeReportForm')->name('employee.employee_report_form');
         Route::post('/employee/report', 'JobController@employeeReport')->name('employee.employee_report');
+
+        Route::get('/job/transaction/form','TransactionController@jobTransactionForm')->name('employee.job_transaction_form');
+        Route::post('/job/transaction/search','TransactionController@jobTransactionSearch')->name('employee.job_transaction_search');
     });
 });
 
@@ -81,6 +84,19 @@ Route::group(['namespace' => 'Branch'], function () {
 
     });
 });
+
+Route::group(['namespace' => 'Executive'], function () {
+    Route::get('executive/Login/Form', 'LoginController@index')->name('executive.loginForm');
+    Route::post('executive/Login', 'LoginController@executiveLogin')->name('executive.login');
+    Route::post('executive/logout', 'LoginController@logout')->name('executive.logout');
+
+    Route::group(['middleware' => 'auth:executive', 'prefix' => 'executive'], function () {
+        Route::get('/deshboard', 'DashboardController@index')->name('executive.deshboard');
+
+    });
+});
+
+
 Route::get('/', function () {
     return view('website.web.index');
 })->name('website.web.index');
@@ -88,11 +104,3 @@ Route::get('/', function () {
 Route::get('/Contact', function () {
     return view('website.web.contact');
 })->name('website.web.contact');
-
-// Route::get('/Employee_login', function () {
-//     return view('website.employee.emp_login');
-// })->name('empl_login');
-
-Route::get('/Branch_login', function () {
-    return view('website.branch.bran_login');
-})->name('branch_login');

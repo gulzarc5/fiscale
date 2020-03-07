@@ -13,6 +13,7 @@
                   <tr>
                      <td> Date </td>
                      <td> Client Name </td>
+                     <td> Client PAN </td>
                      <td> Job Description </td>
                      <td> Status </td>
                      <td> View Details</td>
@@ -22,12 +23,13 @@
                         <tr>
                            <td>{{$item->created_at}}</td>
                            <td>{{$item->c_name}}</td>
+                           <td>{{$item->pan}}</td>
                            <td>{{$item->job_type_name}}</td>
                            <td>
                               @if ($item->status == '1')
                                   <button class="status btn-sm btn-warning">Processing</button>
                               @elseif ($item->status == '2')
-                                 <button class="status btn-sm btn-info">Working</button>
+                                 <button class="status btn-sm btn-warning">Processing</button>
                               @elseif($item->status == '3')
                                  <button class="status btn-sm btn-danger">Document Correction</button>
                               @elseif($item->status == '3')

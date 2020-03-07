@@ -36,7 +36,7 @@
                   @endif
             </div>
             <div class="col-md-6">
-            <a href="{{route('branch.client_edit',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right">Edit Client Info</a>
+            <a href="{{route('branch.client_edit',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right" target="_blank">View Client Info</a>
             </div>
          </div>
       @endif

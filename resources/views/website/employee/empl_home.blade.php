@@ -9,6 +9,7 @@
                      <tr>
                            <td> Assigned Date </td>
                            <td> Client Name </td>
+                           <td> Client PAN </td>
                            <td> Job Description </td>
                            <td> Status </td>
                            <td> View </td>
@@ -18,6 +19,7 @@
                         <tr>
                            <td>{{$item->assigned_date}}</td>
                            <td>{{$item->c_name}}</td>
+                           <td>{{$item->pan}}</td>
                            <td>{{$item->job_type_name}}</td>
                            <td>
                               @if ($item->status == '1')
@@ -31,8 +33,8 @@
                               @endif
                            </td>
                            <td class="view-btn reject-btn">
-                              <a class="btn btn-success text-white rounded" href="{{route('employee.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a>
-                              <a class="btn btn-danger text-white rounded" href="{{route('employee.reject_job',['job_id'=>encrypt($item->id)])}}">Reject</a>
+                              <a style="padding: 7px;" class="btn btn-success text-white rounded" href="{{route('employee.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a>
+                              <a style="padding: 7px;" class="btn btn-danger text-white rounded" href="{{route('employee.reject_job',['job_id'=>encrypt($item->id)])}}">Reject</a>
                            </td>
                         </tr>
                      @endforeach                      

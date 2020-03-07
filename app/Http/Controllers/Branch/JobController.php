@@ -122,7 +122,7 @@ class JobController extends Controller
             return redirect()->back();
         }
         $job = DB::table('job')
-            ->select('job.*','job_type.name as job_type_name','client.name as cl_name','client.pan as cl_pan','client.mobile as cl_mobile')
+            ->select('job.*','job_type.name as job_type_name','client.id as client_id','client.dob as dob','client.constitution as constitution','client.gender as gender','client.name as cl_name','client.pan as cl_pan','client.mobile as cl_mobile')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
             ->leftjoin('client','client.id','=','job.client_id')
             ->where('job.job_id',$job_id)

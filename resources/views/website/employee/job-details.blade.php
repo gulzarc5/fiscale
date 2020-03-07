@@ -2,13 +2,55 @@
 @section('content') 
 
    <div class="col p-t col-md-10">
-         <center >
-            <h3>JOB DETAILS
-               @if (isset($job_id) && !empty($job_id))
-                  FOR JOB ID : <b>{{$job_id}}</b>
-               @endif
-            </h3>
-         </center>
+      @if (Session::has('message'))
+         <div class="alert alert-success" >{{ Session::get('message') }}</div>
+      @endif
+      @if (Session::has('error'))
+         <div class="alert alert-danger" >{{ Session::get('error') }}</div>
+      @endif
+      
+      @if (isset($job) && !empty($job))
+      
+         <div class="row">
+            <div class="col-md-12">
+               <h3 style="float:left">JOB DETAILS            
+                     FOR JOB ID : <b>{{$job->job_id}}</b>            
+               </h3>
+               <a href="{{route('employee.job_edit_form',['job_id'=>encrypt($job->id)])}}" class="btn btn-sm btn-warning" style="float:right;margin-right: 5px;">Edit Job</a>
+               <a target="_blank" href="{{route('employee.client_edit_form',['client_id'=>encrypt($job->client_id)])}}" class="btn btn-sm btn-info" style="float:right;margin-right: 5px;">View Client Info</a>
+            </div>
+            <div class="col-md-4">
+              <p> <b>Name : </b>{{$job->cl_name}}</p>
+            </div>
+            <div class="col-md-4">
+               <p<b>D.O.B/D.O.I : </b>{{$job->dob}}</p<b>
+            </div>
+            <div class="col-md-4">
+               <p><b>PAN : </b>{{$job->cl_pan}}</p>
+            </div>
+            <div class="col-md-4">
+               <p><b>Mobile : </b>{{$job->cl_mobile}}</p>
+            </div>
+            <div class="col-md-4">
+               <p><b>Constitution : </b>{{$job->constitution}}</p>
+            </div>
+            <div class="col-md-4">
+               <p><b>Gender : </b>
+                  @if ($job->gender == 'M')
+                      Male
+                  @else
+                      Female
+                  @endif
+               </p>
+            </div> 
+            <div class="col-md-4">
+               <p><b>Job Desc : </b>{{$job->job_type_name}}</p>
+            </div>
+            <div class="col-md-4">
+               <p><b>Date : </b>{{$job->created_at}}</p>
+            </div>      
+         </div>
+      @endif
       <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
          <div class="table-responsive">
             <table class="sope--cart-table table pt-sans">
@@ -18,7 +60,7 @@
                      <td> Date </td>
                      <td> Commented By </td>
                      <td> Remarks </td>
-                     <td> Action </td>
+                     {{-- <td> Action </td> --}}
                   </tr>
                   @if (isset($comments) && !empty($comments) && (count($comments) > 0))
                   @php
@@ -28,21 +70,21 @@
                         <tr>
                            <td>{{ $remark_count++ }}</td>
                            <td>{{$item->created_at}}</td>
-                           <td>
+                           <td>{{$item->remarks_by_name}}
                               @if ($item->remarks_by == '1')
-                                  Admin
+                                 
                               @elseif ($item->remarks_by == '2')
-                                  Employee
+                                 ( Employee )
                               @else
-                                 Branch
+                                ( Branch )
                               @endif
                            </td>
                            <td>{{$item->remarks}}</td>
-                           <td>
+                           {{-- <td>
                                @if ($item->remarks_by == '2')
                            <a  class="status btn-sm btn-warning" href="{{route('employee.remark_edit',['remark_id'=>encrypt($item->id),'job_id'=>encrypt($job_id)])}}">Edit</a>
                                 @endif
-                            </td>
+                            </td> --}}
                         </tr>
                      @endforeach
                   @else
@@ -91,7 +133,7 @@
    <script>
       function checkStatus(){
          if ($("#status_c").val() == '4') {
-            $("#date-div").html('<label>Add Completion Date</label><input type="date" name="comp_date" placeholder="Type Remarks" class="theme-input-style" required>');
+            $("#date-div").html('<label>Deduct Job Amount From SP</label><input type="number" name="amount" placeholder="Type Amount To Be Deduct" class="theme-input-style" required>');
          }else{
             $("#date-div").html("");
          }

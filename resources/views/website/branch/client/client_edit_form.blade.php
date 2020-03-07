@@ -20,306 +20,127 @@
             @if (isset($client))
             <input type="hidden" name="client_id" value="{{$client->id}}">
             <div id="form-1">
-               <h4>Personal Details</h4>
+               <br><h4>Personal Details</h4><hr>
                <div class="row half-gutter">
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Name *</label>
-                        <input type="text" name="name" id="name" placeholder="Enter your name" class="theme-input-style jk" value="{{$client->name}}" disabled> 
-                        @if($errors->has('name'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('name') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong>Name: </strong>{{$client->name}}</p>
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Father's Name</label>
-                        <input type="text" name="father_name" id="father_name" placeholder="Enter your father's name" class="theme-input-style" value="{{$client->father_name}}" disabled> 
-                        @if($errors->has('father_name'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('father_name') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong>Father's Name: </strong>{{$client->father_name}}</p>
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>D.O.B *</label>
-                        <input type="date" name="dob" placeholder="Enter your dob" class="theme-input-style" id="dob" value="{{$client->dob}}" disabled > 
-                        @if($errors->has('dob'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('dob') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong>DOB: </strong>{{$client->dob}}</p>
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>PAN *</label>
-                        <input type="text" name="pan" id="pan" placeholder="Enter your pan" class="theme-input-style" value="{{$client->pan}}" disabled>
-                        @if($errors->has('pan'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('pan') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong>PAN: </strong>{{$client->pan}}</p>
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Constitution *</label>
-                        <select class="theme-input-style" id="constitution" name="constitution" disabled
-                           <option selected="" disabled="">--SELECT CONSTITUTION FROM THE LIST--</option>
-                           <option value="Individual" {{ $client->constitution == "Individual" ? 'selected' : '' }}>Individual</option>
-                           <option value="Firm" {{ $client->constitution == "Firm" ? 'selected' : '' }}>Firm</option>
-                           <option value="Company" {{ $client->constitution == "Company" ? 'selected' : '' }}>Company</option>
-                           <option value="Others" {{ $client->constitution == "Others" ? 'selected' : '' }}>Others</option>
-                        </select>
-                        @if($errors->has('constitution'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('constitution') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong>Constitution: </strong>{{$client->constitution}}</p>                        
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Gender *</label>
-                        <select class="theme-input-style" id="gender" name="gender" disabled>
-                           <option selected="" disabled="">--SELECT YOUR GENDER--</option>
-                           <option value="M" {{ $client->gender == "M" ? 'selected' : '' }}>Male</option>
-                           <option value="F" {{ $client->gender == "F" ? 'selected' : '' }}>Female</option>
-                           <option value="F" {{ $client->gender == "O" ? 'selected' : '' }}>Other</option>
-                        </select>
-                        @if($errors->has('gender'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('gender') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong>Gender: </strong>
+                           @if ($client->gender == "M")
+                               Male
+                           @elseif ($client->gender == "F")
+                              Femeale
+                           @else
+                               Other
+                           @endif
+                        </p>
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Mobile *</label>
-                        <input type="number" name="mobile" placeholder="Enter your mobile number" class="theme-input-style" id="mobile" value="{{$client->mobile}}" disabled> 
-                        @if($errors->has('mobile'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('mobile') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong >Mobile : </strong>{{$client->mobile}}</p>  
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Email </label>
-                        <input type="text" name="email" id="email" placeholder="Enter your email" class="theme-input-style" value="{{$client->email}}" disabled>
-                        @if($errors->has('email'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('email') }}</strong>
-                           </span>
-                        @enderror
+                        <p><strong >Email : </strong>{{$client->email}}</p>  
                      </div>
                   </div>
-               </div>
-            </div>
-            <div class="form-response"></div>
-            <div id="form-2">
-               <h4>Residential Address</h4>
+               </div>   
+
+               
                <div class="row half-gutter">
                    @if (isset($residential) && !empty($residential))
-                  <input type="hidden" name="res_addr_id" value="{{$residential->id}}">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <label>Flat No/H No.</label>
-                           <input type="text" name="flat_addr" id="flat_addr" placeholder="Enter your flat/house number." class="theme-input-style" value="{{$residential->flat_no}}" disabled> 
-                           @if($errors->has('flat_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('flat_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <label>Building/village *</label>
-                           <input type="text" name="village_addr" id="village_addr" placeholder="Enter your building or village name" class="theme-input-style" value="{{$residential->village}}" disabled> 
-                           @if($errors->has('village_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('village_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>P.O *</label>
-                            <input type="text" name="po_addr" id="po_addr" placeholder="Enter your post office" class="theme-input-style" value="{{$residential->po}}" disabled>
-                           @if($errors->has('po_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('po_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <label>P.S *</label>
-                           <input type="text" name="ps_addr" id="ps_addr" placeholder="Enter your police station" class="theme-input-style" value="{{$residential->ps}}" disabled>
-                           @if($errors->has('ps_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('ps_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Area </label>
-                            <input type="text" name="area_addr" id="area_addr" placeholder="Enter your area" class="theme-input-style" value="{{$residential->area}}" disabled> 
-                           @if($errors->has('area_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('area_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <label>District *</label>
-                           <input type="text" name="district_addr" id="district_addr" placeholder="Enter your district" class="theme-input-style" value="{{$residential->dist}}" disabled> 
-                           @if($errors->has('district_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('district_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <label>State *</label>
-                           <input type="text" name="state_addr" id="state_addr" placeholder="Enter your state" class="theme-input-style" value="{{$residential->state}}" disabled> 
-                           @if($errors->has('state_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('state_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <label>Pin *</label>
-                           <input type="text" name="pin_addr" id="pin_addr" placeholder="Enter your pin" class="theme-input-style" value="{{$residential->pin}}" disabled> 
-                           @if($errors->has('pin_addr'))
-                              <span class="invalid-feedback" role="alert" style="color:red">
-                                 <strong>{{ $errors->first('pin_addr') }}</strong>
-                              </span>
-                           @enderror
-                        </div>
-                    </div>
+                   <div class="col-md-6">
+                     <br><h4>Residential Address</h4><hr>
+                     <div class="form-group">
+                        <p><strong>Flat No/H No : </strong>{{$residential->flat_no}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>Building/village : </strong>{{$residential->village}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>P.O : </strong>{{$residential->po}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>P.S : </strong>{{$residential->ps}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>Area : </strong>{{$residential->area}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>District : </strong>{{$residential->dist}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>State : </strong>{{$residential->state}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>Pin : </strong>{{$residential->pin}}</p>
+                     </div>
+                   </div>
+                   @endif
+                   @if (isset($business) && !empty($business))
+                   <div class="col-md-6">
+                     <br><h4>Business Address</h4><hr>
+                     <div class="form-group">
+                        <p><strong>Flat No/H No : </strong>{{$business->flat_no}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>Building/village : </strong>{{$business->village}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>P.O : </strong>{{$business->po}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>P.S : </strong>{{$business->ps}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>Area : </strong>{{$business->area}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>District : </strong>{{$business->dist}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>State : </strong>{{$business->state}}</p>
+                     </div>
+                     <div class="form-group">
+                        <p><strong>Pin : </strong>{{$business->pin}}</p>
+                     </div>
+                   </div>
                   @endif
-                  @if (isset($business) && !empty($business))
-                  <input type="hidden" name="business_addr_id" value="{{$business->id}}">
-                  <div class="col-md-12">
-                     <h4>Business Address</h4>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>Flat No/H No.</label>
-                        <input type="text" name="flat" id="flat" placeholder="Enter your flat/house number." class="theme-input-style" value="{{$business->flat_no}}" disabled> 
-                        @if($errors->has('flat'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('flat') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>Building/village *</label>
-                        <input type="text" name="village" id="village" placeholder="Enter your building or village name" class="theme-input-style" value="{{$business->village}}" disabled> 
-                        @if($errors->has('village'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('village') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>P.O</label>
-                        <input type="text" name="po" id="po" placeholder="Enter your post office" class="theme-input-style" value="{{$business->po}}" disabled> 
-                        @if($errors->has('po'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('po') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>P.S *</label>
-                        <input type="text" name="ps" id="ps" placeholder="Enter your police station" class="theme-input-style" value="{{$business->ps}}" disabled>
-                        @if($errors->has('ps'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('ps') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>Area </label>
-                        <input type="text" name="area" id="area" placeholder="Enter your area" class="theme-input-style" value="{{$business->area}}" disabled> 
-                        @if($errors->has('area'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('area') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>District *</label>
-                        <input type="text" name="district" id="district" placeholder="Enter your district" class="theme-input-style" value="{{$business->dist}}" disabled> 
-                        @if($errors->has('district'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('district') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>State *</label>
-                        <input type="text" name="state" id="state" placeholder="Enter your state" class="theme-input-style" value="{{$business->state}}" disabled> 
-                        @if($errors->has('state'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('state') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label>Pin *</label>
-                        <input type="text" name="pin" id="pin" placeholder="Enter your pin" class="theme-input-style" value="{{$business->pin}}" disabled> 
-                        @if($errors->has('pin'))
-                           <span class="invalid-feedback" role="alert" style="color:red">
-                              <strong>{{ $errors->first('pin') }}</strong>
-                           </span>
-                        @enderror
-                     </div>
-                  </div>
+                  
                   <div class="col-md-8">
                      <div class="form-group">
-                        <label>Trade Name (if any) </label>
-                        <input type="text" name="trade_name" id="trade_name" placeholder="Enter your trade name" class="theme-input-style" value="{{$client->trade_name}}" disabled> 
+                        <hr><p><strong>Trade name : </strong>{{$client->trade_name}}</p>
                      </div>
                   </div>
-                  @endif
+                  
                   <div class="col-md-12 text-right" id="button-div">
-                    <button class="btn rounded" type="button" onclick="enableButton()">Edit</button>
+                    <button class="btn-danger" style="    padding: 5px 25px;border: 0;border-radius: 3px;" type="button" onclick="window.close()">Close</button>
                  </div>
                </div>
             </div>

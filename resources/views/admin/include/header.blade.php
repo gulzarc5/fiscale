@@ -39,8 +39,10 @@
     <link href="{{asset('admin/src_files/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/src_files/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/src_files/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('select2/css/select2.css')}}" rel="stylesheet" />
 
     <link href="{{asset('admin/src_files/build/css/custom.min.css')}}" rel="stylesheet">
+    <link href="{{asset('select2/css/select2.css')}}" rel="stylesheet" />
   </head>
 
   <body class="nav-md">
@@ -84,6 +86,16 @@
                       </li>
                     </ul>
                   </li>
+
+                  <li><a><i class="fa fa-edit"></i> Marketing Executive <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                     <li class="sub_menu"><a href="{{route('admin.add_executive_form')}}">Add New Executive</a>
+                     </li>
+                     <li class="sub_menu"><a href="{{route('admin.executive_list')}}">Executive List</a>
+                     </li>
+                   </ul>
+                 </li>
+
                   <li><a><i class="fa fa-desktop"></i>Service Point<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('admin.add_branch_form')}}">Add New SP</a></li>
@@ -106,16 +118,16 @@
                       <li><a href="{{route('admin.completed_job_list')}}">Complete Job List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i>Payment Request<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Wallet Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.pending_payment_request')}}">Panding Request</a></li>
-                      <li><a href="{{route('admin.working_job_list')}}">Accepted Request</a></li>
+                      <li><a href="{{route('admin.employee_job_report_form')}}">Employee Wallet</a></li>
+                      <li><a href="{{route('admin.executive_job_report_form')}}">Marketing Executive</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.pending_payment_request')}}">Job Report</a></li>
+                      <li><a href="#">Job Report</a></li>
                     </ul>
                   </li>
 
