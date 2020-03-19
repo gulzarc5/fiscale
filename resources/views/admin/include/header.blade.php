@@ -125,11 +125,11 @@
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Job Report</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
 
                 </ul>
               </div>

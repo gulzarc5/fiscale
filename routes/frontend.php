@@ -31,6 +31,7 @@ Route::group(['namespace' => 'Employee'], function () {
 
         Route::get('/job/transaction/form','TransactionController@jobTransactionForm')->name('employee.job_transaction_form');
         Route::post('/job/transaction/search','TransactionController@jobTransactionSearch')->name('employee.job_transaction_search');
+        Route::get('/job/wallet/history','TransactionController@walletHistory')->name('employee.job_wallet_history');
     });
 });
 
@@ -92,6 +93,8 @@ Route::group(['namespace' => 'Executive'], function () {
 
     Route::group(['middleware' => 'auth:executive', 'prefix' => 'executive'], function () {
         Route::get('/deshboard', 'DashboardController@index')->name('executive.deshboard');
+        Route::post('deshboard/job/transaction/search','DashboardController@jobTransactionSearch')->name('executive.job_transaction_search');
+        Route::get('/wallet', 'WalletController@walletHistory')->name('executive.wallet_history');
 
     });
 });

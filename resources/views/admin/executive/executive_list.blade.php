@@ -64,6 +64,10 @@
                                         @endif
                                        
                                         <a href="{{route('admin.change_pass_executive',['id'=>encrypt($item->id)])}}" class="btn btn-danger">Change Password</a>
+
+                                        <a href="{{route('admin.executive_credit_wallet_form',['exe_id'=>encrypt($item->id)])}}" class="btn btn-primary">Credit Wallet</a>                                       
+                                        <a href="{{route('admin.executive_debit_wallet_form',['exe_id'=>encrypt($item->id)])}}" class="btn btn-danger">Debit Wallet</a>
+                                        <a href="{{route('admin.executive_wallet_history',['exe_id'=>encrypt($item->id)])}}" class="btn btn-info">Wallet history</a>
                                     </td>
                                     </tr>                              
                                 @endforeach

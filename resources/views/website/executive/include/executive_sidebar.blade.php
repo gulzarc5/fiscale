@@ -12,12 +12,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{route("executive.deshboard")}}" ><span>Wallet History</span></a>
+                <a href="{{route("executive.deshboard")}}" ><span>Job Transactions</span></a>
             </li>
             <li>
-                <a href="{{route('employee.close_job_form')}}"><span>Transaction History</span></a>
-            </li>
-            
+                <a href="{{route('executive.wallet_history')}}"><span>Wallet</span></a>
+            </li>            
             <li>
                 <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span><i class="fa fa-power-off"></i>Logout</span></a>
                 <form id="logout-form" action="{{ route('executive.logout') }}" method="POST" style="display: none;">

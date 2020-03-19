@@ -27,6 +27,7 @@
                                     <th class="column-title">Open Jobs</th>
                                     <th class="column-title">Close Jobs</th>
                                     <th class="column-title">Correction Jobs</th>
+                                    <th class="column-title">Wallet Balance</th>
                                     <th class="column-title">Action</th>
                                 </tr>
                             </thead>
@@ -63,15 +64,18 @@
                                     <td>{{$item->open_job}}</td>
                                     <td>{{$item->completed_job}}</td>
                                     <td>{{$item->correction}}</td>
+                                    <td>{{$item->wallet_balance}}</td>
                                     <td>
                                         <a href="{{route('admin.edit_employee_form',['id'=>encrypt($item->id)])}}" class="btn btn-warning">Edit</a>
                                         @if ($item->status == '1')
                                             <a href="{{route('admin.employee_status_update',['id'=>encrypt($item->id),'status'=>encrypt(2)])}}" class="btn btn-danger">Disable</a>
                                         @else
                                             <a href="{{route('admin.employee_status_update',['id'=>encrypt($item->id),'status'=>encrypt(1)])}}" class="btn btn-success">Enable</a>
-                                        @endif
-                                       
-                                        <a href="{{route('admin.change_pass_employee_form',['id'=>encrypt($item->id)])}}" class="btn btn-danger">Change Password</a>
+                                        @endif                                       
+                                        <a href="{{route('admin.change_pass_employee_form',['id'=>encrypt($item->id)])}}" class="btn btn-danger">Change Password</a>                                       
+                                        <a href="{{route('admin.employee_credit_wallet_form',['emp_id'=>encrypt($item->id)])}}" class="btn btn-primary">Credit Wallet</a>                                       
+                                        <a href="{{route('admin.employee_debit_wallet_form',['emp_id'=>encrypt($item->id)])}}" class="btn btn-danger">Debit Wallet</a>
+                                        <a href="{{route('admin.employee_wallet_history',['emp_id'=>encrypt($item->id)])}}" class="btn btn-info">Wallet history</a>
                                     </td>
                                     </tr>                              
                                 @endforeach

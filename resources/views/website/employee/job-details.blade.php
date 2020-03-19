@@ -48,6 +48,19 @@
             </div>
             <div class="col-md-4">
                <p><b>Date : </b>{{$job->created_at}}</p>
+            </div>
+            <div class="col-md-4">
+               <p><b>Status : </b>
+                  @if ($job->status == '1')
+                     <a style="color: #ffb100;font-weight: bold;">Processing</a>
+                  @elseif($job->status == '2')
+                     <a style="color: #004eff;font-weight: bold;">Working</a>
+                  @elseif($job->status == '3')
+                     <a style="color: red;font-weight: bold;">Document Problem</a>
+                  @else
+                     <a style="color: #00b8ff;font-weight: bold;">Completed</a>
+                  @endif                  
+               </p>
             </div>      
          </div>
       @endif
@@ -107,7 +120,7 @@
                  <label>Add New Remarks *</label>
                  <textarea name="message" placeholder="Type Remarks" class="theme-input-style" required></textarea>
              </div>
-            @if (isset($job) && !empty($job) && ($job->assign_to_id == Auth::guard('employee')->id()))
+            @if (isset($job) && !empty($job) && ($job->assign_to_id == Auth::guard('employee')->id()) && $job->status != '4')
                <div class="form-group" id="job_desc">
                   <label>Status *</label>
                   <select class="theme-input-style job-d text-uppercase" required name="status" onchange="checkStatus()" id="status_c">

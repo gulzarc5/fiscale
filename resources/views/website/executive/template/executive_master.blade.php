@@ -1,7 +1,7 @@
 @include('website.executive.include.executive_header') 
 <!-- Head & Header Section -->
 
-<section class="pb-120">
+<section>
     <div class="container" style="margin-top: 10px;">
         <h3>Welcome To Executive Member Dashboard</h3><hr>
         <div class="row">

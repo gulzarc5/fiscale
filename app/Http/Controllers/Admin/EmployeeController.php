@@ -75,6 +75,11 @@ class EmployeeController extends Controller
                 ->where('assign_to_id',$value->id)
                 ->where('employee_assignment_status',1)
                 ->count();
+            $wallet = DB::table('employee_wallet')  
+                ->select('amount')              
+                ->where('emp_id',$value->id)
+                ->first();            
+            $value->wallet_balance = $wallet->amount;
         }
         return view('admin.employee.employee_list',compact('employee'));
     }
@@ -171,5 +176,120 @@ class EmployeeController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         return redirect()->back();
+    }
+
+    public function debitWalletForm($emp_id)
+    {
+        try {
+            $emp_id = decrypt($emp_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $wallet = DB::table('employee_wallet')
+            ->select('employee_wallet.*','employee.name as name','employee.mobile as mobile')
+            ->leftjoin('employee','employee.id','=','employee_wallet.emp_id')
+            ->where('employee_wallet.emp_id',$emp_id)
+            ->first();
+        return view('admin.employee.employee_debit_wallet_form',compact('wallet'));
+    }
+
+    public function debitWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required',
+            'amount' => 'required',
+        ]);
+        $wallet_id = $request->input('wallet_id');
+        $amount = $request->input('amount');
+        $comment = $request->input('comment');
+
+        $wallet_update = DB::table('employee_wallet')
+            ->where('id',$wallet_id)
+            ->update([
+                'amount' => DB::raw("`amount`-".($amount)),                    
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($wallet_update) {
+            $wallet_balance = DB::table('employee_wallet')->where('id',$wallet_id)->first();
+            $wallet_history_insert = DB::table('employee_wallet_history')
+                ->insertGetId([
+                    'wallet_id' => $wallet_balance->id,
+                    'employee_id' => $wallet_balance->emp_id,
+                    'transaction_type' => 2,
+                    'amount' => $amount,
+                    'total_amount' => $wallet_balance->amount,
+                    'comment' => $comment,
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
+        }
+        return redirect()->back()->with('message','Wallet Balance Debited From Wallet');
+
+    }
+
+    public function creditWalletForm($emp_id)
+    {
+        try {
+            $emp_id = decrypt($emp_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $wallet = DB::table('employee_wallet')
+            ->select('employee_wallet.*','employee.name as name','employee.mobile as mobile')
+            ->leftjoin('employee','employee.id','=','employee_wallet.emp_id')
+            ->where('employee_wallet.emp_id',$emp_id)
+            ->first();
+        return view('admin.employee.employee_credit_wallet_form',compact('wallet'));
+    }
+
+    public function creditWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required',
+            'amount' => 'required',
+        ]);
+        $wallet_id = $request->input('wallet_id');
+        $amount = $request->input('amount');
+        $comment = $request->input('comment');
+
+        $wallet_update = DB::table('employee_wallet')
+            ->where('id',$wallet_id)
+            ->update([
+                'amount' => DB::raw("`amount`+".($amount)),                    
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($wallet_update) {
+            $wallet_balance = DB::table('employee_wallet')->where('id',$wallet_id)->first();
+            $wallet_history_insert = DB::table('employee_wallet_history')
+                ->insertGetId([
+                    'wallet_id' => $wallet_balance->id,
+                    'employee_id' => $wallet_balance->emp_id,
+                    'transaction_type' => 1,
+                    'amount' => $amount,
+                    'total_amount' => $wallet_balance->amount,
+                    'comment' => $comment,
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
+        }
+        return redirect()->back()->with('message','Wallet Balance Credited From Wallet');
+
+    }
+
+    public function walletHistory($emp_id)
+    {
+        try {
+            $emp_id = decrypt($emp_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $wallet = DB::table('employee_wallet')
+            ->where('emp_id',$emp_id)
+            ->first();
+        $wallet_history = DB::table('employee_wallet_history')
+            ->where('employee_id',$emp_id)
+            ->orderBy('id','desc')
+            ->paginate(50);
+        return view('admin.employee.employee_wallet_history',compact('wallet','wallet_history'));
     }
 }

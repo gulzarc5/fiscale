@@ -126,4 +126,119 @@ class ExecutiveController extends Controller
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
     }
+
+    public function debitWalletForm($exe_id)
+    {
+        try {
+            $exe_id = decrypt($exe_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $wallet = DB::table('executive_wallet')
+            ->select('executive_wallet.*','executive.name as name','executive.mobile as mobile')
+            ->leftjoin('executive','executive.id','=','executive_wallet.executive_id')
+            ->where('executive_wallet.executive_id',$exe_id)
+            ->first();
+        return view('admin.executive.executive_debit_wallet_form',compact('wallet'));
+    }
+
+    public function debitWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required',
+            'amount' => 'required',
+        ]);
+        $wallet_id = $request->input('wallet_id');
+        $amount = $request->input('amount');
+        $comment = $request->input('comment');
+
+        $wallet_update = DB::table('executive_wallet')
+            ->where('id',$wallet_id)
+            ->update([
+                'amount' => DB::raw("`amount`-".($amount)),                    
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($wallet_update) {
+            $wallet_balance = DB::table('executive_wallet')->where('id',$wallet_id)->first();
+            $wallet_history_insert = DB::table('executive_wallet_history')
+                ->insertGetId([
+                    'wallet_id' => $wallet_balance->id,
+                    'executive_id' => $wallet_balance->executive_id,
+                    'transaction_type' => 2,
+                    'amount' => $amount,
+                    'total_amount' => $wallet_balance->amount,
+                    'comment' => $comment,
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
+        }
+        return redirect()->back()->with('message','Wallet Balance Debited From Wallet');
+
+    }
+
+    public function creditWalletForm($exe_id)
+    {
+        try {
+            $exe_id = decrypt($exe_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $wallet = DB::table('executive_wallet')
+            ->select('executive_wallet.*','executive.name as name','executive.mobile as mobile')
+            ->leftjoin('executive','executive.id','=','executive_wallet.executive_id')
+            ->where('executive_wallet.executive_id',$exe_id)
+            ->first();
+        return view('admin.executive.executive_credit_wallet_form',compact('wallet'));
+    }
+
+    public function creditWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required',
+            'amount' => 'required',
+        ]);
+        $wallet_id = $request->input('wallet_id');
+        $amount = $request->input('amount');
+        $comment = $request->input('comment');
+
+        $wallet_update = DB::table('executive_wallet')
+            ->where('id',$wallet_id)
+            ->update([
+                'amount' => DB::raw("`amount`+".($amount)),                    
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($wallet_update) {
+            $wallet_balance = DB::table('executive_wallet')->where('id',$wallet_id)->first();
+            $wallet_history_insert = DB::table('executive_wallet_history')
+                ->insertGetId([
+                    'wallet_id' => $wallet_balance->id,
+                    'executive_id' => $wallet_balance->executive_id,
+                    'transaction_type' => 1,
+                    'amount' => $amount,
+                    'total_amount' => $wallet_balance->amount,
+                    'comment' => $comment,
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
+        }
+        return redirect()->back()->with('message','Wallet Balance Credited From Wallet');
+
+    }
+
+    public function walletHistory($exe_id)
+    {
+        try {
+            $exe_id = decrypt($exe_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $wallet = DB::table('executive_wallet')
+            ->where('executive_id',$exe_id)
+            ->first();
+        $wallet_history = DB::table('executive_wallet_history')
+            ->where('executive_id',$exe_id)
+            ->orderBy('id','desc')
+            ->paginate(50);
+        return view('admin.executive.executive_wallet_history',compact('wallet','wallet_history'));
+    }
 }

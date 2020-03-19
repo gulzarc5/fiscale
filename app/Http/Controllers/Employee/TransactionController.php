@@ -19,7 +19,7 @@ class TransactionController extends Controller
             ->leftjoin('job','job.id','=','employee_jobs.job_id')            
             ->leftjoin('job_type','job_type.id','=','job.job_type')
             ->where('employee_jobs.employee_id',$employee_id)
-            ->where('employee_jobs.status',1)
+            ->orderby('employee_jobs.id','desc')
             ->get();
             // dd($job_transaction);
        return view('website.employee.transaction.jobs_transaction',compact('job_transaction'));
@@ -45,10 +45,21 @@ class TransactionController extends Controller
                 ->leftjoin('job','job.id','=','employee_jobs.job_id')            
                 ->leftjoin('job_type','job_type.id','=','job.job_type')
                 ->where('employee_jobs.employee_id',$employee_id)
-                ->where('employee_jobs.status',1)
                 ->whereBetween('employee_jobs.created_at', [$s_date, $e_date])
+                ->orderby('employee_jobs.id','desc')
                 ->get();
             return view('website.employee.transaction.jobs_transaction',compact('job_transaction'));
         }
+    }
+
+    public function walletHistory()
+    {
+        $employee_id = Auth::guard('employee')->user()->id;
+        $wallet = DB::table('employee_wallet')->where('emp_id',$employee_id)->first();
+        $wallet_history = DB::table('employee_wallet_history')
+            ->where('employee_id',$employee_id)
+            ->orderBy('id','desc')
+            ->get();
+        return view('website.employee.transaction.wallet_history',compact('wallet','wallet_history'));
     }
 }

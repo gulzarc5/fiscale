@@ -268,7 +268,7 @@
     .country-list li {
         margin-right: 15px
     }
-    .country-list li h6;
+    .country-list li h6,
     .country-list li p {
         margin-bottom: 0
     }
@@ -303,6 +303,9 @@
 }
 
 @media (min-width:768px) {
+    body>section{
+        min-height: 516px;  
+    }
     .align-left {
         float: left;
         margin-right: 30px

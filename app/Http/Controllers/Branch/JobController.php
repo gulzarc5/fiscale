@@ -130,6 +130,25 @@ class JobController extends Controller
         $comments = null;
         if ($job) {
             $comments = DB::table('job_remarks')->where('job_id',$job->id)->get();
+            foreach ($comments as $key => $value) {
+                if ($value->remarks_by == '2') {
+                    $name = null;
+                    if (isset($value->created_by_id) && !empty($value->created_by_id)){                        
+                        $data = DB::table('employee')->select('name')->where('id',$value->created_by_id)->first();
+                        $name = $data->name;
+                    }
+                    $value->remarks_by_name = $name;
+                } elseif ($value->remarks_by == '3') {
+                    $name = null;
+                    if (isset($value->created_by_id) && !empty($value->created_by_id)){                        
+                        $data = DB::table('branch')->select('name')->where('id',$value->created_by_id)->first();
+                        $name = $data->name;
+                    }
+                    $value->remarks_by_name = $name;
+                } else{
+                    $value->remarks_by_name = "Admin";
+                }                
+            }
             $job_input_id = $job->id;
         }
 

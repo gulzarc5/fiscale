@@ -98,7 +98,7 @@ class CustomerController extends Controller
                    </a>
                    <form action="'.route('admin.job_assign').'" method="post">
                    <input name="_token" value="'.csrf_token().'" type="hidden">
-                    <div class="modal fade bs-example-modal-sm mod'.$row->id.'" tabindex="-1" role="dialog" aria-hidden="true" >
+                    <div class="modal fade bs-example-modal-sm mymod mod'.$row->id.'"  role="dialog" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" style="width:500px">
                         <div class="modal-content">
                             <form>
@@ -109,8 +109,9 @@ class CustomerController extends Controller
                                 </div>
                                 <input type="hidden" name="job_id" value="'.$row->id.'">
                                 <div class="modal-body dispatch-order">
-                                    <div class="form-group" style="width: 100%;">                   <label>Select Employee</label><br>
-                                        <select name="emp_id" class="form-control job_desc" style="width: 100%;">'.$emp_data.'</select>
+                                    <div class="form-group" style="width: 100%;">
+                                        <label>Select Employee</label><br>
+                                        <select name="emp_id" class="form-control executive" style="width: 100%;">'.$emp_data.'</select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -307,6 +308,26 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    public function jobAssignRemove($job_id)
+    {
+        try {
+            $job_id = decrypt($job_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        DB::table('job')
+        ->where('id',$job_id)
+        ->update([
+            'assign_to_id' => null,
+            'assigned_date' => null,
+            'status' => 1,
+            'employee_assignment_status' => 1,
+            'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+        ]);
+    return redirect()->back();
+
+    }
 
     public function workingJobList()
     {
@@ -372,6 +393,7 @@ class CustomerController extends Controller
             })
             ->addColumn('action', function($row){
                 $btn ='<a href="'.route('admin.job_detail',[''=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
+                <a href="'.route('admin.job_assign_remove',[''=>encrypt($row->id)]).'" class="btn btn-danger btn-sm">Revoke Assign</a>
                 ';
                 return $btn;
             })

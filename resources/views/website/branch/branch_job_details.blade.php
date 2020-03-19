@@ -62,11 +62,11 @@
                            <td>{{$item->created_at}}</td>
                            <td>
                               @if ($item->remarks_by == '1')
-                                  Admin
+                                 {{$item->remarks_by_name}}
                               @elseif ($item->remarks_by == '2')
-                                  Employee
+                                 {{$item->remarks_by_name}} (Employee)
                               @else
-                                 Branch
+                                 {{$item->remarks_by_name}} (Branch)
                               @endif
                            </td>
                            <td>{{$item->remarks}}</td>

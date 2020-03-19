@@ -67,10 +67,15 @@
             });            
         });
      </script>
-     <script src="{{asset('select2/js/select2.min.js')}}"></script>
-    <script>
-        $(document).ready(function() {
-           $('.job_desc').select2();
-        });
-     </script>
+     
+
+<script src="{{asset('select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $.fn.modal.Constructor.prototype.enforceFocus = function () {
+            $('.executive').select2();
+        };
+    });
+</script>
+
  @endsection

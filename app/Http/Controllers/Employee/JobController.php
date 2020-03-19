@@ -42,7 +42,7 @@ class JobController extends Controller
             ->first();
         $comments = null;
         if ($job) {
-            $comments = DB::table('job_remarks')->where('job_id',$job->id)->get();
+            $comments = DB::table('job_remarks')->where('job_id',$job->id)->orderBy('id','desc')->get();
             foreach ($comments as $key => $value) {
                 if ($value->remarks_by =="2") {
                     $emp = DB::table('employee')->where('id',$value->created_by_id)->first();
@@ -66,14 +66,12 @@ class JobController extends Controller
         $request->validate([
             'job_id' => 'required|numeric',
             'message' => 'required',
-            'status' => 'required|numeric',
         ]);
         $employee_id = Auth::guard('employee')->user()->id;
 
         // Check If Job Status is Completed Or Not
         $job_status = $request->input('status');
         $job_id = $request->input('job_id');
-        // dd($job_id);
         if ($job_status == '4') {
             $request->validate([
                 'amount' => 'required|numeric',
@@ -232,7 +230,7 @@ class JobController extends Controller
             ->first();
         $comments = null;
         if ($job) {
-            $comments = DB::table('job_remarks')->where('job_id',$job->id)->get();
+            $comments = DB::table('job_remarks')->where('job_id',$job->id)->orderBy('id','desc')->get();
             foreach ($comments as $key => $value) {
                 if ($value->remarks_by =="2") {
                     $emp = DB::table('employee')->where('id',$value->created_by_id)->first();

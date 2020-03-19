@@ -19,7 +19,13 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('status/update/{id}/{status}', 'EmployeeController@statusUpdateEmployee')->name('admin.employee_status_update');
 
             Route::post('Change/Pass/', 'EmployeeController@employeePassChangeSubmit')->name('admin.change_pass_employee');
+            
+            Route::get('debit/wallet/form/{emp_id}', 'EmployeeController@debitWalletForm')->name('admin.employee_debit_wallet_form');
+            Route::post('debit/wallet/', 'EmployeeController@debitWallet')->name('admin.employee_debit_wallet');
+            Route::get('credit/wallet/form/{emp_id}', 'EmployeeController@creditWalletForm')->name('admin.employee_credit_wallet_form');
+            Route::post('credit/wallet/', 'EmployeeController@creditWallet')->name('admin.employee_credit_wallet');
 
+            Route::get('credit/wallet/history/{emp_id}', 'EmployeeController@walletHistory')->name('admin.employee_wallet_history');
         });
 
         Route::group(['prefix'=>'Executive'],function(){
@@ -32,11 +38,25 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('status/update/{id}/{status}', 'ExecutiveController@statusUpdateExecutive')->name('admin.executive_status_update');
 
             Route::post('Change/Pass/', 'ExecutiveController@executivePassChangeSubmit')->name('admin.change_pass_executive');
+
+
+            Route::get('debit/wallet/form/{exe_id}', 'ExecutiveController@debitWalletForm')->name('admin.executive_debit_wallet_form');
+            Route::post('debit/wallet/', 'ExecutiveController@debitWallet')->name('admin.executive_debit_wallet');
+            Route::get('credit/wallet/form/{exe_id}', 'ExecutiveController@creditWalletForm')->name('admin.executive_credit_wallet_form');
+            Route::post('credit/wallet/', 'ExecutiveController@creditWallet')->name('admin.executive_credit_wallet');
+
+            Route::get('credit/wallet/history/{exe_id}', 'ExecutiveController@walletHistory')->name('admin.executive_wallet_history');
         });
 
         Route::group(['prefix'=>'Wallet'],function(){
             Route::get('executive/report/Form','ExecutiveWalletController@executiveJobReportForm')->name('admin.executive_job_report_form');
+            Route::post('executive/job/report/search','ExecutiveWalletController@executiveJobReportSearch')->name('admin.executive_job_report_search');
+            Route::post('executive/job/commission/wallet/credit','ExecutiveWalletController@executiveJobCommissionCredit')->name('admin.executive_job_comm_credit');
+
+
             Route::get('employee/report/Form','EmployeeWalletController@employeeJobReportForm')->name('admin.employee_job_report_form');
+            Route::post('employee/job/report/search','EmployeeWalletController@employeeJobReportSearch')->name('admin.employee_job_report_search');
+            Route::post('employee/job/commission/wallet/credit','EmployeeWalletController@employeeJobCommissionCredit')->name('admin.employee_job_comm_credit');
         });
 
 
@@ -75,7 +95,9 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('view/job/{job_id}', 'CustomerController@viewJob')->name('admin.job_detail');
             Route::get('edit/job/{job_id}', 'CustomerController@editJob')->name('admin.job_edit');
             Route::post('update/job', 'CustomerController@updateJob')->name('admin.job_update');
+            
             Route::post('job/assign/', 'CustomerController@jobAssign')->name('admin.job_assign');
+            Route::get('job/assign/remove/{job_id}', 'CustomerController@jobAssignRemove')->name('admin.job_assign_remove');
 
             Route::post('update/remark', 'CustomerController@updateRemark')->name('admin.remark_update');
             Route::post('add/remark', 'CustomerController@addRemark')->name('admin.remark_add');

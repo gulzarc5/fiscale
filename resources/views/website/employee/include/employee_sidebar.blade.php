@@ -31,7 +31,7 @@
                     <li><a href="{{route('employee.job_transaction_form')}}">
                             <span> Job </span>
                     </a></li>
-                    <li><a href="#">
+                    <li><a href="{{route('employee.job_wallet_history')}}">
                         <span> Wallet </span>
                 </a></li>
                 </ul>
