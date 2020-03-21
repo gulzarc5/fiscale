@@ -46,8 +46,8 @@
                                         <th class="column-title">Date</th>
                                         <th class="column-title">Type</th>
                                         <th class="column-title">Amount</th>
-                                        <th class="column-title">Comment</th>
                                         <th class="column-title">Total Amount</th>
+                                        <th class="column-title">Comment</th>
                                         <th class="column-title">Action</th>
                                 </thead>
     
