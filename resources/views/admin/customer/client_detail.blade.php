@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="col-sm-3 invoice-col">
                                         <address class="font-15">
-                                        <strong>Father Name : </strong>{{$client_personal->name}}
+                                        <strong>Father Name : </strong>{{$client_personal->father_name}}
                                         </address>
                                     </div>
                                     <div class="col-sm-3 invoice-col">
@@ -187,8 +187,8 @@
                                                             <span class="label label-info">Working</span>
                                                         @elseif($item->status == '3')
                                                             <span class="label label-danger">Document Correction</span>
-                                                        @elseif($item->status == '3')
-                                                            <span class="label label-success">Solved</span>
+                                                        @elseif($item->status == '4')
+                                                            <span class="label label-success">Completed</span>
                                                         @endif
                                                     </td>
                                                     <td><a href="{{route('admin.job_detail',[''=>encrypt($item->id)])}}" class="btn btn-info btn-sm" target="_blank">View</a></td>

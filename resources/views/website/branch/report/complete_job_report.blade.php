@@ -42,7 +42,7 @@
                         <label>Select Type</label>
                         <select name="type" class="theme-input-style">
                            <option value="">--Select Type--</option>
-                           <option value="1">Pending</option>
+                           <option value="1">Processing</option>
                            <option value="2">Correction</option>
                            <option value="3">Closed</option>
                         </select> 

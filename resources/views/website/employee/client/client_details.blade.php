@@ -32,7 +32,8 @@
                   @endif
             </div>
             <div class="col-md-6">
-            <a href="{{route('employee.client_edit_form',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right">Edit Client Info</a>
+               <a target="_blank" href="{{route('employee.client_details_new',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right;margin-left: 4px;">View Client Info</a>
+               <a href="{{route('employee.client_edit_form',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right">Edit Client Info</a>
             </div>
          </div>
       @endif
@@ -59,8 +60,8 @@
                                  <button class="status btn-sm btn-warning">Processing</button>
                               @elseif($item->status == '3')
                                  <button class="status btn-sm btn-danger">Document Correction</button>
-                              @elseif($item->status == '3')
-                                 <button class="status btn-sm btn-success">Solved</button>
+                              @elseif($item->status == '4')
+                                 <button class="status btn-sm btn-success">Completed</button>
                               @endif
                            </td>
                            <td class="view-btn"><a class="btn btn-success text-white rounded" href="{{route('employee.job_search_view_page',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a></td>

@@ -63,7 +63,7 @@
                                             <a href="{{route('admin.executive_status_update',['id'=>encrypt($item->id),'status'=>encrypt(1)])}}" class="btn btn-success">Enable</a>
                                         @endif
                                        
-                                        <a href="{{route('admin.change_pass_executive',['id'=>encrypt($item->id)])}}" class="btn btn-danger">Change Password</a>
+                                        <a href="{{route('admin.change_pass_executive_form',['id'=>encrypt($item->id)])}}" class="btn btn-danger">Change Password</a>
 
                                         <a href="{{route('admin.executive_credit_wallet_form',['exe_id'=>encrypt($item->id)])}}" class="btn btn-primary">Credit Wallet</a>                                       
                                         <a href="{{route('admin.executive_debit_wallet_form',['exe_id'=>encrypt($item->id)])}}" class="btn btn-danger">Debit Wallet</a>

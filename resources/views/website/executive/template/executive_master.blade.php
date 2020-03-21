@@ -3,7 +3,7 @@
 
 <section>
     <div class="container" style="margin-top: 10px;">
-        <h3>Welcome To Executive Member Dashboard</h3><hr>
+        <h3>Welcome To Marketing Executive Dashboard</h3><hr>
         <div class="row">
             @include('website.executive.include.executive_sidebar')
             @yield('content')

@@ -62,7 +62,7 @@
     
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control" name="mobile"  placeholder="Enter Branch Mobile Number" value="{{$branch->mobile}}" >
+                                        <input type="text" class="form-control" name="mobile"  placeholder="Enter SP Mobile Number" value="{{$branch->mobile}}" >
                                         @if($errors->has('mobile'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('mobile') }}</strong>
@@ -72,7 +72,7 @@
     
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control" name="email"  placeholder="Enter Branch Email Id" value="{{$branch->email}}" >
+                                        <input type="text" class="form-control" name="email"  placeholder="Enter SP Email Id" value="{{$branch->email}}" >
                                         @if($errors->has('email'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('email') }}</strong>

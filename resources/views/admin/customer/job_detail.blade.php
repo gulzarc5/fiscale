@@ -57,8 +57,8 @@
                                             <span class="label label-info">Working</span>
                                         @elseif($job_det->status == '3')
                                             <span class="label label-danger">Document Correction</span>
-                                        @elseif($job_det->status == '3')
-                                            <span class="label label-success">Solved</span>
+                                        @elseif($job_det->status == '4')
+                                            <span class="label label-success">Completed</span>
                                         @endif
                                         </address>
                                     </div>
@@ -113,9 +113,9 @@
                                                             @if ($item->remarks_by == '1')
                                                                 Admin
                                                             @elseif ($item->remarks_by == '2')
-                                                                Employee   
+                                                                {{$item->commented_by_name}} (Member)
                                                             @else   
-                                                                Branch
+                                                                {{$item->commented_by_name}} (SP)
                                                             @endif
                                                         </td>
                                                         <td><p id="edt{{$item->id}}"><a class="btn btn-sm btn-warning" onclick="editRemark({{$item->id}})">Edit</a></p></td>

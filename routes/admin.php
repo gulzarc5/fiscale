@@ -72,14 +72,22 @@ Route::group(['namespace'=>'Admin'],function(){
 
             Route::get('status/update/{id}/{status}', 'BranchController@updateStatusBranch')->name('admin.update_status_branch');
 
-            Route::get('pending/payment/request', 'BranchController@pandingPaymentRequest')->name('admin.pending_payment_request');
-            Route::get('pending/payment/request/ajax', 'BranchController@pandingPaymentRequestAjax')->name('admin.pending_payment_request_ajax');
-            Route::get('view/payment/request/{request_id}', 'BranchController@viewPaymentRequest')->name('admin.view_payment_request');
-            Route::get('payment/request/process/{request_id}/{request_type}', 'BranchController@processPaymentRequest')->name('admin.process_payment_request');
+            // Route::get('pending/payment/request', 'BranchController@pandingPaymentRequest')->name('admin.pending_payment_request');
+            // Route::get('pending/payment/request/ajax', 'BranchController@pandingPaymentRequestAjax')->name('admin.pending_payment_request_ajax');
+            // Route::get('view/payment/request/{request_id}', 'BranchController@viewPaymentRequest')->name('admin.view_payment_request');
+            // Route::get('payment/request/process/{request_id}/{request_type}', 'BranchController@processPaymentRequest')->name('admin.process_payment_request');
 
-            Route::get('payment/request/image/{request_id}', 'BranchController@imagePaymentRequest')->name('admin.image_payment_request');
+            // Route::get('payment/request/image/{request_id}', 'BranchController@imagePaymentRequest')->name('admin.image_payment_request');
 
             Route::post('Change/Pass/', 'BranchController@branchPassChangeSubmit')->name('admin.change_pass_branch');
+
+
+            Route::get('debit/wallet/form/{branch_id}', 'BranchController@debitWalletForm')->name('admin.branch_debit_wallet_form');
+            Route::post('debit/wallet/', 'BranchController@debitWallet')->name('admin.branch_debit_wallet');
+            Route::get('credit/wallet/form/{branch_id}', 'BranchController@creditWalletForm')->name('admin.branch_credit_wallet_form');
+            Route::post('credit/wallet/', 'BranchController@creditWallet')->name('admin.branch_credit_wallet');
+
+            Route::get('credit/wallet/history/{exe_id}', 'BranchController@walletHistory')->name('admin.branch_wallet_history');
 
         });
 

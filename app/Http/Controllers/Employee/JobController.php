@@ -17,7 +17,7 @@ class JobController extends Controller
         $emp_id = Auth::guard('employee')->user()->id;
 
         $job = DB::table('job')
-            ->select('job.*','client.client_id as c_id','client.name as c_name','job_type.name as job_type_name','branch.name as branch_name')
+            ->select('job.*','client.client_id as c_id','client.name as c_name','client.pan as c_pan','job_type.name as job_type_name','branch.name as branch_name')
             ->leftjoin('client','client.id','=','job.client_id')
             ->leftjoin('branch','branch.id','=','job.created_by_id')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
@@ -113,7 +113,11 @@ class JobController extends Controller
     {
         $employee_id = Auth::guard('employee')->user()->id;
 
-        $job = DB::table('job')->where('id',$job_id)->first();
+        $job = DB::table('job')
+            ->select('job.*','job_type.name as job_type_name')
+            ->leftjoin('job_type','job_type.id','=','job.job_type')            
+            ->where('job.id',$job_id)
+            ->first();
         $sp_id = $job->created_by_id;
 
         $sp_wallet = DB::table('wallet')
@@ -130,7 +134,7 @@ class JobController extends Controller
                 'transaction_type' => 1,
                 'amount' => $deduct_amount,
                 'balance' => floatval($wallet_amount->amount),
-                'comment' => "Wallet Balance Deducted For Job Of $job->job_id",
+                'comment' => "$job->job_type_name - $job->job_id",
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);

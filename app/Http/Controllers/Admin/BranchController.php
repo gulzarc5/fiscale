@@ -44,10 +44,16 @@ class BranchController extends Controller
             ]);
         
         if ($branch) {
+            $branch_id = "F";
+            $length = 4 - intval(strlen((string) $branch));
+            for ($i=0; $i < $length; $i++) { 
+                $branch_id.='0';
+            } 
+            $branch_id.=$branch;
             DB::table('branch')
                 ->where('id',$branch)
                 ->update([
-                    'branch_id' => 'FSP'.$branch,
+                    'branch_id' => $branch_id,
                 ]);
             DB::table('wallet')
                 ->insert([
@@ -82,7 +88,10 @@ class BranchController extends Controller
                 }else{
                     $btn .='<a href="'.route('admin.update_status_branch',['id'=>encrypt($row->id),'status'=>encrypt(1)]).'" class="btn btn-success">Activate</a>';
                 }
-                $btn .='<a href="'.route('admin.change_pass_branch_form',['id'=>encrypt($row->id)]).'" class="btn btn-danger">Change Password</a>';
+                $btn .='<a href="'.route('admin.change_pass_branch_form',['id'=>encrypt($row->id)]).'" class="btn btn-danger">Change Password</a>
+                <a href="'.route('admin.branch_credit_wallet_form',['exe_id'=>encrypt($row->id)]).'" class="btn btn-primary">Credit Wallet</a>                                       
+                <a href="'.route('admin.branch_debit_wallet_form',['exe_id'=>encrypt($row->id)]).'" class="btn btn-danger">Debit Wallet</a>
+                <a href="'.route('admin.branch_wallet_history',['exe_id'=>encrypt($row->id)]).'" class="btn btn-info">Wallet history</a>';
                 return $btn;
             })
             ->rawColumns(['action'])
@@ -184,106 +193,222 @@ class BranchController extends Controller
         return redirect()->back();
     }
 
-    public function pandingPaymentRequest()
-    {
-        return view('admin.payment_request.pending_payment_request');
-    }
-
-    public function pandingPaymentRequestAjax()
-    {
-        $query = DB::table('payment_reqest')
-            ->select('payment_reqest.*','branch.branch_id as b_branch_id')
-            ->leftjoin('branch','branch.id','payment_reqest.branch_id')
-            ->where('payment_reqest.status',1)
-            ->orderBy('payment_reqest.id','desc');
-        return datatables()->of($query->get())
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $btn ='<a target="_blank" href="'.route('admin.view_payment_request',['id'=>encrypt($row->id)]).'" class="btn btn-warning">View</a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
-    public function viewPaymentRequest($request_id)
+    public function debitWalletForm($branch_id)
     {
         try {
-            $request_id = decrypt($request_id);
+            $branch_id = decrypt($branch_id);
         }catch(DecryptException $e) {
             return redirect()->back();
         }
-
-        $p_rqst = DB::table('payment_reqest')
-            ->select('payment_reqest.*','branch.branch_id as b_branch_id')
-            ->leftjoin('branch','branch.id','payment_reqest.branch_id')
-            ->where('payment_reqest.id',$request_id)
+        $wallet = DB::table('wallet')
+            ->select('wallet.*','branch.name as name','branch.mobile as mobile')
+            ->leftjoin('branch','branch.id','=','wallet.user_id')
+            ->where('wallet.user_id',$branch_id)
             ->first();
-
-        return view('admin.payment_request.payment_request_view',compact('p_rqst'));
+        return view('admin.branch.branch_debit_wallet_form',compact('wallet'));
     }
 
-    public function imagePaymentRequest($request_id)
+    public function debitWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required',
+            'amount' => 'required',
+        ]);
+        $wallet_id = $request->input('wallet_id');
+        $amount = $request->input('amount');
+        $comment = $request->input('comment');
+
+        $wallet_update = DB::table('wallet')
+            ->where('id',$wallet_id)
+            ->update([
+                'amount' => DB::raw("`amount`-".($amount)),                    
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($wallet_update) {
+            $wallet_balance = DB::table('wallet')->where('id',$wallet_id)->first();
+            $wallet_history_insert = DB::table('wallet_history')
+                ->insertGetId([
+                    'wallet_id' => $wallet_balance->id,
+                    'transaction_type' => 1,
+                    'amount' => $amount,
+                    'balance' => $wallet_balance->amount,
+                    'comment' => $comment,
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
+        }
+        return redirect()->back()->with('message','Wallet Balance Debited From Wallet');
+
+    }
+
+    public function creditWalletForm($branch_id)
     {
         try {
-            $request_id = decrypt($request_id);
+            $branch_id = decrypt($branch_id);
         }catch(DecryptException $e) {
             return redirect()->back();
         }
-
-        $p_rqst = DB::table('payment_reqest')->where('payment_reqest.id',$request_id)->first();
-        if ($p_rqst) {
-            $path = storage_path('app\Transaction\\'.$p_rqst->receipt_image);
-            if (!File::exists($path)){
-                $response = 404;
-                return $response;
-            } 
-            $file = File::get($path);
-            $type = File::mimeType($path);
-            $response = Response::make($file, 200);
-            $response->header("Content-Type", $type);
-            return $response;
-        }else{
-            $response = 404;
-            return $response;
-        }
+        $wallet = DB::table('wallet')
+            ->select('wallet.*','branch.name as name','branch.mobile as mobile')
+            ->leftjoin('branch','branch.id','=','wallet.user_id')
+            ->where('wallet.user_id',$branch_id)
+            ->first();
+        return view('admin.branch.branch_credit_wallet_form',compact('wallet'));
     }
 
-    public function processPaymentRequest($request_id,$request_type)
+    public function creditWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'required',
+            'amount' => 'required',
+        ]);
+        $wallet_id = $request->input('wallet_id');
+        $amount = $request->input('amount');
+        $comment = $request->input('comment');
+
+        $wallet_update = DB::table('wallet')
+            ->where('id',$wallet_id)
+            ->update([
+                'amount' => DB::raw("`amount`+".($amount)),                    
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($wallet_update) {
+            $wallet_balance = DB::table('wallet')->where('id',$wallet_id)->first();
+            $wallet_history_insert = DB::table('wallet_history')
+                ->insertGetId([
+                    'wallet_id' => $wallet_balance->id,
+                    'transaction_type' => 2,
+                    'amount' => $amount,
+                    'balance' => $wallet_balance->amount,
+                    'comment' => $comment,
+                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                ]);
+        }
+        return redirect()->back()->with('message','Wallet Balance Credited From Wallet');
+
+    }
+
+    public function walletHistory($branch_id)
     {
         try {
-            $request_id = decrypt($request_id);
-            $request_type = decrypt($request_type);
+            $branch_id = decrypt($branch_id);
         }catch(DecryptException $e) {
             return redirect()->back();
         }
-        // Request Type = 1 : accept And Request Type = 2 : reject 
-
-        if ($request_type == '1') {
-            $request_fetch = DB::table('payment_reqest')->where('payment_reqest.id',$request_id)->first();
-
-            if ($request_fetch && !empty($request_fetch->branch_id)) {
-                $wallet = DB::table('wallet')
-                    ->where('branch_id',$request_fetch->branch_id)
-                    ->update([
-                        'amount' => DB::raw("`amount`+".($request_fetch->amount)),
-                    ]);
-                $wallet_amount = DB::table('wallet')->where('branch_id',$request_fetch->branch_id)->first();
-                if ($wallet && $wallet_amount) {
-                    $wallet_history = DB::table('wallet_history')
-                    ->where('wallet_id',$wallet_amount->id)
-                    ->update([
-                        'transaction_type' => 2,
-                        'amount' => DB::raw("`amount`+".($request_fetch->amount)),
-                    ]);
-                }else{
-                    return redirect()->back()->with('error','Something Went Wrong Please Try Again');
-                }
-            }else{
-                return redirect()->back()->with('error','Something Went Wrong Please Try Again');
-            }
-        }else{
-
+        $wallet = DB::table('wallet')
+            ->where('user_id',$branch_id)
+            ->first();
+        $wallet_history = null;
+        if ($wallet) {
+            $wallet_history = DB::table('wallet_history')
+            ->where('wallet_id',$wallet->id)
+            ->orderBy('id','desc')
+            ->paginate(50);
         }
+        return view('admin.branch.branch_wallet_history',compact('wallet','wallet_history'));
     }
+
+    // public function pandingPaymentRequest()
+    // {
+    //     return view('admin.payment_request.pending_payment_request');
+    // }
+
+    // public function pandingPaymentRequestAjax()
+    // {
+    //     $query = DB::table('payment_reqest')
+    //         ->select('payment_reqest.*','branch.branch_id as b_branch_id')
+    //         ->leftjoin('branch','branch.id','payment_reqest.branch_id')
+    //         ->where('payment_reqest.status',1)
+    //         ->orderBy('payment_reqest.id','desc');
+    //     return datatables()->of($query->get())
+    //         ->addIndexColumn()
+    //         ->addColumn('action', function($row){
+    //             $btn ='<a target="_blank" href="'.route('admin.view_payment_request',['id'=>encrypt($row->id)]).'" class="btn btn-warning">View</a>';
+    //             return $btn;
+    //         })
+    //         ->rawColumns(['action'])
+    //         ->make(true);
+    // }
+
+    // public function viewPaymentRequest($request_id)
+    // {
+    //     try {
+    //         $request_id = decrypt($request_id);
+    //     }catch(DecryptException $e) {
+    //         return redirect()->back();
+    //     }
+
+    //     $p_rqst = DB::table('payment_reqest')
+    //         ->select('payment_reqest.*','branch.branch_id as b_branch_id')
+    //         ->leftjoin('branch','branch.id','payment_reqest.branch_id')
+    //         ->where('payment_reqest.id',$request_id)
+    //         ->first();
+
+    //     return view('admin.payment_request.payment_request_view',compact('p_rqst'));
+    // }
+
+    // public function imagePaymentRequest($request_id)
+    // {
+    //     try {
+    //         $request_id = decrypt($request_id);
+    //     }catch(DecryptException $e) {
+    //         return redirect()->back();
+    //     }
+
+    //     $p_rqst = DB::table('payment_reqest')->where('payment_reqest.id',$request_id)->first();
+    //     if ($p_rqst) {
+    //         $path = storage_path('app\Transaction\\'.$p_rqst->receipt_image);
+    //         if (!File::exists($path)){
+    //             $response = 404;
+    //             return $response;
+    //         } 
+    //         $file = File::get($path);
+    //         $type = File::mimeType($path);
+    //         $response = Response::make($file, 200);
+    //         $response->header("Content-Type", $type);
+    //         return $response;
+    //     }else{
+    //         $response = 404;
+    //         return $response;
+    //     }
+    // }
+
+    // public function processPaymentRequest($request_id,$request_type)
+    // {
+    //     try {
+    //         $request_id = decrypt($request_id);
+    //         $request_type = decrypt($request_type);
+    //     }catch(DecryptException $e) {
+    //         return redirect()->back();
+    //     }
+    //     // Request Type = 1 : accept And Request Type = 2 : reject 
+
+    //     if ($request_type == '1') {
+    //         $request_fetch = DB::table('payment_reqest')->where('payment_reqest.id',$request_id)->first();
+
+    //         if ($request_fetch && !empty($request_fetch->branch_id)) {
+    //             $wallet = DB::table('wallet')
+    //                 ->where('branch_id',$request_fetch->branch_id)
+    //                 ->update([
+    //                     'amount' => DB::raw("`amount`+".($request_fetch->amount)),
+    //                 ]);
+    //             $wallet_amount = DB::table('wallet')->where('branch_id',$request_fetch->branch_id)->first();
+    //             if ($wallet && $wallet_amount) {
+    //                 $wallet_history = DB::table('wallet_history')
+    //                 ->where('wallet_id',$wallet_amount->id)
+    //                 ->update([
+    //                     'transaction_type' => 2,
+    //                     'amount' => DB::raw("`amount`+".($request_fetch->amount)),
+    //                 ]);
+    //             }else{
+    //                 return redirect()->back()->with('error','Something Went Wrong Please Try Again');
+    //             }
+    //         }else{
+    //             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
+    //         }
+    //     }else{
+
+    //     }
+    // }
 }

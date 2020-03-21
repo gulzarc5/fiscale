@@ -39,6 +39,19 @@
          </div>
          <div class="col-md-4">
             <p><b>Date : </b>{{$job->created_at}}</p>
+         </div> 
+         <div class="col-md-4">
+            <p><b>Status : </b>
+               @if ($job->status == '1')
+                   <button class="status btn-sm btn-warning">Processing</button>
+               @elseif ($job->status == '2')
+                  <button class="status btn-sm btn-warning">Processing</button>
+               @elseif($job->status == '3')
+                  <button class="status btn-sm btn-danger">Document Correction</button>
+               @elseif($job->status == '4')
+                  <button class="status btn-sm btn-success">Completed</button>
+               @endif
+            </p>
          </div>  
       </div>
    @endif
@@ -64,9 +77,9 @@
                               @if ($item->remarks_by == '1')
                                  {{$item->remarks_by_name}}
                               @elseif ($item->remarks_by == '2')
-                                 {{$item->remarks_by_name}} (Employee)
+                                 {{$item->remarks_by_name}} (Member)
                               @else
-                                 {{$item->remarks_by_name}} (Branch)
+                                 {{$item->remarks_by_name}} (SP)
                               @endif
                            </td>
                            <td>{{$item->remarks}}</td>

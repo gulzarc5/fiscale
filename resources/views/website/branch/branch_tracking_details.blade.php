@@ -63,8 +63,8 @@
                                  <button class="status btn-sm btn-warning">Processing</button>
                               @elseif($item->status == '3')
                                  <button class="status btn-sm btn-danger">Document Correction</button>
-                              @elseif($item->status == '3')
-                                 <button class="status btn-sm btn-success">Solved</button>
+                              @elseif($item->status == '4')
+                                 <button class="status btn-sm btn-success">Completed</button>
                               @endif
                            </td>
                            <td class="view-btn"><a class="btn btn-success text-white rounded" href="{{route('branch.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a></td>

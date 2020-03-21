@@ -24,6 +24,10 @@ Route::group(['namespace' => 'Employee'], function () {
         Route::get('/client/search/form', 'ClientController@ClientSearchForm')->name('employee.client_search_form');
         Route::post('/client/search', 'ClientController@ClientSearch')->name('employee.client_search');
         Route::get('/client/edit/form/{client_id}', 'ClientController@ClientEditForm')->name('employee.client_edit_form');
+
+
+        Route::get('/client/details/new/{client_id}', 'ClientController@clientDetailsNew')->name('employee.client_details_new');
+        
         Route::post('/client/update', 'ClientController@ClientUpdate')->name('employee.client_update');
 
         Route::get('/employee/report/form', 'JobController@employeeReportForm')->name('employee.employee_report_form');
@@ -65,6 +69,7 @@ Route::group(['namespace' => 'Branch'], function () {
         Route::get('/job/view/{job_id}', 'JobController@JobView')->name('branch.job_view');
 
         Route::get('/client/edit/{client_id}', 'ClientController@clientEdit')->name('branch.client_edit');
+
         Route::post('/client/update', 'ClientController@ClientUpdate')->name('branch.client_update');
         
         Route::get('/client/search/Form', 'ClientController@ClientSearchForm')->name('branch.client_search_form');

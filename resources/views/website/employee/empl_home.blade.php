@@ -36,7 +36,7 @@
                            </td>
                            <td class="view-btn reject-btn">
                               <a style="padding: 7px;" class="btn btn-success text-white rounded" href="{{route('employee.job_view',['job_id'=>encrypt($item->job_id)])}}"><i class="fa fa-eye"></i></a>
-                              <a style="padding: 7px;" class="btn btn-danger text-white rounded" href="{{route('employee.reject_job',['job_id'=>encrypt($item->id)])}}">Reject</a>
+                              <a style="padding: 7px;" class="btn btn-danger text-white rounded" href="{{route('employee.reject_job',['job_id'=>encrypt($item->id)])}}"  onclick="return confirm('Are You Sure To Reject The Job?')">Reject</a>
                            </td>
                         </tr>
                      @endforeach                      

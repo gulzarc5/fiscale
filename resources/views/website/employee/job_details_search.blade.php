@@ -9,7 +9,7 @@
                      FOR JOB ID : <b>{{$job->job_id}}</b>            
                </h3>
                <a href="{{route('employee.job_edit_form',['job_id'=>encrypt($job->id)])}}" class="btn btn-sm btn-warning" style="float:right;margin-right: 5px;">Edit Job</a>
-               <a target="_blank" href="{{route('employee.client_edit_form',['client_id'=>encrypt($job->client_id)])}}" class="btn btn-sm btn-info" style="float:right;margin-right: 5px;">View Client Info</a>
+               <a target="_blank" href="{{route('employee.client_details_new',['client_id'=>encrypt($job->client_id)])}}" class="btn btn-sm btn-info" style="float:right;margin-right: 5px;">View Client Info</a>
             </div>
             <div class="col-md-4">
             <p> <b>Name : </b>{{$job->cl_name}}</p>
@@ -51,7 +51,7 @@
                   @elseif($job->status == '3')
                      <a style="color: red;font-weight: bold;">Document Problem</a>
                   @else
-                     <a style="color: #00b8ff;font-weight: bold;">Completed</a>
+                     <a style="color: green;font-weight: bold;">Completed</a>
                   @endif                  
                </p>
             </div>   
@@ -81,9 +81,9 @@
                               @if ($item->remarks_by == '1')
                                  
                               @elseif ($item->remarks_by == '2')
-                                 ( Employee )
+                                 ( Member )
                               @else
-                                ( Branch )
+                                ( SP )
                               @endif
                            </td>
                            <td>{{$item->remarks}}</td>

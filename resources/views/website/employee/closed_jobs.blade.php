@@ -9,6 +9,8 @@
                    <tr>
                          <td> Assigned Date </td>
                          <td> Client Name </td>
+                         <td> Client PAN </td>
+                         <td> SP Name </td>
                          <td> Job Description </td>
                          <td> Status </td>
                          <td> Closed Date </td>
@@ -18,6 +20,8 @@
                       <tr>
                          <td>{{$item->assigned_date}}</td>
                          <td>{{$item->c_name}}</td>
+                         <td>{{$item->c_pan}}</td>
+                         <td>{{$item->branch_name}}</td>
                          <td>{{$item->job_type_name}}</td>
                          <td>
                             @if ($item->status == '1')

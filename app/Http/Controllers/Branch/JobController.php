@@ -77,12 +77,20 @@ class JobController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
             if ($job_ins) {
-                $length = 5 - intval(strlen((string) $job_ins));
+                // $length = 5 - intval(strlen((string) $job_ins));
+                // $job_id = Auth::guard('branch')->user()->branch_id;
+                // for ($i=0; $i < $length; $i++) { 
+                //     $job_id.='0';
+                // } 
+                // $job_id = $job_id.$job_ins;
                 $job_id = Auth::guard('branch')->user()->branch_id;
+                $branch_id = Auth::guard('branch')->user()->id;
+                $branch_job_count = DB::table('job')->where('created_by_id',$branch_id)->count();
+                $length = 4 - intval(strlen((string) $branch_job_count));
                 for ($i=0; $i < $length; $i++) { 
                     $job_id.='0';
                 } 
-                $job_id = $job_id.$job_ins;
+                $job_id = $job_id.$branch_job_count;
                 $update_job = DB::table('job')
                     ->where('id', $job_ins)
                     ->update([

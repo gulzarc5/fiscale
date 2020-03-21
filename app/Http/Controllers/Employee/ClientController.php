@@ -57,6 +57,23 @@ class ClientController extends Controller
         return view('website.employee.client.client_edit_form',compact('client','job_type','residential','business'));
     }
 
+    public function clientDetailsNew($client_id)
+    {
+        try {
+            $client_id = decrypt($client_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        $client =  DB::table('client')->where('id',$client_id)->first();
+        $residential  = null;
+        $business  = null;
+        if ($client && !empty($client->residential_addr_id)) {
+            $residential = DB::table('address')->where('id',$client->residential_addr_id)->first();
+            $business = DB::table('address')->where('id',$client->business_addr_id)->first();
+        }
+        return view('website.employee.client.client_view_new',compact('client','job_type','residential','business'));
+    }
+
     public function ClientUpdate(Request $request)
     {
         $request->validate([

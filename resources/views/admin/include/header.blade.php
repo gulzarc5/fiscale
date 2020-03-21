@@ -78,11 +78,11 @@
                 <ul class="nav side-menu">
                   <li><a href="{{ route('admin.deshboard')}}"><i class="fa fa-home"></i> Home </span></a>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Employee <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Member <span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="{{route('admin.add_employee_form')}}">Add New Employee</a>
+                      <li class="sub_menu"><a href="{{route('admin.add_employee_form')}}">Add New Member</a>
                       </li>
-                      <li class="sub_menu"><a href="{{route('admin.employee_list')}}">Employee List</a>
+                      <li class="sub_menu"><a href="{{route('admin.employee_list')}}">Member List</a>
                       </li>
                     </ul>
                   </li>

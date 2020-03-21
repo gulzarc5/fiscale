@@ -157,6 +157,26 @@ class CustomerController extends Controller
         if ($job_det) {
             $jod_det_id = $job_det->job_id;
             $remarks = DB::table('job_remarks')->where('job_id',$job_id)->get();
+            foreach ($remarks as $key => $value) {
+                $commented_by_name = "Admin";
+                if ($value->remarks_by == '3') {
+                    if (!empty($value->created_by_id)) {
+                        $branch_name = DB::table('branch')->where('id',$value->created_by_id)->first();
+                        if ($branch_name) {
+                            $commented_by_name = $branch_name->name;
+                        }
+                    }
+                    
+                }elseif($value->remarks_by == '2'){
+                    if (!empty($value->created_by_id)) {
+                        $emp_name = DB::table('employee')->where('id',$value->created_by_id)->first();
+                        if ($emp_name) {
+                            $commented_by_name = $emp_name->name;
+                        }
+                    }
+                }
+                $value->commented_by_name = $commented_by_name;
+            }
         }
        return view('admin.customer.job_detail',compact('job_det','remarks','jod_det_id'));
     }

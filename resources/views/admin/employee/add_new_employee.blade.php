@@ -8,7 +8,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Add New Employee</h2>
+                    <h2>Add New Member</h2>
                     <div class="clearfix"></div>
                 </div>
 
@@ -28,8 +28,8 @@
                             <div class="form-row mb-10">
 
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                  <label for="name">Employee Name</label>
-                                  <input type="text" class="form-control" name="name"  placeholder="Enter Employee name" value="{{ old('name')}}" >
+                                  <label for="name">Member Name</label>
+                                  <input type="text" class="form-control" name="name"  placeholder="Enter Member name" value="{{ old('name')}}" >
                                     @if($errors->has('name'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -39,7 +39,7 @@
 
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="mobile">Mobile Number</label>
-                                    <input type="text" class="form-control" name="mobile"  placeholder="Enter Employee Mobile Number" value="{{ old('mobile')}}" >
+                                    <input type="text" class="form-control" name="mobile"  placeholder="Enter Member Mobile Number" value="{{ old('mobile')}}" >
                                     @if($errors->has('mobile'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('mobile') }}</strong>
@@ -49,7 +49,7 @@
 
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email"  placeholder="Enter Employee Email Id" value="{{ old('email')}}" >
+                                    <input type="text" class="form-control" name="email"  placeholder="Enter Member Email Id" value="{{ old('email')}}" >
                                     @if($errors->has('email'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -85,7 +85,7 @@
                                 
                                 <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                     <label for="designation">Designation</label>
-                                    <input type="text" class="form-control" name="designation"  placeholder="Enter Employee Designation" value="{{ old('designation')}}" >
+                                    <input type="text" class="form-control" name="designation"  placeholder="Enter Member Designation" value="{{ old('designation')}}" >
                                     @if($errors->has('designation'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('designation') }}</strong>

@@ -26,7 +26,19 @@ class ExecutiveController extends Controller
             'gender' => 'required',
         ]);
         $executive = DB::table('executive')
-            ->insertGetId($request->except('_token'));
+            ->insertGetId([
+                'name' => $request->input('name'),
+                'email_id' => $request->input('email_id'),
+                'mobile' => $request->input('mobile'),
+                'password' => Hash::make($request->input('password')),
+                'gender' => $request->input('gender'),
+                'state' => $request->input('state'),
+                'city' => $request->input('city'),
+                'address' => $request->input('address'),
+                'pin' => $request->input('pin'),
+                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
         if ($executive) {
             DB::table('executive_wallet')
                 ->insert([
@@ -103,7 +115,6 @@ class ExecutiveController extends Controller
         }
 
         $executive = DB::table('executive')->where('id',$id)->first();
-
         return view('admin.executive.change_pass',compact('executive'));
     }
 
