@@ -37,10 +37,15 @@
                                     <div class="header-menu pt-sans">
                                         <ul>
                                             <li class="active"><a href="{{route('website.web.index')}}">Home</a></li>
+                                            <li><a href="{{route('website.web.contact')}}">Service</a></li>
+                                            <li> <a href="#">Login <i class="fa fa-caret-down"></i></a>
+                                                <ul>
+                                                    <li><a href="{{route('employee.loginForm')}}">Member login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                                    <li><a href="{{route('branch.loginForm')}}">SP login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                                    <li><a href="{{route('executive.loginForm')}}">ME login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                                </ul>
+                                            </li>
                                             <li><a href="{{route('website.web.contact')}}">Contact</a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('employee.loginForm')}}">Member login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('branch.loginForm')}}">SP login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('executive.loginForm')}}">Marketing Executive login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
                                         </ul>
                                     </div>
                                 </nav>
