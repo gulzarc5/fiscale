@@ -46,8 +46,8 @@
       <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Pending Jobs</span>
         <div class="count green">
-          @if(isset($working_jobs))
-            {{$working_jobs}}
+          @if(isset($pending_jobs))
+            {{$pending_jobs}}
           @endif
         </div>
       </div>
@@ -55,8 +55,8 @@
       <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Assigned Jobs</span>
         <div class="count green">
-          @if(isset($working_jobs))
-            {{$working_jobs}}
+          @if(isset($assigned_jobs))
+            {{$assigned_jobs}}
           @endif
         </div>
       </div>
@@ -64,8 +64,8 @@
       <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Employee Rejected Jobs</span>
         <div class="count green">
-          @if(isset($working_jobs))
-            {{$working_jobs}}
+          @if(isset($rejected_jobs))
+            {{$rejected_jobs}}
           @endif
         </div>
       </div>
