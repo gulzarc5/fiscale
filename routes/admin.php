@@ -125,6 +125,18 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('customer/detail/export/{id}','CustomerController@customerInfoExport')->name('admin.customer_info export');
 
         });
+
+        Route::group(['prefix'=>'report','namespace'=>'Report'],function(){
+            Route::get('users/','UsersReportController@usersReportForm')->name('admin.users_report_form');
+            
+            Route::get('member/list','UsersReportController@memberList')->name('admin.member_list_report');
+            Route::get('executive/list','UsersReportController@executiveList')->name('admin.executive_list_report');            
+            Route::get('sp/list','UsersReportController@spList')->name('admin.sp_list_report');
+
+                     
+            Route::get('job/form','UsersReportController@jobReportForm')->name('admin.job_report_form');            
+            Route::post('job/search/export','UsersReportController@jobSearchExport')->name('admin.job_search_export');
+        });
         
     });
 });

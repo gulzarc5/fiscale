@@ -123,13 +123,14 @@
                       <li><a href="{{route('admin.employee_job_report_form')}}">Employee Wallet</a></li>
                       <li><a href="{{route('admin.executive_job_report_form')}}">Marketing Executive</a></li>
                     </ul>
-                  </li>
+                  </li>                 
 
-                  {{-- <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Job Report</a></li>
+                      <li><a href="{{route('admin.users_report_form')}}">Users</a></li>
+                      <li><a href="{{route('admin.job_report_form')}}">Job</a></li>
                     </ul>
-                  </li> --}}
+                  </li>
 
                 </ul>
               </div>
