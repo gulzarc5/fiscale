@@ -156,7 +156,11 @@ class RegisterController extends Controller
         if ($client_personal) {
             $res_addr = DB::table('address')->where('id',$client_personal->residential_addr_id)->first();
             $business_addr = DB::table('address')->where('id',$client_personal->business_addr_id)->first();
-            $job_det =  DB::table('job')->where('client_id',$client_personal->id)->get();
+            $job_det =  DB::table('job')
+                ->select('job.*','job_type.name as job_desc')
+                ->leftjoin('job_type','job_type.id','=','job.job_type')
+                ->where('job.client_id',$client_personal->id)
+                ->get();
         }
         return view('website.branch.registration_print',compact('client_personal','res_addr','business_addr','job_det'));
     }

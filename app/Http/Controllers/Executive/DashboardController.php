@@ -52,7 +52,7 @@ class DashboardController extends Controller
                 ->where('executive_jobs.executive_id',$executive_id )
                 ->whereBetween('executive_jobs.created_at', [$s_date, $e_date])
                 ->orderBy('executive_jobs.id','desc')
-                ->get();
+                ->paginate(50);
             return view('website.executive.home',compact('executivge_jobs'));
         }
     }

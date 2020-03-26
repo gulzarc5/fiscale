@@ -34,28 +34,28 @@
             <div class="col-lg-8 col-md-10 col-sm-12 pt-5 pb-5 m-auto">
                 <div class="row upper-headings text-center mb-3">
                         <div class="col-md-12" style="display: flex; justify-content: center;">
-                                <img src="{{asset('web/img/favicon.png')}}" width="50" alt="logo" style="margin-right: 10px">
-                                <h1>FISCALEINDIA</h1>
+                            <img src="{{asset('web/img/favicon.png')}}" width="50" alt="logo" style="margin-right: 10px">
+                            <h1>FISCALEINDIA</h1>
                         </div>
                         <div class="col-md-12">
-                                <h3>CLIENT REGISTRATION FORM</h3>
+                            <h3>CLIENT REGISTRATION FORM</h3>
                         </div>
                 </div>
                 @if (isset($client_personal) && !empty($client_personal))
                     <div class="col-md-12 p-0">
                         <div class="row">
-                                <div class="col-md-6">
-                                        {{-- <h4>REGISTRATION ID : 2164431346</h4> --}}
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <h4>DATE : {{$client_personal->created_at}}</h4>
-                                </div>
+                            <div class="col-md-6">
+                                    {{-- <h4>REGISTRATION ID : 2164431346</h4> --}}
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <h4>DATE : {{$client_personal->created_at}}</h4>
+                            </div>
                         </div>
                     </div>
                     <table class="table table-bordered">
                         <tbody>
                             <tr class="text-center">
-                                <td colspan="4" class="table-header-cl"><b>USER PERSONAL DETAILS</b></td>
+                                <td colspan="4" class="table-header-cl"><b>CLIENT PERSONAL DETAILS</b></td>
                             </tr>
                             <tr>
                                 <th class="table-header-cl">Name</th>
@@ -94,7 +94,7 @@
                     <tbody>
                         @if (isset($res_addr) && !empty($res_addr))
                         <tr class="text-center">
-                            <td colspan="4" class="table-header-cl"><b>USER RESIDENTIAL ADDRESS</b></td>
+                            <td colspan="4" class="table-header-cl"><b>CLIENT RESIDENTIAL ADDRESS</b></td>
                         </tr>
                         <tr>
                             <th class="table-header-cl">Flat No/H No.</th>
@@ -123,7 +123,7 @@
                         @endif
                         @if (isset($res_addr) && !empty($res_addr))
                         <tr>
-                            <th colspan="4" class="text-center table-header-cl">USER BUSINESS ADDRESS</th>
+                            <th colspan="4" class="text-center table-header-cl">CLIENT BUSINESS ADDRESS</th>
                         </tr>
                         <tr>
                                 <th class="table-header-cl">Flat No/H No.</th>
@@ -162,7 +162,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th colspan="4" class="text-center table-header-cl">USER JOB DETAIL</th>
+                            <th colspan="4" class="text-center table-header-cl">CLIENT JOB DETAIL</th>
                         </tr>
                         <tr>
                             <th class="table-header-cl">Sl No. </th>
@@ -177,7 +177,7 @@
                             <tr>
                                 <td>{{$job_count++}}</td>
                                 <td>{{$item->job_id}}</td>
-                                <td>{{$item->job_type}}</td>
+                                <td>{{$item->job_desc}}</td>
                                 <td>{{$item->created_at}}</td>
                             </tr>
                         @endforeach
