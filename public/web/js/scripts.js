@@ -20,11 +20,11 @@
                 scrollTop: i.offset().top - 120
             }, 500), i.find("textarea").focus())
         }), new Swiper(".main-slider", {
-            loop: false,
+            loop: true,
             spaceBetween: 1,
             speed: 500,
-            autoplay: false,
-            pagination: false
+            autoplay: true,
+            pagination: true
         }).on("slideChangeTransitionStart", function() {
             e(this.slides[this.activeIndex]).find("[data-animate]").each(function() {
                 var t = e(this);
@@ -116,7 +116,7 @@
                 }
             }
         }), new Swiper(".service-carousel", {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 30,
             speed: 500,
             autoplay: {
@@ -421,67 +421,71 @@
                 offset: "93%"
             })
         })
-    }), e(window).on("load", function() {
-        e(".gallery-item").isotope({
-            itemSelector: ".grid-item",
-            percentPosition: !0,
-            masonry: {
-                columnWidth: ".grid-item"
-            }
-        }), e(".gallery_filter li").on("click", function() {
-            e(this).addClass("active").siblings().removeClass("active");
-            var t = e(this).attr("data-filter");
-            e(".grid").isotope({
-                filter: t
-            })
-        })
-    }), e(function() {
-        e("#slider-range").slider({
-            range: !0,
-            min: 0,
-            max: 99,
-            values: [0, 99],
-            slide: function(t, i) {
-                e("#amount").val("$" + i.values[0] + " - $" + i.values[1])
-            }
-        }), e("#amount").val("$" + e("#slider-range").slider("values", 0) + " - $" + e("#slider-range").slider("values", 1))
-    });
-    var t = e(".product-gallery"),
-        i = e(".product-thumbs");
-    if (t.length) {
-        var a = new Swiper(t[0], {
-            spaceBetween: 1,
-            touchRatio: 0,
-            pagination: {
-                el: ".product-gallery-pagination",
-                clickable: !0
-            }
-        });
-        new Swiper(i[0], {
-            spaceBetween: 10,
-            slidesPerView: 3,
-            slideToClickedSlide: !0
-        }), new Swiper(".product-gallery", {
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: !0
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            }
-        });
-        i.on("click", ".swiper-slide", function(t) {
-            var i = e(this);
-            a.slideTo(i.index()), i.addClass("active").siblings().removeClass("active")
-        })
-    }
-    lightbox.option({
-        resizeDuration: 200,
-        wrapAround: !0,
-        fixedNavigation: !0,
-        alwaysShowNav: !0
-    }), e(".plus").on("click", function() {
+    }), 
+    // e(window).on("load", function() {
+    //     e(".gallery-item").isotope({
+    //         itemSelector: ".grid-item",
+    //         percentPosition: !0,
+    //         masonry: {
+    //             columnWidth: ".grid-item"
+    //         }
+    //     }), e(".gallery_filter li").on("click", function() {
+    //         e(this).addClass("active").siblings().removeClass("active");
+    //         var t = e(this).attr("data-filter");
+    //         e(".grid").isotope({
+    //             filter: t
+    //         })
+    //     })
+    // }),
+    //  e(function() {
+    //     e("#slider-range").slider({
+    //         range: !0,
+    //         min: 0,
+    //         max: 99,
+    //         values: [0, 99],
+    //         slide: function(t, i) {
+    //             e("#amount").val("$" + i.values[0] + " - $" + i.values[1])
+    //         }
+    //     }), e("#amount").val("$" + e("#slider-range").slider("values", 0) + " - $" + e("#slider-range").slider("values", 1))
+    // });
+    // var t = e(".product-gallery"),
+    //     i = e(".product-thumbs");
+    // if (t.length) {
+    //     var a = new Swiper(t[0], {
+    //         spaceBetween: 1,
+    //         touchRatio: 0,
+    //         pagination: {
+    //             el: ".product-gallery-pagination",
+    //             clickable: !0
+    //         }
+    //     });
+    //     new Swiper(i[0], {
+    //         spaceBetween: 10,
+    //         slidesPerView: 3,
+    //         slideToClickedSlide: !0
+    //     }), new Swiper(".product-gallery", {
+    //         pagination: {
+    //             el: ".swiper-pagination",
+    //             clickable: !0
+    //         },
+    //         navigation: {
+    //             nextEl: ".swiper-button-next",
+    //             prevEl: ".swiper-button-prev"
+    //         }
+    //     });
+    //     i.on("click", ".swiper-slide", function(t) {
+    //         var i = e(this);
+    //         a.slideTo(i.index()), i.addClass("active").siblings().removeClass("active")
+    //     })
+    // }
+    // lightbox.option({
+    //     resizeDuration: 200,
+    //     wrapAround: !0,
+    //     fixedNavigation: !0,
+    //     alwaysShowNav: !0
+    // })
+    // , 
+    e(".plus").on("click", function() {
         var t = e(this).parent().find("input"),
             i = parseInt(t.val());
         isNaN(i) || t.val(i + 1)

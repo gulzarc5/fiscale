@@ -294,7 +294,7 @@ body {
 }
 
 .light-bg {
-    background-color: #ecf7fe
+    background-color: #eec21bcc
 }
 
 .dark-bg {
@@ -773,7 +773,7 @@ label input[type=radio] {
 
 .subtitle {
     display: block;
-    font-size: 18px;
+    font-size: 15px;
     color: #4c4f60;
     margin: 18px 0
 }
@@ -1031,7 +1031,6 @@ label input[type=radio] {
     font-size: 14px;
     line-height: 1.25;
     position: relative;
-    background: #fff;
     -webkit-transition: all .2s;
     transition: all .2s
 }
@@ -1177,12 +1176,13 @@ label input[type=radio] {
     box-shadow: 0 0 10px rgba(0, 0, 0, .05);
     -webkit-transition: box-shadow .2s;
     transition: box-shadow .2s;
-    padding: 70px 15px 25px
+    padding: 0px 15px 25px;
+    background-color: #fff;
+    min-height: 250px;
 }
 
 .single-service:hover {
     border-top: 2px solid #00c544;
-    padding: 69px 15px 25px;
     box-shadow: 0 0 15px rgba(0, 0, 0, .1)
 }
 
@@ -2402,7 +2402,7 @@ label input[type=radio] {
 
 .contact-form {
     padding: 18px 30px 30px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 20px rgb(241, 206, 73);
 }
 
 .domain-search-form,

@@ -18,32 +18,33 @@
                 <a href="{{route('employee.close_job_form')}}"><span>Closed Jobs</span></a>
             </li>
             <li>
-                <a href="{{route('employee.job_search_form')}}"></i>Search Jobs</span></a>
-            </li>
-            <li>
-                <a href="{{route('employee.client_search_form')}}"></i>Search Client</span></a>
-            </li>
+                <a href="#eins3" data-toggle="collapse" class="collapsed">
+                    <span> Search</span>
+                </a>
+                <ul class="collapse" id="eins3">
+                    <li>
+                        <a href="{{route('employee.job_search_form')}}"></i><span>Search Jobs</span></a>
+                    </li>
+                    <li>
+                        <a href="{{route('employee.client_search_form')}}"></i><span>Search Client</span></a>
+                    </li>
+                </ul>
+            </li>    
             <li>
                 <a href="#eins2" data-toggle="collapse" class="collapsed">
                     <span> Transaction</span>
                 </a>
                 <ul class="collapse" id="eins2">
-                    <li><a href="{{route('employee.job_transaction_form')}}">
-                            <span> Job </span>
-                    </a></li>
-                    <li><a href="{{route('employee.job_wallet_history')}}">
-                        <span> Wallet </span>
-                </a></li>
+                    <li>
+                        <a href="{{route('employee.job_transaction_form')}}"><span> Job </span></a>
+                    </li>
+                    <li>
+                        <a href="{{route('employee.job_wallet_history')}}"><span> Wallet </span></a>
+                    </li>
                 </ul>
             </li>
             <li>
                 <a href="{{route('employee.employee_report_form')}}"></i>Report</span></a>
-            </li>
-            <li>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span><i class="fa fa-power-off"></i>Logout</span></a>
-                <form id="logout-form" action="{{ route('employee.logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
             </li>
         </ul>
     </nav>
