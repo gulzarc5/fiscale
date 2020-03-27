@@ -2,11 +2,14 @@
 @section('content') 
    <div class="col p-t col-md-10">
       <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
-         <h1>Job Edit For Job Id <b style="color:red"> - </b>
+
+         <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-align: center;">JOB <span>Edit</span></h1>            
+         <h3 style="float:left;min-width: 100%">            
+            <b>JOB ID : </b>
             @if (isset($job))
-                {{$job->job_id}}
-            @endif
-         </h1>
+               {{$job->job_id}}
+            @endif            
+         </h3>
       </div>
       @if (isset($job) && !empty($job))
       <div class="row">

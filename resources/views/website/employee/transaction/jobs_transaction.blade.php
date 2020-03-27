@@ -12,8 +12,7 @@
          <div class="form-response"></div>
          {{ Form::open(['method' => 'post','route'=>'employee.job_transaction_search']) }}
             <div id="">
-               <h4 style="text-align:center">Search Job Transactions</h4>
-
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase text-center" style="text-shadow: 1px -2px 1px white;">Search Job<span> Transactions</span></h1>
                <div class="row half-gutter">
                 <div class="col-md-2"></div>
                   <div class="col-md-3">

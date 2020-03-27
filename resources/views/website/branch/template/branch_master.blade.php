@@ -11,15 +11,60 @@
                 <div class="col-xl-9 col-lg-10 col-md-8 col-sm-7 col-5">
                     <div class="menu--inner-area clear-fix">
                         <div class="menu-wraper">
-                            <nav>
+                            <nav class="mobile-panel-nav">
                                 <div class="header-menu pt-sans">
                                     <ul>
-                                        <li><a href="{{route('branch.add_client')}}">Add Client</a></li>
-                                        <li><a href="{{route('branch.search_client_add_job')}}">Add Job</a></li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a href="{{route('branch.deshboard')}}"><span> Open Job</span></a>
+                                        </li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a>
+                                               Client<i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('branch.add_client')}}"><span> Add Client</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('branch.user_list')}}"><span> Client List</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a>
+                                                Job<i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('branch.search_client_add_job')}}">
+                                                        <span> Add Job</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a>
+                                                 Search<i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('branch.client_search_form')}}"><span> Client Search</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('branch.track_job_form')}}"><span> Job Search</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a href="{{route('branch.client_report_form')}}"><span> Report </span></a>
+                                        </li>
+
+                                        <li class="hidden-sm-xs"><a href="{{route('branch.add_client')}}">Add Client</a></li>
+                                        <li class="hidden-sm-xs"><a href="{{route('branch.search_client_add_job')}}">Add Job</a></li>
                                         <li><a href="{{route('branch.wallet_history')}}">Wallet</a></li>
                                         <li>
                                         	<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout <i style="font-size: 15px;" class="fa fa-power-off"></i></a>
-							                <form id="logout-form" action="{{ route('employee.logout') }}" method="POST" style="display: none;">
+							                <form id="logout-form" action="{{ route('branch.logout') }}" method="POST" style="display: none;">
 						                        @csrf
 						                    </form>
                                         </li>

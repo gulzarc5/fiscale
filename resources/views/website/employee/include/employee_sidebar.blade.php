@@ -11,26 +11,26 @@
                     </span>
                 </a>
             </li>
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="{{route("employee.deshboard")}}" ><span>Open Jobs</span></a>
             </li>
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="{{route('employee.close_job_form')}}"><span>Closed Jobs</span></a>
             </li>
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="#eins3" data-toggle="collapse" class="collapsed">
                     <span> Search</span>
                 </a>
                 <ul class="collapse" id="eins3">
                     <li>
-                        <a href="{{route('employee.job_search_form')}}"></i><span>Search Jobs</span></a>
+                        <a href="{{route('employee.client_search_form')}}"></i><span>Client Search</span></a>
                     </li>
                     <li>
-                        <a href="{{route('employee.client_search_form')}}"></i><span>Search Client</span></a>
+                        <a href="{{route('employee.job_search_form')}}"></i><span>Jobs Search</span></a>
                     </li>
                 </ul>
             </li>    
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="#eins2" data-toggle="collapse" class="collapsed">
                     <span> Transaction</span>
                 </a>
@@ -43,7 +43,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="{{route('employee.employee_report_form')}}"></i>Report</span></a>
             </li>
         </ul>

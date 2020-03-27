@@ -14,6 +14,7 @@
       </div>
    
       <div class="contact-form contact-page-form animated fadeInUp form-margin" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
+         <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-align: center;">Edit Client <span>Details</span></h1>         
          <div class="form-response"></div>
          {{ Form::open(['method' => 'post','route'=>'employee.client_update']) }}
             @if (isset($client))

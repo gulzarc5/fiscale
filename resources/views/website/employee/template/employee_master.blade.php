@@ -12,10 +12,45 @@
                 <div class="col-xl-9 col-lg-10 col-md-8 col-sm-7 col-5">
                     <div class="menu--inner-area clear-fix">
                         <div class="menu-wraper">
-                            <nav>
+                            <nav class="mobile-panel-nav">
                                 <div class="header-menu pt-sans">
                                     <ul>
-                                        <li><a href="{{route('employee.job_wallet_history')}}">Wallet</a></li>
+                                        <li>
+                                            <a href="{{route("employee.deshboard")}}" ><span>Open Jobs</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('employee.close_job_form')}}"><span>Closed Jobs</span></a>
+                                        </li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a>
+                                                 Search<i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('employee.client_search_form')}}"></i><span>Client Search</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('employee.job_search_form')}}"></i><span>Jobs Search</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown hidden-til-md">
+                                            <a>
+                                                 Transaction<i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{route('employee.job_transaction_form')}}"><span> Job </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('employee.job_wallet_history')}}"><span> Wallet </span></a>
+                                                </li>
+                                            </ul>
+                                        </li>                                        
+                                        <li class=" hidden-til-md">
+                                            <a href="{{route('employee.employee_report_form')}}"></i>Report</span></a>
+                                        </li>
+                                        <li class="hidden-sm-xs"><a href="{{route('employee.job_wallet_history')}}">Wallet</a></li>
                                         <li>
                                         	<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout <i style="font-size: 15px;" class="fa fa-power-off"></i></a>
 							                <form id="logout-form" action="{{ route('employee.logout') }}" method="POST" style="display: none;">

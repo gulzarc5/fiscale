@@ -5,8 +5,9 @@
       @if (isset($job) && !empty($job))      
          <div class="row">
             <div class="col-md-12">
-               <h3 style="float:left">JOB DETAILS            
-                     FOR JOB ID : <b>{{$job->job_id}}</b>            
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-align: center;">JOB <span>Details</span></h1>            
+               <h3 style="float:left">            
+                  <b>JOB ID : </b>{{$job->job_id}}            
                </h3>
                <a href="{{route('employee.job_edit_form',['job_id'=>encrypt($job->id)])}}" class="btn btn-sm btn-warning" style="float:right;margin-right: 5px;">Edit Job</a>
                <a target="_blank" href="{{route('employee.client_details_new',['client_id'=>encrypt($job->client_id)])}}" class="btn btn-sm btn-info" style="float:right;margin-right: 5px;">View Client Info</a>
@@ -15,7 +16,7 @@
             <p> <b>Name : </b>{{$job->cl_name}}</p>
             </div>
             <div class="col-md-4">
-               <p<b>D.O.B/D.O.I : </b>{{$job->dob}}</p<b>
+               <p><b>D.O.B/D.O.I : </b>{{$job->dob}}</p>
             </div>
             <div class="col-md-4">
                <p><b>PAN : </b>{{$job->cl_pan}}</p>

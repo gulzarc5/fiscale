@@ -2,7 +2,7 @@
 @section('content') 
    <div class="col p-t col-md-10">
       <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
-         <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Open <span>Jobs</span></h1>
+         <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase text-center" style="text-shadow: 1px -2px 1px white;">Open <span>Jobs</span></h1>
          <div class="table-responsive">
                <table class="sope--cart-table table pt-sans">
                   <tbody>
@@ -30,8 +30,8 @@
                                  <button class="status btn-sm btn-info">Working</button>
                               @elseif($item->status == '3')
                                  <button class="status btn-sm btn-danger">Document Correction</button>
-                              @elseif($item->status == '3')
-                                 <button class="status btn-sm btn-success">Solved</button>
+                              @elseif($item->status == '4')
+                                 <button class="status btn-sm btn-success">Completed</button>
                               @endif
                            </td>
                            <td class="view-btn reject-btn">

@@ -6,7 +6,7 @@
          <div class="form-response"></div>
          {{ Form::open(['method' => 'post','route'=>'branch.add_job_client_search']) }}
             <div id="">
-               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">ADD New <span>Client</span></h1>
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">ADD New <span>Job</span></h1>
                @if (Session::has('message'))
                   <div class="alert alert-success" >{{ Session::get('message') }}</div>
                @endif

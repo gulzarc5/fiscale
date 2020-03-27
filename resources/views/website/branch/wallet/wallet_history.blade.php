@@ -4,12 +4,12 @@
 <div class="col p-t col-md-10">
    <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
       <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="float:left">Wallet <span>History</span></h1>
-      <a href="{{route('branch.wallet_balance_add')}}" class="btn-success" style="float: right;padding: 10px 30px;-webkit-appearance: button;">Add Balance</a>
-      <h1 style="float:right;margin-right: 5px;" class="btn btn-info">Wallet Balance : 
+      <a href="{{route('branch.wallet_balance_add')}}" class="btn-success" style="float: right;padding: 10px;-webkit-appearance: button;">Add Balance</a>
+      <h3 style="float:right;margin-right: 5px;" class="btn btn-info balance">Wallet Balance : 
          @if (isset($wallet) && !empty($wallet))
             {{ number_format($wallet->amount,2,".",'')}}
          @endif
-      </h1>
+      </h3>
    </div>
    <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
       <div class="table-responsive">

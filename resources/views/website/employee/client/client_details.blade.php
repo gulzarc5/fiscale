@@ -3,8 +3,7 @@
          
    <div class="col p-t col-md-10">
       <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
-            <h1>Client Details</h1>
-         
+         <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-align: center;">Client <span>Details</span></h1>
       </div>
       @if (isset($user) && !empty($user))
          <div class="row">

@@ -6,7 +6,7 @@
          <div class="form-response"></div>
          {{ Form::open(['method' => 'post','route'=>'employee.employee_report']) }}
             <div id="">
-               <h4>Generate Report</h4>
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Generate<span> Report</span></h1>
                @if (Session::has('message'))
                   <div class="alert alert-success" >{{ Session::get('message') }}</div>
                @endif

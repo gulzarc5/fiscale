@@ -5,8 +5,8 @@
       <div class="add-job-form contact-page-form animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
          <div class="form-response"></div>
          {{ Form::open(['method' => 'post','route'=>'employee.client_search']) }}
-            <div id="">
-               <h4>Search Client</h4>
+            <div id="">               
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Search <span>Client</span></h1>
                @if (Session::has('message'))
                   <div class="alert alert-success" >{{ Session::get('message') }}</div>
                @endif
@@ -17,8 +17,8 @@
                <div class="row half-gutter">
                   <div class="col-md-12">
                      <div class="form-group">
-                        <label>Enter Client User PAN OR Mobile No.</label>
-                        <input type="text" name="client_serach_id" placeholder="Enter Client PAN OR Mobile No" class="theme-input-style"> 
+                        <label>Enter Client PAN/Mobile.</label>
+                        <input type="text" name="client_serach_id" placeholder="Enter Client PAN/Mobile" class="theme-input-style"> 
                         @if($errors->has('client_serach_id'))
                               <span role="alert" style="color:red">
                                  <strong>{{ $errors->first('client_serach_id') }}</strong>

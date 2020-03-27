@@ -13,8 +13,9 @@
       
          <div class="row">
             <div class="col-md-12">
-               <h3 style="float:left">JOB DETAILS            
-                     FOR JOB ID : <b>{{$job->job_id}}</b>            
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-align: center;">JOB <span>Details</span></h1>            
+               <h3 style="float:left">            
+                  <b>JOB ID : </b>{{$job->job_id}}            
                </h3>
                <a href="{{route('employee.job_edit_form',['job_id'=>encrypt($job->id)])}}" class="btn btn-sm btn-warning" style="float:right;margin-right: 5px;">Edit Job</a>
                <a target="_blank" href="{{route('employee.client_details_new',['client_id'=>encrypt($job->client_id)])}}" class="btn btn-sm btn-info" style="float:right;margin-right: 5px;">View Client Info</a>
@@ -52,13 +53,13 @@
             <div class="col-md-4">
                <p><b>Status : </b>
                   @if ($job->status == '1')
-                     <a style="color: #ffb100;font-weight: bold;">Processing</a>
+                     <button class="status btn-sm btn-warning">Processing</button>
                   @elseif($job->status == '2')
-                     <a style="color: #004eff;font-weight: bold;">Working</a>
+                     <button class="status btn-sm btn-info">Working</button>
                   @elseif($job->status == '3')
-                     <a style="color: red;font-weight: bold;">Document Problem</a>
+                     <button class="status btn-sm btn-danger">Document Correction</button>
                   @else
-                     <a style="color: #00b8ff;font-weight: bold;">Completed</a>
+                     <button class="status btn-sm btn-success">Completed</button>
                   @endif                  
                </p>
             </div>      

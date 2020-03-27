@@ -11,18 +11,12 @@
                     </span>
                 </a>
             </li>
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="{{route("executive.deshboard")}}" ><span>Job Transactions</span></a>
             </li>
-            <li>
+            <li class="hidden-sm-xs">
                 <a href="{{route('executive.wallet_history')}}"><span>Wallet</span></a>
-            </li>            
-            <li>
-                <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span><i class="fa fa-power-off"></i>Logout</span></a>
-                <form id="logout-form" action="{{ route('executive.logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
+            </li> 
         </ul>
     </nav>
 </div> 

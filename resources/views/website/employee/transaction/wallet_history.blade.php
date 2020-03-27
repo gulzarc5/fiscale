@@ -2,7 +2,7 @@
 @section('content') 
 <div class="col p-t col-md-10">
    <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
-      <h1 style="float:left">Wallet History</h1>
+      <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="float:left">Wallet <span>History</span></h1>
       <h1 style="float:right;margin-right: 5px;" class="btn btn-info">Wallet Balance : 
          @if (isset($wallet) && !empty($wallet))
             {{ number_format($wallet->amount,2,".",'')}}
