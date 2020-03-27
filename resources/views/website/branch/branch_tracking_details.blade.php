@@ -4,12 +4,14 @@
    <div class="col p-t col-md-10">
       <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
          @if (isset($page) && !empty($page))
-            <h1>Client Details</h1>
+            <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Client <span>Details</span></h1>
          @else
-            <h1>Tracking Details</h1>
+            <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Tracking <span>Details</span></h1>
          @endif
          
       </div>
+
+      <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.1s;">
       @if (isset($user) && !empty($user))
          <div class="row">
             <div class="col-md-3">
@@ -28,12 +30,13 @@
                <p><b>Constitution : </b>{{$user->constitution}}</p>
             </div>
             <div class="col-md-3">
-               <p><b>Gender : 
+               <p><b>Gender : </b>
                   @if ($user->gender == 'M')
-                     </b>Male</p>
+                     Male
                   @else
-                     </b>FeMale</p>
+                     FeMale
                   @endif
+               </p>
             </div>
             <div class="col-md-6">
             <a href="{{route('branch.client_edit',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right" target="_blank">View Client Info</a>
@@ -41,7 +44,6 @@
          </div>
       @endif
       
-      <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
          <div class="table-responsive">
             <table class="sope--cart-table table pt-sans">
                <tbody>

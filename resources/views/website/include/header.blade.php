@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="{{asset('web/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('web/plugins/swiper/swiper.min.css')}}">
-    <link rel="stylesheet" href="{{asset('web/plugins/color-switcher/color-switcher.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('web/plugins/color-switcher/color-switcher.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('web/plugins/ui-slider/jquery-ui.min.css')}}">
-    <link rel="stylesheet" href="{{asset('web/plugins/light-box/lightbox.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('web/plugins/light-box/lightbox.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('web/css/shop-style.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('web/css/responsive.css')}}">
@@ -26,21 +26,26 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-3 col-lg-2 col-md-4 col-sm-5 col-7">
-                        <div class="logo" data-animate="fadeInUp" data-delay=".65">
+                        <div class="logo">
                             <a href="{{route('website.web.index')}}"> <img src="{{asset('web/img/logo.png')}}" data-rjs="2" alt="fiscaleIndia"> </a>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-10 col-md-8 col-sm-7 col-5">
                         <div class="menu--inner-area clear-fix">
                             <div class="menu-wraper">
-                                <nav data-animate="fadeInUp" data-delay=".8">
+                                <nav>
                                     <div class="header-menu pt-sans">
                                         <ul>
                                             <li class="active"><a href="{{route('website.web.index')}}">Home</a></li>
-                                            <li><a href="{{route('website.web.contact')}}">Contact</a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('employee.loginForm')}}">Member login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('branch.loginForm')}}">SP login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
-                                            <li style="padding: 22px 10px;"><a class="btn-login" href="{{route('executive.loginForm')}}">Marketing Executive login<i style="font-size: 16px; padding-left: 5px;" class="fa fa-sign-in"></i></a></li>
+                                            <li><a href="#home-service">Service</a></li>
+                                            <li class="dropdown"> <a href="#">Login <i class="fa fa-caret-down"></i></a>
+                                                <ul>
+                                                    <li><a href="{{route('employee.loginForm')}}">Member login<i class="fa fa-sign-in"></i></a></li>
+                                                    <li><a href="{{route('branch.loginForm')}}">SP login<i class="fa fa-sign-in"></i></a></li>
+                                                    <li><a href="{{route('executive.loginForm')}}">ME login<i class="fa fa-sign-in"></i></a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#home-contact">Contact</a></li>
                                         </ul>
                                     </div>
                                 </nav>

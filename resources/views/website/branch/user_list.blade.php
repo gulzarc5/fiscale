@@ -3,7 +3,7 @@
 @section('content') 
 <div class="col p-t col-md-10">
    <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
-      <h1>Users List</h1>
+      <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Users <span>List</span></h1>
    </div>
    <div class="cart-product animated fadeInUp" data-animate="fadeInUp" data-delay=".2" style="animation-duration: 0.6s; animation-delay: 0.2s;">
       <div class="table-responsive">

@@ -140,7 +140,6 @@
     .header-menu>ul>li>a {
         border-radius: 0;
         box-shadow: none;
-        background: 0 0
     }
     .header-menu ul li a i {
         display: none
@@ -304,7 +303,7 @@
 
 @media (min-width:768px) {
     body>section{
-        min-height: 516px;  
+        min-height: 491px;  
     }
     .align-left {
         float: left;
@@ -622,6 +621,9 @@
     }
     .post-content-block h1.h2 {
         font-size: 26px
+    }
+    .swiper-wrapper {
+        height: 116px;
     }
 }
 

@@ -462,14 +462,18 @@ textarea#text-area {
 }
 
 .sope--cart-table tbody tr:first-child td {
-    background: #ecf7fe;
+    background: #f1ce49;
     padding-bottom: 10px;
     padding-top: 10px;
     text-align: center;
-    color: #31333e;
+    color: #fff;
+    font-weight: 700;
     border: 0;
     font-size: 16px;
     font-family: 'PT Sans', sans-serif
+}
+.sope--cart-table tbody tr:not(:first-child):nth-child(odd) {
+    background-color: #e6f5ff;
 }
 
 .product-abelity h6 span,

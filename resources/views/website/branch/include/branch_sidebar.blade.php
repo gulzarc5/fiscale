@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('branch.deshboard')}}"><span> Home</span></a>
+                <a href="{{route('branch.deshboard')}}"><span> Open Job</span></a>
             </li>
             <li>
                 <a href="#eins" data-toggle="collapse" class="collapsed">
@@ -28,12 +28,6 @@
                 </ul>
             </li>
             <li>
-                <a href="{{route('branch.client_search_form')}}"><span> Client Search</span></a>
-            </li>
-            <li>
-                <a href="{{route('branch.track_job_form')}}"><span> Job Search</span></a>
-            </li>
-            <li>
                 <a href="#eins2" data-toggle="collapse" class="collapsed">
                     <span> Job</span>
                 </a>
@@ -46,34 +40,29 @@
                 </ul>
             </li>
             <li>
-                <a href="#eins3" data-toggle="collapse" class="collapsed">
-                    <span> Transactions </span>
+                <a href="#eins4" data-toggle="collapse" class="collapsed">
+                    <span> Search</span>
                 </a>
-                <ul class="collapse" id="eins3">
+                <ul class="collapse" id="eins4">
                     <li>
-                        <a href="{{route('branch.wallet_history')}}">
-                            <span>Wallet</span>
-                        </a>
+                        <a href="{{route('branch.client_search_form')}}"><span> Client Search</span></a>
                     </li>
-                    {{-- <li>
-                        <a href="{{route('branch.payment_request_list')}}">
-                            <span>Payment Request</span>
-                        </a>
-                    </li> --}}
+                    <li>
+                        <a href="{{route('branch.track_job_form')}}"><span> Job Search</span></a>
+                    </li>
                 </ul>
             </li>
             <li>
                 <a href="{{route('branch.client_report_form')}}"><span> Report </span></a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <span><i class="fa fa-power-off"></i>Logout</span>
                 </a>
                 <form id="logout-form" action="{{ route('branch.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-            </li>
-            
+            </li> --}}            
         </ul>
     </nav>
 </div>

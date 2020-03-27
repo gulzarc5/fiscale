@@ -23,7 +23,7 @@
               <p> <b>Name : </b>{{$job->cl_name}}</p>
             </div>
             <div class="col-md-4">
-               <p<b>D.O.B/D.O.I : </b>{{$job->dob}}</p<b>
+               <p><b>D.O.B/D.O.I : </b>{{$job->dob}}</p>
             </div>
             <div class="col-md-4">
                <p><b>PAN : </b>{{$job->cl_pan}}</p>

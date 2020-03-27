@@ -50,13 +50,13 @@
   line-height: 60px;
 }
 .form-steps {
-  padding-bottom: 50px;
+  padding-bottom: 20px;
+  margin-top: -30px;
 }
 @media (min-width:767px){
    .login-form{
     max-width: 400px;
-    height: 418px;
-    margin-top: 60px;
+    padding-top: 40px;
   }
 }
 /*form sidebar starts*/
@@ -107,17 +107,19 @@ nav.my ul li a.collapsed[data-toggle="collapse"]:after {
 }
 nav.my ul li ul li a {
    font-size: 14px;
-   padding: 10px 20px;
+   padding: 7px 20px;
+   background: #f1ce49;
+   border-left-color: #f1ce49;
 }
 nav.my ul li ul li a i {
    font-size: 18px;
    transform: translate(0px, 1px);
 }
 nav.my ul li ul li a:hover {
-   background: white;
-   color: #2d9efa;
+   background: #2d9efa;
+   color: #fff;
    font-size: 14px;
-   padding: 10px 20px;
+   border-left-color: #fff;
 }
 nav.my ul li ul li a.active {
    background: #2d9efa;
@@ -126,7 +128,7 @@ nav.my ul li ul li a.active {
 }
 .submit-job-form, .add-job-form {
    padding: 18px 30px 30px;
-   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+   box-shadow: 0 0 20px rgb(241, 206, 73);
  }
  .status{
    color: #fff;
@@ -158,4 +160,24 @@ nav.my ul li ul li a.active {
 }
 .jobtran .row.half-gutter .form-group {
   margin-bottom: 1rem !important;
+}
+.dropdown ul li a {
+  background-color: rgb(78, 142, 249);
+  color: #fff;
+}
+.dropdown ul li a i {
+  font-size: 16px;
+  padding-left: 5px;
+}
+.single-service img {
+  width: 20%;
+}
+.single-service a {
+  display: block;
+  font-size: 15px;
+  text-align: left;
+  color: #0075bb!important;
+}
+.sticky-wrapper {
+  height: 68px!important;
 }

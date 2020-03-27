@@ -6,7 +6,7 @@
          <div class="form-response"></div>
          {{ Form::open(['method' => 'post','route'=>'branch.wallet_balance_add_submit']) }}
             <div id="">
-               <center><h3>Add Wallet Balance</h3></center>
+               <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase text-center" >Add Wallet <span>Balance</span></h1>
                <div class="col-md-12" style="padding:5px;"></div>
                @if (Session::has('message'))
                   <div class="alert alert-success" >{{ Session::get('message') }}</div>

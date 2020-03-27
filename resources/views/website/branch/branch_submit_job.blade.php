@@ -2,7 +2,8 @@
 @section('content')
    <div class="col p-t col-md-10">
       <div class="section-title text-center animated fadeInUp" data-animate="fadeInUp" style="animation-duration: 0.6s; animation-delay: 0.1s;">
-         <h1>Add New Job</h1>
+      <h1 data-animate="fadeInUp" data-delay=".3" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Add New <span>Job</span></h1>
+         <h1></h1>
       </div>
       @if (isset($client) && !empty($client))
       <div class="row">
