@@ -63,7 +63,7 @@
                                         <li class="hidden-sm-xs"><a href="{{route('branch.search_client_add_job')}}">Add Job</a></li>
                                         <li><a href="{{route('branch.wallet_history')}}">Wallet</a></li>
                                         <li>
-                                        	<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout <i style="font-size: 15px;" class="fa fa-power-off"></i></a>
+                                        	<a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout <i style="font-size: 15px;" class="fa fa-power-off"></i></a>
 							                <form id="logout-form" action="{{ route('branch.logout') }}" method="POST" style="display: none;">
 						                        @csrf
 						                    </form>

@@ -29,7 +29,7 @@ class LoginController extends Controller
     }
     public function logout()
     {
-        Auth::guard('employee')->logout();
+        Auth::guard('branch')->logout();
         return redirect()->route('branch.loginForm');
     }
 }

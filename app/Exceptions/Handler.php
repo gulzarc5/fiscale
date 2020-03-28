@@ -62,8 +62,8 @@ class Handler extends ExceptionHandler
                 $login = 'admin.login';
                 break;  
             case 'employee':
-                    $login = 'employee.loginForm';
-                    break;   
+                $login = 'employee.loginForm';
+                break;   
             case 'branch':
                 $login = 'branch.loginForm';
                 break;  
