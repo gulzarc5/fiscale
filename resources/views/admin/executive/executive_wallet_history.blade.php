@@ -85,7 +85,7 @@
                                     </tr>
                                     @else
                                         <tr>
-                                            <td colspan="4" style="text-align: center">Sorry No Data Found</td>
+                                            <td colspan="7" style="text-align: center">Sorry No Data Found</td>
                                         </tr>
                                     @endif
                                 </tbody>
