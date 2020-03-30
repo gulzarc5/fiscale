@@ -65,6 +65,12 @@ return [
             'driver' => 'session',
             'provider' => 'executive',
         ],
+
+        'apiSp' => [
+            'driver' => 'token',
+            'provider' => 'branch',
+            'hash' => false,
+        ],
     ],
 
     /*

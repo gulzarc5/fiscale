@@ -62,14 +62,21 @@ class Handler extends ExceptionHandler
                 $login = 'admin.login';
                 break;  
             case 'employee':
-                    $login = 'employee.loginForm';
-                    break;   
+                $login = 'employee.loginForm';
+                break;   
             case 'branch':
                 $login = 'branch.loginForm';
                 break;  
             case 'executive':
                 $login = 'executive.loginForm';
-                break;             
+                break;  
+            case 'apiSp':
+                $response = [
+                    'status'=>false,
+                    'login_error' => 1,
+                    'message'=>'unauthorize'
+                ];
+                return response()->json($response, 200);           
             default:
                 $login = 'employee.loginForm';
                 break;
