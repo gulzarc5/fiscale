@@ -27,7 +27,12 @@ Route::group(['namespace'=>'Api'],function(){
             Route::get('client/details/{client_id}','ClientController@clientDetails');
 
             
-            Route::get('jobs/details/{job_id}','ClientController@JobDetails');
+            // Route::get('jobs/details/{job_id}','ClientController@JobDetails');
+
+            Route::get('job/add/client/search/{search_key}','ClientController@addJobClientSearch');
+            Route::post('job/add/existing/client','ClientController@addJobExistingClient');
+
+            Route::get('client/search/{search_key}','ClientController@clientSearch');
         });
         
     });

@@ -167,21 +167,7 @@ class ClientController extends Controller
         ->orderBy('id','desc')
         ->skip($limit)
         ->take(20)
-        ->get();
-        // foreach ($client as $key => $value) {
-        //     if (!empty($value->residential_addr_id)) {
-        //         $value->residential_address = DB::table('address')->where('id',$value->residential_addr_id)->first();
-        //     }else {
-        //         $value->residential_address = null;
-        //     }
-
-        //     if (!empty($value->business_addr_id)) {
-        //         $value->busniess_address = DB::table('address')->where('id',$value->business_addr_id)->first();
-        //     }else {
-        //         $value->busniess_address = null;
-        //     }            
-        // }
-        
+        ->get();        
         $response = [
             'status' => true,
             'message' => 'Client List',
@@ -241,8 +227,117 @@ class ClientController extends Controller
         return response()->json($response, 200);
     }
 
-    public function JobDetails($job_id)
+    public function addJobClientSearch($search_key)
     {
-        # code...
+        $search_key = $search_key;
+        if (is_numeric($search_key)) {
+            $sql_search = DB::table('client')->where('mobile',$search_key);            
+        }else{
+            $sql_search = DB::table('client')->where('pan',$search_key);
+        }
+
+        if ($sql_search->count() > 0) {
+            $client = $sql_search->first();
+            $response = [
+                'status' => true,
+                'message' => 'Client Details',
+                'data' => $client, 
+            ];    	
+            return response()->json($response, 200);
+        }else{
+            $response = [
+                'status' => false,
+                'message' => 'No Client Found',
+                'data' => null, 
+            ];    	
+            return response()->json($response, 200);
+        }
+    }
+
+    public function addJobExistingClient(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'job_type.*' => 'distinct',
+            'client_id' => 'required',
+            'sp_id' => 'required',
+        ]);
+        
+        if ($validator->fails()) { 
+            $response = [
+                'status' => false,
+                'message' => 'Validation Error',
+                'error_code' => true,
+                'error_message' => $validator->errors(),    
+            ];    	
+            return response()->json($response, 200);
+        } 
+
+        $job_type = $request->input('job_type');
+        $user = $request->input('client_id');
+        $sp_id = $request->input('sp_id');
+        foreach ($job_type as $key => $value) {
+            $job_ins = DB::table('job')
+            ->insertGetId([
+                'client_id' => $user,
+                'job_type' => $value,
+                'created_by_id' => $sp_id,
+                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+            if ($job_ins) { 
+                $sp = DB::table('branch')->where('id',$sp_id)->first();                   
+                $job_id = $sp->branch_id;
+                $branch_job_count = DB::table('job')->where('created_by_id',$sp->id)->count();
+                $length = 4 - intval(strlen((string) $branch_job_count));
+                for ($i=0; $i < $length; $i++) { 
+                    $job_id.='0';
+                } 
+                $job_id = $job_id.$branch_job_count;
+                $update_job = DB::table('job')
+                    ->where('id', $job_ins)
+                    ->update([
+                        'job_id' =>  $job_id,
+                        'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    ]);
+            }
+        }
+
+        $response = [
+            'status' => true,
+            'message' => 'Job Added Successfully',
+            'error_code' => false,
+            'error_message' => null,    
+        ];    	
+        return response()->json($response, 200);
+    }
+
+    public function clientSearch($search_key)
+    {
+        $search_key = $search_key;
+        if (is_numeric($search_key)) {
+            $sql_search = DB::table('client')->where('mobile',$search_key);            
+        }else{
+            $sql_search = DB::table('client')->where('pan',$search_key);
+        }
+        if ($sql_search->count() > 0) {
+            $client = $sql_search->first();
+            $client->jobs = DB::table('job')
+                ->leftjoin('job_type','job_type.id','=','job.job_type')
+                ->select('job.*','job_type.name as job_type_name')
+                ->where('client_id',$client->id)->get();
+            $response = [
+                'status' => true,
+                'message' => 'Client Details',
+                'data' => $client, 
+            ];    	
+            return response()->json($response, 200);
+        }else{
+            $response = [
+                'status' => false,
+                'message' => 'No Client Found',
+                'data' => null, 
+            ];    	
+            return response()->json($response, 200);
+        }
     }
 }
