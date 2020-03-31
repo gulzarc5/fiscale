@@ -340,4 +340,119 @@ class ClientController extends Controller
             return response()->json($response, 200);
         }
     }
+
+    public function jobSearch($job_id)
+    {
+        $job = DB::table('job')
+        ->select('job.*','job_type.name as job_type_name','client.id as client_id','client.dob as dob','client.constitution as constitution','client.gender as gender','client.name as cl_name','client.pan as cl_pan','client.mobile as cl_mobile')
+        ->leftjoin('job_type','job_type.id','=','job.job_type')
+        ->leftjoin('client','client.id','=','job.client_id')
+        ->where('job.job_id',$job_id)
+        ->first();
+        $comments = null;
+        if ($job) {
+            $job->comments = DB::table('job_remarks')->where('job_id',$job->id)->get();
+            foreach ($job->comments as $key => $value) {
+                if ($value->remarks_by == '2') {
+                    $name = null;
+                    if (isset($value->created_by_id) && !empty($value->created_by_id)){                        
+                        $data = DB::table('employee')->select('name')->where('id',$value->created_by_id)->first();
+                        $name = $data->name;
+                    }
+                    $value->remarks_by_name = $name;
+                } elseif ($value->remarks_by == '3') {
+                    $name = null;
+                    if (isset($value->created_by_id) && !empty($value->created_by_id)){                        
+                        $data = DB::table('branch')->select('name')->where('id',$value->created_by_id)->first();
+                        $name = $data->name;
+                    }
+                    $value->remarks_by_name = $name;
+                } else{
+                    $value->remarks_by_name = "Admin";
+                }                
+            }
+
+            $response = [
+                'status' => true,
+                'message' => 'Job Details',
+                'data' => $job, 
+            ];    	
+            return response()->json($response, 200);
+        }else{
+            $response = [
+                'status' => false,
+                'message' => 'No Job Found',
+                'data' => null, 
+            ];    	
+            return response()->json($response, 200);
+        }
+    }
+
+    public function openJobs($sp_id,$page)
+    {
+        $total_client = DB::table('job')
+            ->where('job.status','!=',4)
+            ->where('job.created_by_id',$sp_id)
+            ->count();
+        $total_page = intval(ceil($total_client / 20 ));
+        $limit = ($page*20)-20;
+
+        $job = DB::table('job')
+            ->select('job.*','client.name as c_name','client.pan as pan','job_type.name as job_type_name','employee.name as employee_name')
+            ->leftjoin('client','client.id','=','job.client_id')
+            ->leftjoin('employee','employee.id','=','job.assign_to_id')
+            ->leftjoin('job_type','job_type.id','=','job.job_type')
+            ->where('job.status','!=',4)
+            ->where('job.created_by_id',$sp_id)
+            ->orderBy('job.id','desc')
+            ->skip($limit)
+            ->take(20)
+            ->get();
+        $response = [
+            'status' => true,
+            'message' => 'Open Jobs',
+            'total_page' => $total_page,
+            'current_page' => $page,
+            'data' => $job, 
+        ];    	
+        return response()->json($response, 200);
+    }
+
+    public function addJobRemarks(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'sp_id' => 'required',
+            'job_id' => 'required',
+            'message' => 'required',
+        ]);
+        
+        if ($validator->fails()) { 
+            $response = [
+                'status' => false,
+                'message' => 'Validation Error',
+                'error_code' => true,
+                'error_message' => $validator->errors(),
+    
+            ];    	
+            return response()->json($response, 200);
+        } 
+
+        $remarks = DB::table('job_remarks')
+            ->insert([
+                'job_id' => $request->input('job_id'),
+                'remarks' => $request->input('message'),
+                'remarks_by' => 3,
+                'created_by_id' => $request->input('sp_id'),
+                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        $response = [
+            'status' => true,
+            'message' => 'Remarks Added Successfully',
+            'error_code' => false,
+            'error_message' => null,
+
+        ];    	
+        return response()->json($response, 200);
+    }
 }

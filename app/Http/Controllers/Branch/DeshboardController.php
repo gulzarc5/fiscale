@@ -16,7 +16,7 @@ class DeshboardController extends Controller
         $branch_id = Auth::guard('branch')->user()->id;
 
         $job = DB::table('job')
-        ->select('job.*','client.client_id as c_id','client.name as c_name','client.pan as pan','job_type.name as job_type_name','employee.name as employee_name')
+        ->select('job.*','client.name as c_name','client.pan as pan','job_type.name as job_type_name','employee.name as employee_name')
         ->leftjoin('client','client.id','=','job.client_id')
         ->leftjoin('employee','employee.id','=','job.assign_to_id')
         ->leftjoin('job_type','job_type.id','=','job.job_type')

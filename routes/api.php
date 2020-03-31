@@ -26,13 +26,17 @@ Route::group(['namespace'=>'Api'],function(){
             Route::get('client/jobs/{client_id}','ClientController@clientJobs');
             Route::get('client/details/{client_id}','ClientController@clientDetails');
 
-            
-            // Route::get('jobs/details/{job_id}','ClientController@JobDetails');
-
             Route::get('job/add/client/search/{search_key}','ClientController@addJobClientSearch');
             Route::post('job/add/existing/client','ClientController@addJobExistingClient');
 
             Route::get('client/search/{search_key}','ClientController@clientSearch');
+            Route::get('job/search/{job_id}','ClientController@jobSearch');
+
+            
+            Route::get('open/jobs/{sp_id}/{page_no}','ClientController@openJobs');
+
+            Route::post('add/job/remarks','ClientController@addJobRemarks');
+
         });
         
     });
