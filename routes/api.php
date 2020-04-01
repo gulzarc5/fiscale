@@ -37,8 +37,23 @@ Route::group(['namespace'=>'Api'],function(){
 
             Route::post('add/job/remarks','ClientController@addJobRemarks');
 
+            Route::post('wallet/balance/add','TransactionController@AddWalletBalance');
+            Route::get('wallet/payment/request/id/{order_id}/{payment_rqst_id}','TransactionController@updatePaymentRequestId');
+            Route::get('wallet/update/payment/id/{order_id}/{payment_rqst_id}/{payment_id}','TransactionController@updatePaymentId');
+            Route::get('wallet/history/{sp_id}','TransactionController@walletHistory');
         });
         
     });
 
+    Route::group(['namespace'=>'Member','prefix'=>'member'],function(){        
+        Route::post('login','LoginController@memberLogin');    
+
+        Route::group(['middleware'=>'auth:apiMember'],function(){ 
+            
+            Route::get('open/jobs/{member_id}/{page_no}','JobController@openJobs');
+            Route::get('reject/job/{job_id}','JobController@rejectJobs');
+
+        });
+        
+    });
 });
