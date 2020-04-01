@@ -36,7 +36,7 @@
                                 <nav>
                                     <div class="header-menu pt-sans">
                                         <ul>
-                                            <li class="active"><a href="{{route('website.web.index')}}">Home</a></li>
+                                            <li><a href="{{route('website.web.index')}}">Home</a></li>
                                             <li><a href="#home-service">Service</a></li>
                                             <li class="dropdown"> <a href="#">Login <i class="fa fa-caret-down"></i></a>
                                                 <ul>

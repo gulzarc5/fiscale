@@ -1,3 +1,8 @@
+@media (min-width: 2000px) {
+    .container {
+        max-width: 1800px;
+    }
+}
 @media (max-width:1199.98px) {
     .feature-list li,
     .table--inner-area thead tr th {
@@ -303,7 +308,7 @@
 
 @media (min-width:768px) {
     body>section{
-        min-height: 491px;  
+        min-height: 531px;  
     }
     .align-left {
         float: left;
@@ -487,6 +492,9 @@
     }
     .section-title h1 {
         width: 100%
+    }
+    .form-steps {
+        margin-top: -10px!important;
     }
 }
 

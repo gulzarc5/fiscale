@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 order-last order-lg-first">
-                        <div class="copyright text-center text-lg-left">
+                        <div class="text-center text-lg-left">
                             <p class="m-0 pt-sans"><a style="color: #0075bb;font-weight: 700;">FISCALE BUSINESS SOLUTIONS</a> | All Rights Reserved.</p>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
     <script src="{{asset('web/plugins/swiper/swiper.min.js')}}"></script>
     <script src="{{asset('web/plugins/parsley/parsley.min.js')}}"></script>
     {{-- <script src="{{asset('web/plugins/color-switcher/color-switcher.js')}}"></script> --}}
-    <script src="{{asset('web/plugins/retinajs/retina.min.js')}}"></script>
+    {{-- <script src="{{asset('web/plugins/retinajs/retina.min.js')}}"></script> --}}
     {{-- <script src="{{asset('web/plugins/isotope/isotope.pkgd.min.js')}}"></script> --}}
     <script src="{{asset('web/plugins/ui-slider/jquery-ui.min.js')}}"></script>
     {{-- <script src="{{asset('web/plugins/light-box/lightbox.min.js')}}"></script> --}}

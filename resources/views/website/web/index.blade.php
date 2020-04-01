@@ -30,7 +30,7 @@
                         <div class="about-content" data-animate="fadeInUp">
                             <h1 class="text-uppercase">ABOUT <span>US</span></h1> 
                             <span class="subtitle" style="text-align: justify;"> 
-                                Founded in 2013, FISCALE BUSINESS SOLUTIONS is a Consultancy firm providing Assurance, Audit, Accounting, Taxation, Advisory and other services. Revered for our professional ethos and technical expertise, drawn on perspicacity of over last Seven years and a team of highly competent professionals, we provide efficacious solutions to our client’s needs, running into deep engagements. We recruit, train, motivate and retain highly capable and sharpest talent, who bring quality in their work and deliver the best solutions.
+                                We are a consultancy firm providing Compliance, Registration, Accounting, Taxation, Advisory and other services. Revered for our professional ethos and technical expertise, drawn on perspicacity of over last Seven years and a team of highly competent professionals, we provide efficacious solutions to our client’s needs, running into deep engagements. We recruit, train, motivate and retain highly capable and sharpest talent, who bring quality in their work and deliver the best solutions
                             </span>
                         </div>
                     </div>
@@ -76,20 +76,23 @@
                             <div class="swiper-wrapper" style="height: auto;">
                                 <div class="swiper-slide">
                                     <div class="single-service mt-30">
-                                        <h4>TAX & FINANCE</h4>
+                                        <h4>COMPLIANCES</h4>
                                         <a>Income Tax Filing</a>
-                                        <a>Goods & Service Tax (GST) Registration</a>
                                         <a>GST Return Filing</a>
-                                        <a>Professional Tax</a>
-                                        <a>Credit Monitoring Arrangements(CMA) Report</a>
-                                        <a>Detailed Project Report (DPR)</a>
-                                        <a>Projections & Estimates</a>
+                                        <a>TDS Filing</a>
+                                        <a>EPF & ESI Returns</a>
+                                        <a>Increase Authorized Capital</a>
+                                        <a>Share Transfer</a>
+                                        <a>Winding Up</a>
+                                        <a>Add/Remove Directors</a>
+                                        <a>Change of Registered Office</a>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="single-service mt-30">
                                         <h4>STARTING A BUSINESS</h4>
                                         <a>Private Limited Company</a>
+                                        <a>Public Limited Company</a>
                                         <a>One Person Company (OPC)</a>
                                         <a>Producer Company</a>
                                         <a>Limited Liability Partnership (LLP)</a>
@@ -107,19 +110,26 @@
                                         <a>Trust</a>  
                                         <a>Society (NGO)</a>  
                                         <a>FSSAI</a>
-                                        <a>EPF/ESI</a>   
+                                        <a>EPF/ESI</a>
+                                        <a>Goods & Service Tax (GST)</a>
+                                        <a>Import Export Code (IEC)</a>
+                                        <a>TAN</a>
+                                        <a>Professional Tax</a>
+                                        <a>12A & 80G</a>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="single-service mt-30">
                                         <h4>ANCILLARY SERVICES</h4>
                                         <a>Digital Signature Certificates</a>
-                                        <a>Estimates & Drawings</a>
-                                        <a>Structural Designs</a>
-                                        <a>Building Plans</a>
-                                        <a>Drafting of Agreements, Deeds & Affidavits</a>
-                                        <a>Subsidies (Central & State)</a>
-                                        <a>E-Tendering</a>  
+                                        <a>Projections & Estimates</a> 
+                                        <a>Credit Monitoring Arrangement (CMA)</a> 
+                                        <a>Estimates & Drawings</a> 
+                                        <a>Structural Designs</a> 
+                                        <a>Building Plans</a> 
+                                        <a>Drafting of Agreements, Deeds & Affidavits</a> 
+                                        <a>Subsidies (Central & State)</a> 
+                                        <a>E-Tendering</a>                                          
                                     </div>
                                 </div>
                             </div>
