@@ -65,7 +65,19 @@ Route::group(['namespace'=>'Api'],function(){
 
             Route::get('wallet/history/{member_id}/{page}','TransactionController@walletHistory');
 
+            Route::get('search/jobs/{s_date}/{e_date}/{member_id}/{page}','TransactionController@jobSearch');
 
+
+        });
+        
+    });
+
+    Route::group(['namespace'=>'Executive','prefix'=>'executive'],function(){        
+        Route::post('login','LoginController@executiveLogin');    
+
+        Route::group(['middleware'=>'auth:apiExecutive'],function(){             
+            Route::get('wallet/history/{executive_id}/{page}','TransactionController@walletHistory');
+            Route::get('search/jobs/{s_date}/{e_date}/{executive_id}/{page}','TransactionController@jobSearch');
         });
         
     });

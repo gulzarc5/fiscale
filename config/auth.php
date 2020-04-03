@@ -77,6 +77,13 @@ return [
             'provider' => 'employee',
             'hash' => false,
         ],
+
+        
+        'apiExecutive' => [
+            'driver' => 'token',
+            'provider' => 'executive',
+            'hash' => false,
+        ],
     ],
 
     /*
