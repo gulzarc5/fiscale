@@ -37,8 +37,36 @@ Route::group(['namespace'=>'Api'],function(){
 
             Route::post('add/job/remarks','ClientController@addJobRemarks');
 
+            Route::post('wallet/balance/add','TransactionController@AddWalletBalance');
+            Route::get('wallet/payment/request/id/{order_id}/{payment_rqst_id}','TransactionController@updatePaymentRequestId');
+            Route::get('wallet/update/payment/id/{order_id}/{payment_rqst_id}/{payment_id}','TransactionController@updatePaymentId');
+            Route::get('wallet/history/{sp_id}','TransactionController@walletHistory');
         });
         
     });
 
+    Route::group(['namespace'=>'Member','prefix'=>'member'],function(){        
+        Route::post('login','LoginController@memberLogin');    
+
+        Route::group(['middleware'=>'auth:apiMember'],function(){ 
+            
+            Route::get('open/jobs/{member_id}/{page_no}','JobController@openJobs');
+            Route::get('reject/job/{job_id}','JobController@rejectJobs');
+
+            Route::get('details/job/{job_id}','JobController@viewJobs');
+
+            Route::get('search/client/{search_key}','ClientController@clientSearch');
+            
+            Route::get('job/edit/details/{id}','JobController@jobEdit');
+            Route::post('job/update','JobController@jobUpdate');
+
+            Route::get('edit/client/{id}','ClientController@clientEdit');
+            Route::post('update/client','ClientController@clientUpdate');
+
+            Route::get('wallet/history/{member_id}/{page}','TransactionController@walletHistory');
+
+
+        });
+        
+    });
 });

@@ -71,6 +71,12 @@ return [
             'provider' => 'branch',
             'hash' => false,
         ],
+
+        'apiMember' => [
+            'driver' => 'token',
+            'provider' => 'employee',
+            'hash' => false,
+        ],
     ],
 
     /*
