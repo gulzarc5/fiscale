@@ -53,6 +53,19 @@ Route::group(['namespace'=>'Api'],function(){
             Route::get('open/jobs/{member_id}/{page_no}','JobController@openJobs');
             Route::get('reject/job/{job_id}','JobController@rejectJobs');
 
+            Route::get('details/job/{job_id}','JobController@viewJobs');
+
+            Route::get('search/client/{search_key}','ClientController@clientSearch');
+            
+            Route::get('job/edit/details/{id}','JobController@jobEdit');
+            Route::post('job/update','JobController@jobUpdate');
+
+            Route::get('edit/client/{id}','ClientController@clientEdit');
+            Route::post('update/client','ClientController@clientUpdate');
+
+            Route::get('wallet/history/{member_id}/{page}','TransactionController@walletHistory');
+
+
         });
         
     });
