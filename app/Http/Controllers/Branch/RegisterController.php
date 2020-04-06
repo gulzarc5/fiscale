@@ -8,7 +8,8 @@ use Carbon\Carbon;
 use DB;
 use auth;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Validator;;
+use Validator;
+use App\SmsHelper\Sms;
 
 class RegisterController extends Controller
 {
@@ -114,6 +115,12 @@ class RegisterController extends Controller
                             'job_id' =>  $job_id,
                             'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                         ]);
+                    $job_desc_sms = DB::table('job_type')->where('id',$value)->first();
+                    if (!empty($request->input('mobile')) && $job_desc_sms) {
+                        $message = urldecode("Job order received for $job_desc_sms->name with Job ID $job_id .%0a Thanks%0a Team Fiscale");
+                        $user_mobile =  $request->input('mobile');
+                        Sms::SmsSend($user_mobile,$message);
+                    } 
                 }
             }
             $update_client = DB::table('client')

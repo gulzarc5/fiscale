@@ -11,6 +11,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ClientJobReport;
 use Validator;
+use App\SmsHelper\Sms;
 
 class JobController extends Controller
 {
@@ -77,12 +78,6 @@ class JobController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
             if ($job_ins) {
-                // $length = 5 - intval(strlen((string) $job_ins));
-                // $job_id = Auth::guard('branch')->user()->branch_id;
-                // for ($i=0; $i < $length; $i++) { 
-                //     $job_id.='0';
-                // } 
-                // $job_id = $job_id.$job_ins;
                 $job_id = Auth::guard('branch')->user()->branch_id;
                 $branch_id = Auth::guard('branch')->user()->id;
                 $branch_job_count = DB::table('job')->where('created_by_id',$branch_id)->count();
@@ -97,6 +92,13 @@ class JobController extends Controller
                         'job_id' =>  $job_id,
                         'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     ]);
+                $client_mobile = DB::table('client')->where('id',$request->input('client_id'))->first();
+                $job_desc_sms = DB::table('job_type')->where('id',$value)->first();
+                if (!empty($client_mobile->mobile) && $job_desc_sms) {
+                    $message = urldecode("Job order received for $job_desc_sms->name with Job ID $job_id .%0a Thanks%0a Team Fiscale");
+                    $user_mobile =  $client_mobile->mobile;
+                    Sms::SmsSend($user_mobile,$message);
+                } 
             }
         }
         return redirect()->route('branch.job_thank_you',['client_id' => encrypt($request->input('client_id'))]);

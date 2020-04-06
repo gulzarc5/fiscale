@@ -9,6 +9,7 @@ use Auth;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\EmployeeReport;
+use App\SmsHelper\Sms;
 
 class JobController extends Controller
 {
@@ -105,6 +106,29 @@ class JobController extends Controller
                 'status'=>$status,
                 'completed_date' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateString(),
             ]);
+            if ($status == '4') {
+                $job_sms = DB::table('job')->where('id',$request->input('job_id'))->first();
+                if ($job_sms) {
+                    $client_mobile = DB::table('client')->where('id', $job_sms->client_id)->first();
+                    $job_desc_sms = DB::table('job_type')->where('id',$job_sms->job_type)->first();
+                    if (!empty($client_mobile->mobile) && $job_desc_sms) {
+                        $message = urldecode("$job_desc_sms->name with Job ID $job_sms->job_id is completed.%0aPlease collect the report from the service point.%0aThank you for choosing us.%0aTeam Fiscale");
+                        $user_mobile =  $client_mobile->mobile;
+                        Sms::SmsSend($user_mobile,$message);
+                    } 
+                }               
+            }elseif ($status == '3') {
+                $job_sms = DB::table('job')->where('id',$request->input('job_id'))->first();
+                if ($job_sms) {
+                    $client_mobile = DB::table('client')->where('id', $job_sms->client_id)->first();
+                    $job_desc_sms = DB::table('job_type')->where('id',$job_sms->job_type)->first();
+                    if (!empty($client_mobile->mobile) && $job_desc_sms) {
+                        $message = urldecode("Please provide proper documents for $job_desc_sms->name with Job ID $job_sms->job_id.%0aThanks.%0aTeam Fiscale");
+                        $user_mobile =  $client_mobile->mobile;
+                        Sms::SmsSend($user_mobile,$message);
+                    } 
+                }  
+            }
         }
         return redirect()->back();
     }
@@ -138,6 +162,12 @@ class JobController extends Controller
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
+            $user_mobile = DB::table('branch')->where('id',$sp_id)->first();
+            if ($user_mobile) {
+                $message = urldecode("Your Wallet has been debited by Rs. $deduct_amount.");
+                $user_mobile =  $user_mobile->mobile;
+                Sms::SmsSend($user_mobile,$message);
+            } 
         }
 
         $member_job = DB::table('employee_jobs')

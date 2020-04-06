@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Carbon\Carbon;
+use App\SmsHelper\Sms;
 
 class ExecutiveWalletController extends Controller
 {
@@ -108,6 +109,12 @@ class ExecutiveWalletController extends Controller
                         'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                         'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     ]);
+                $user_mobile = DB::table('executive')->where('id', $exe_id)->first();
+                if ($user_mobile) {
+                    $message = urldecode("Your Wallet has been credited by Rs. $total_sum");
+                    $user_mobile =  $user_mobile->mobile;
+                    Sms::SmsSend($user_mobile,$message);
+                }  
                 if ($wallet_history_insert) {
                     for ($i=0; $i < count($exe_jobs_id) ; $i++) { 
                         if (isset($exe_jobs_id[$i]) && !empty($exe_jobs_id[$i]) && isset($amount[$i]) && !empty($amount[$i]) && ($amount[$i] > 0)) {

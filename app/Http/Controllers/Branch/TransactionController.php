@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use File;
 use Storage;
+use App\SmsHelper\Sms;
 
 class TransactionController extends Controller
 {
@@ -188,6 +189,12 @@ class TransactionController extends Controller
                   'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                   'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                   ]);
+                $user_mobile = DB::table('branch')->where('id',$wallet_amount->user_id)->first();
+                if ($user_mobile) {
+                    $message = urldecode("Your Wallet has been credited by Rs.  $wallet_order->amount.");
+                    $user_mobile =  $user_mobile->mobile;
+                    Sms::SmsSend($user_mobile,$message);
+                } 
             }   
             return redirect()->route('branch.wallet_history')->with('message','Wallet Balance Successfully Credited to Your Wallet');
         }else {

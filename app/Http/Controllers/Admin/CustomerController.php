@@ -74,7 +74,7 @@ class CustomerController extends Controller
     public function jobListAjax()
     {
         $query = DB::table('job')
-            ->select('job.*','client.client_id as c_id','client.name as c_name','client.mobile as c_mobile','client.pan as c_pan','job_type.name as job_type_name','branch.name as branch_name','branch.branch_id as branch_id','employee.name as employee_name')
+            ->select('job.*','client.name as c_name','client.mobile as c_mobile','client.pan as c_pan','job_type.name as job_type_name','branch.name as branch_name','branch.branch_id as branch_id','employee.name as employee_name')
             ->leftjoin('client','client.id','=','job.client_id')
             ->leftjoin('employee','employee.id','=','job.assign_to_id')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
