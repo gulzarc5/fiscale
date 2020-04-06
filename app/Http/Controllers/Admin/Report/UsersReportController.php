@@ -10,6 +10,7 @@ use App\AdminExports\MarketingExecutiveList;
 use App\AdminExports\SpList;
 use App\AdminExports\JobReport;
 use Carbon\Carbon;
+use App\SmsHelper\Sms;
 
 class UsersReportController extends Controller
 {

@@ -8,6 +8,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Hash;
+use App\SmsHelper\Sms;
 
 class EmployeeController extends Controller
 {
@@ -49,6 +50,9 @@ class EmployeeController extends Controller
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
+            $message = urldecode("Welcome to TEAM FISCALE.%0a Your password is ".$request->input('password').".%0aThank you for choosing us.");
+            $user_mobile =  $request->input('mobile');
+            Sms::SmsSend($user_mobile,$message);
             return redirect()->back()->with('message','Employee Added Successfully');
         }else{
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
@@ -156,6 +160,13 @@ class EmployeeController extends Controller
             ]);
         
         if ($employee) {
+            $user_mobile = DB::table('employee')->where('id',$request->input('id'))->first();
+            if ($user_mobile) {
+                $message = urldecode("Your password has been changed.%0aYour new password is ".$request->input('password').".%0a Thank you for being with us.");
+                $user_mobile =  $user_mobile->mobile;
+                Sms::SmsSend($user_mobile,$message);
+            }  
+
             return redirect()->back()->with('message','Password Changed Successfully');
         }else{
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
@@ -222,6 +233,12 @@ class EmployeeController extends Controller
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
+            $user_mobile = DB::table('employee')->where('id',$wallet_balance->emp_id)->first();
+            if ($user_mobile) {
+                $message = urldecode("Your Wallet has been debited by Rs. $amount.");
+                $user_mobile =  $user_mobile->mobile;
+                Sms::SmsSend($user_mobile,$message);
+            }  
         }
         return redirect()->back()->with('message','Wallet Balance Debited From Wallet');
 
@@ -271,6 +288,12 @@ class EmployeeController extends Controller
                     'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                     'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 ]);
+            $user_mobile = DB::table('employee')->where('id',$wallet_balance->emp_id)->first();
+            if ($user_mobile) {
+                $message = urldecode("Your Wallet has been credited by Rs. $amount.");
+                $user_mobile =  $user_mobile->mobile;
+                Sms::SmsSend($user_mobile,$message);
+            }  
         }
         return redirect()->back()->with('message','Wallet Balance Credited From Wallet');
 
