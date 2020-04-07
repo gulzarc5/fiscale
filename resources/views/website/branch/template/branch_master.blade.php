@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-2 col-md-4 col-sm-5 col-7 hidden-sm-xs">
                     <div class="logo">
-                        <a style="float: right;"> <img src="{{asset('web/img/logo2.png')}}" data-rjs="2" alt="fiscaleIndia"> </a>
+                        <a style="float: right;"> <img src="{{asset('web/img/connect-logo.png')}}" data-rjs="2" alt="fiscaleIndia"> </a>
                     </div>
                 </div>
             </div>

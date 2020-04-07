@@ -180,3 +180,8 @@ nav.my ul li ul li a.active {
 .sticky-wrapper {
   height: 68px!important;
 }
+.bussniess-content h1 {
+  padding: 20px 0;
+  margin-bottom: 0;
+  font-weight: 300;
+}

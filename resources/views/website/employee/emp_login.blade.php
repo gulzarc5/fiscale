@@ -6,7 +6,7 @@
    <div class="container">
       <div class="row">
          <div class="col-md-6 pt-80 pb-5 hidden-sm-xs" style="border-right: 1px solid #ddd;">
-            <img src="{{asset('web/img/connect-logo.jpg')}}" data-rjs="2" alt="fiscaleIndia" style="padding-right: 40px;">
+            <img src="{{asset('web/img/connect-logo.png')}}" data-rjs="2" alt="fiscaleIndia" style="padding-right: 40px;">
          </div>
          <div class="col-md-6">
             <div class="login-form mx-auto d-block w-100">

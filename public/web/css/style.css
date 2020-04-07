@@ -1177,7 +1177,7 @@ label input[type=radio] {
     -webkit-transition: box-shadow .2s;
     transition: box-shadow .2s;
     padding: 0px 15px 25px;
-    background-color: #fff;
+    background-color: #f7f7f7;
     min-height: 250px;
 }
 

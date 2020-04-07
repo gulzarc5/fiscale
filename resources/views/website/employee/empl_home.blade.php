@@ -13,7 +13,7 @@
                            <td> SP Name </td>
                            <td> Job Description </td>
                            <td> Status </td>
-                           <td style="min-width: 113px;"> View </td>
+                           <td style="min-width: 150px;"> View </td>
                      </tr>
                      @if (isset($job) && !empty($job) && count($job) > 0)
                      @foreach ($job as $item)
