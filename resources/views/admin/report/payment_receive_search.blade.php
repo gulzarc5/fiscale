@@ -8,21 +8,22 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Search Job Report</h2>
+                    <h2>Payment Receive Report From SP</h2>
                     <div class="clearfix"></div>
                 </div>
 
                  <div>
                     @if (Session::has('message'))
                     <div class="alert alert-success">{{ Session::get('message') }}</div>
-                    @endif @if (Session::has('error'))
+                    @endif 
+                    @if (Session::has('error'))
                     <div class="alert alert-danger">{{ Session::get('error') }}</div>
                     @endif
                 </div>
 
                 <div>
                     <div class="x_content">
-                        {{ Form::open(['method' => 'post','route'=>'admin.job_search_export']) }}
+                        {{ Form::open(['method' => 'post','route'=>'admin.payment_receive_report_search_export']) }}
 
                          <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
@@ -46,27 +47,9 @@
                                     @enderror
                                 </div>                                  
                             </div>
-                            <div class="form-row mb-10" id="job_type">
-                                <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                    <label for="name">Select Export Type</label>
-                                    <select class="form-control" name="search_type">
-                                        <option value="">--Select Export Type--</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Completed</option>
-                                        <option value="3">Correction</option>
-                                        <option value="4">Assigned</option>
-                                        <option value="5">Rejected</option>
-                                    </select>
-                                      @if($errors->has('job_type'))
-                                          <span class="invalid-feedback" role="alert" style="color:red">
-                                              <strong>{{ $errors->first('job_type') }}</strong>
-                                          </span>
-                                      @enderror
-                                </div>
-                            </div>
                         </div>
                         <div class="form-group">
-                            {{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
+                            {{ Form::submit('Export', array('class'=>'btn btn-success')) }}
                         </div>
                         {{ Form::close() }}
                        

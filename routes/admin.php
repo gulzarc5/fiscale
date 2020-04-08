@@ -136,6 +136,14 @@ Route::group(['namespace'=>'Admin'],function(){
                      
             Route::get('job/form','UsersReportController@jobReportForm')->name('admin.job_report_form');            
             Route::post('job/search/export','UsersReportController@jobSearchExport')->name('admin.job_search_export');
+
+            Route::get('users/other/report','UsersReportController@otherReportForm')->name('admin.other_report_form');
+
+            Route::get('payment/receive/report/sp/search','UsersReportController@paymentReceiveReportSearch')->name('admin.payment_receive_report_search');
+            Route::post('payment/receive/report/sp/search/export','UsersReportController@paymentReceiveReportSearchExport')->name('admin.payment_receive_report_search_export');
+
+            Route::get('wallet/balance/report/form','UsersReportController@walletBalanceReportForm')->name('admin.wallet_balance_report_form');
+            Route::post('wallet/balance/report/export','UsersReportController@walletBalanceReportExport')->name('admin.wallet_balance_report_export');
         });
         
     });

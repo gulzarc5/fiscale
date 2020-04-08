@@ -53,8 +53,7 @@
             <div class="navbar nav_title" style="border: 0;">
 
               <a href="{{route('admin.deshboard')}}" class="site_title">
-                FISCALE INDIA
-                {{-- <img src="{{asset('web/assets/images/logo_dark.png')}}" height="50" style=" width: 60%;margin-left:20px;"> --}}
+                <img src="{{asset('web/img/logo.png')}}" height="50" style=" width: 92%;margin-left:0px;">
               </a>
             </div>
 
@@ -129,6 +128,7 @@
                     <ul class="nav child_menu">
                       <li><a href="{{route('admin.users_report_form')}}">Users</a></li>
                       <li><a href="{{route('admin.job_report_form')}}">Job</a></li>
+                      <li><a href="{{route('admin.other_report_form')}}">Other Report</a></li>
                     </ul>
                   </li>
 
