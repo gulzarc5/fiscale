@@ -109,6 +109,6 @@ Route::get('/', function () {
     return view('website.web.index');
 })->name('website.web.index');
 
-Route::get('/Contact', function () {
-    return view('website.web.contact');
-})->name('website.web.contact');
+Route::get('/Website-Disclaimer', function () {
+    return view('website.web.disclaimer');
+})->name('website.web.disclaimer');

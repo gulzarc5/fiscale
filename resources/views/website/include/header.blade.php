@@ -27,7 +27,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-3 col-lg-2 col-md-4 col-sm-5 col-7">
                         <div class="logo">
-                            <a href="{{route('website.web.index')}}"> <img src="{{asset('web/img/logo.png')}}" data-rjs="2" alt="fiscaleIndia"> </a>
+                            <a href="{{route('website.web.index')}}"> <img src="{{asset('web/img/connect-logo.png')}}" data-rjs="2" alt="fiscaleIndia"> </a>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-10 col-md-8 col-sm-7 col-5">

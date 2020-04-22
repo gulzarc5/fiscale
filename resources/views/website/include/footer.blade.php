@@ -9,7 +9,7 @@
                     </div>
                     <div class="col-lg-6 order-first order-lg-last">
                         <ul class="accepted-payments pt-sans nav align-items-center justify-content-center justify-content-lg-end">
-                            <li><span>Developed By <a style="color: #0075bb;font-weight: 700;" href="https://webinfotech.net.in/" target="_blank">Webinfotech</a></span></li>
+                            <li><span><a style="color: #0075bb;font-weight: 700;" href="{{route('website.web.disclaimer')}}" target="_blank">Website Disclaimer</a></span></li>
                         </ul>
                     </div>
                 </div>

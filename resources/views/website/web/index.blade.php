@@ -6,16 +6,6 @@
         <div class="main-slider swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide position-relative"> <img src="{{asset('web/img/slides/slide1.jpg')}}" data-rjs="2" alt="Slider Img">
-                    {{-- <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-md-12">
-                                <div class="slide-content">
-                                    <h1 data-animate="fadeInUp" data-delay=".3" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Enter your <span>tracking</span> ID </h1>
-                                    <div class="primary-form"> <form action="tracking_details.php" method="post" name=""  novalidate=""> <input type="text" name="tracking-id" class="theme-input-style home-search" placeholder="Enter your tracking id" required=""> <button class="btn" style="border:0;" type="submit">Search</button> </form> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
                 <div class="swiper-slide position-relative"> <img src="{{asset('web/img/slides/slide2.jpg')}}" data-rjs="2" alt="Slider Img">
                 </div>
@@ -190,42 +180,6 @@
                                 <h4>Telephone:</h4> <a href="tel:03715-222220">03715-222220</a>
                                 <br><a href="https://api.whatsapp.com/send?phone=916901945275">6901945275 (Whatsapp)</a></li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="pb-30 default-bg">
-        <div class="container">
-            <div class="">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="bussniess-content pb-30" data-animate="fadeInUp text-center">
-                            <h1 class="text-uppercase">GOING TO START A BUSINESS? </h1> 
-                            <img src="{{asset('web/img/connect-logo.png')}}" style="width: 40%;">
-                            <h1 class="text-uppercase pb-0">WITH US </h1>
-                            <h1 class="text-uppercase">STARTING A BUSINESS <span>MADE SIMPLIFIED</span> </h1>
-                        </div>
-                        <div class="bussniess-content pb-60" data-animate="fadeInUp text-center">
-                            <h1 class="text-uppercase">ARE YOU STUCKED WITH TAX & COMPLIANCES FOR YOUR BUSINESS</h1> 
-                            <img src="{{asset('web/img/connect-logo.png')}}" style="width: 40%;">
-                            <h1 class="text-uppercase pb-0">WITH US </h1>
-                            <h1 class="text-uppercase">TAX & COMPLIANCES <span>MADE SIMPLIFIED</span> </h1> 
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="about-content" data-animate="fadeInUp">
-                            <h1 class="text-uppercase">WEBSITE <span>DISCLAIMER</span></h1>
-                            <span class="subtitle" style="text-align: justify;"> 
-                                Our philosophy is of partnering with our clients and not being a distant service provider. Since businesses are inherently different, we tailor our services to meet client’s specific needs and banish the ‘one-size-fits-all’ standardization and on the idea to provide business solution at ‘one stop’.
-
-                                The information contained in this website is for general information purposes only. The information is provided by www.fiscale.in, a property of Fiscale Business Solutions. While we endeavour to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk. <br>
-                                In no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.<br>
-                                Through this website you are able to link to other websites which are not under the control of Fiscale Business Solutions. We have no control over the nature, content and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.<br>
-                                Every effort is made to keep the website up and running smoothly. However, Fiscale Business Solutions takes no responsibility for, and will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.
-
-                            </span>
-                        </div>
                     </div>
                 </div>
             </div>

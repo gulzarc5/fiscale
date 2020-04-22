@@ -5,10 +5,10 @@
             <div class="row align-items-center">
                 <div class="col-xl-3 col-lg-2 col-md-4 col-sm-5 col-7">
                     <div class="logo">
-                        <a> <img src="{{asset('web/img/logo.png')}}" data-rjs="2" alt="fiscaleIndia45"> </a>
+                        <a> <img src="{{asset('web/img/connect-logo.png')}}" data-rjs="2" alt="fiscaleIndia45"> </a>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-7 col-5">
+                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-5">
                     <div class="menu--inner-area clear-fix">
                         <div class="menu-wraper">
                             <nav class="mobile-panel-nav">
@@ -72,11 +72,6 @@
                                 </div>
                             </nav>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-2 col-md-4 col-sm-5 col-7 hidden-sm-xs">
-                    <div class="logo">
-                        <a style="float: right;"> <img src="{{asset('web/img/connect-logo.png')}}" data-rjs="2" alt="fiscaleIndia"> </a>
                     </div>
                 </div>
             </div>
