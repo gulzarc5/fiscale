@@ -108,7 +108,7 @@ class TransactionController extends Controller
             );     
             try {
                 $response = $api->paymentRequestCreate(array(
-                    "purpose" => "Book Purchase Payment",
+                    "purpose" => "Connect Wallet Payment",
                     "amount" => $request->input('amount'),
                     "buyer_name" => $user_name,
                     "send_email" => false,
