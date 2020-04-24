@@ -7,7 +7,10 @@ Route::group(['namespace'=>'Admin'],function(){
     Route::post('/admin/logout', 'LoginController@logout')->name('admin.logout');
 
     Route::group(['middleware'=>'auth:admin','prefix'=>'admin'],function(){
+        Route::get('/change/password/form', 'LoginController@changePasswordForm')->name('admin.change_password_form');
+        Route::post('/change/password', 'LoginController@changePassword')->name('admin.change_password');
         Route::get('/deshboard', 'DeshboardController@index')->name('admin.deshboard');
+        Route::get('/contact/mail', 'ContactController@contactMail')->name('admin.contact_mail');
 
         Route::group(['prefix'=>'Employee'],function(){
             Route::get('Add/New/', 'EmployeeController@addEmployeeForm')->name('admin.add_employee_form');

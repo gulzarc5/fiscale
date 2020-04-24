@@ -14,7 +14,7 @@
     <link rel="icon" href="{{asset('web/assets/images/favicon.png')}}" type="image/ico" />
 
     <title>FISCALE INDIA</title>
-    <link rel="icon" href="{{asset('web/assets/images/favicon.png')}}" type="image/icon type">
+    <link rel="icon" href="{{asset('web/img/favicon.png')}}" type="image/icon type">
 
 
     <!-- Bootstrap -->
@@ -131,6 +131,10 @@
                       <li><a href="{{route('admin.other_report_form')}}">Other Report</a></li>
                     </ul>
                   </li>
+                  
+                  
+                  <li><a href="{{route('admin.contact_mail')}}"><i class="fa fa-edit"></i>Contact Mail</a></li>
+                  <li><a href="{{route('admin.change_password_form')}}"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a></li>
 
                 </ul>
               </div>

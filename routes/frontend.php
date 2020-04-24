@@ -112,3 +112,7 @@ Route::get('/', function () {
 Route::get('/Website-Disclaimer', function () {
     return view('website.web.disclaimer');
 })->name('website.web.disclaimer');
+
+Route::group(['namespace' => 'Web'], function () {
+    Route::post('/web/contact','ContactController@coutactSubmit')->name('web.contact_submit');
+});

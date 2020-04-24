@@ -141,7 +141,8 @@
                     <div class="contact-form contact-page-form parsley-validate" data-animate="fadeInUp">
                         <h4>Say Hello!</h4> <span>Your e-mail address will not be published. Required fields are marked with *</span>
                         <div class="form-response"></div>
-                        <form action="http://themelooks.org/demo/calldee/html/preview/sendmail.php">
+                        <form id="contact-form" action="{{route('web.contact_submit')}}">
+                            @csrf
                             <div class="row half-gutter">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -164,6 +165,7 @@
                                 <textarea name="message" placeholder="Write Message" class="theme-input-style" required></textarea>
                             </div>
                             <button class="btn" type="submit">Send Message</button>
+                            <p id="success-message" style="display:none;margin-top: 11px;" class="alert alert-success"></p>
                         </form>
                     </div>
                 </div>
@@ -185,4 +187,37 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(function () {
+
+            $('#contact-form').on('submit', function (e) {
+
+                e.preventDefault();
+
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'post',
+                    url: url,
+                    data: form.serialize(),
+                    success: function () {
+                    $('#success-message').show();
+                    $('#success-message').html("Thanks for your query. We will get back to you soon");
+                    }
+                });
+
+            });
+
+        });
+
+    </script>
 @endsection
