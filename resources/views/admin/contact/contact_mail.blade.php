@@ -18,6 +18,7 @@
                                     <th class="column-title">Email</th>
                                     <th class="column-title">Subject</th>
                                     <th class="column-title">Message</th>
+                                    <th class="column-title">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,7 @@
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->subject}}</td>
                                     <td>{{$item->message}}</td>
+                                    <td>{{$item->created_at}}</td>
                                     </tr>                              
                                 @endforeach
                             @endif

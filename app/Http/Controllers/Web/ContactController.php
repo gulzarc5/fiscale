@@ -22,6 +22,8 @@ class ContactController extends Controller
             'email'=>$email,
             'subject'=>$subject,
             'message'=>$message,
+            'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
         ]);
     }
 }
