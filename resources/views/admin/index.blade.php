@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>FISCALE INDIA</title>
-    <link rel="icon" href="{{asset('web/assets/images/favicon.png')}}" type="image/icon type">
+    <title>CONNECT</title>
+    <link rel="icon" href="{{asset('web/img/favicon.png')}}" type="image/icon type">
 
     <!-- Bootstrap -->
     <link href="{{asset('admin/src_files/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
