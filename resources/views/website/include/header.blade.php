@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>FISCALEINDIA</title>
+    <title>CONNECT</title>
     <link rel="shortcut icon" type="image/png" href="{{asset('web/img/favicon.png')}}">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,700%7CPT+Sans:400,400i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('web/css/bootstrap.min.css')}}">
