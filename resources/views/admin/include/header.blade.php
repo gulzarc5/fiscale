@@ -11,9 +11,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{asset('web/assets/images/favicon.png')}}" type="image/ico" />
+    <link rel="icon" href="{{asset('web/img/favicon.png')}}" type="image/ico" />
 
-    <title>FISCALE INDIA</title>
+    <title>CONNECT</title>
     <link rel="icon" href="{{asset('web/img/favicon.png')}}" type="image/icon type">
 
 
