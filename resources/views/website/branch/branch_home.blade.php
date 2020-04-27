@@ -24,7 +24,7 @@
 	  
             <div id="form-1">
                <h1 data-animate="fadeInUp" data-delay=".1s" class="text-uppercase" style="text-shadow: 1px -2px 1px white;">Add <span>Client</span></h1>
-               <h4>Enter Client Residential Address</h4>
+               <h4>Enter Client Details</h4>
                <div class="row half-gutter">
                   <div class="col-md-4">
                      <div class="form-group">
