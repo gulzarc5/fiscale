@@ -126,7 +126,6 @@
                   <label>Status *</label>
                   <select class="theme-input-style job-d text-uppercase" required name="status" onchange="checkStatus()" id="status_c">
                      <option selected="" disabled="" value="">--SELECT JOB STATUS--</option>
-                     <option value="1" {{ $job->status == "1" ? 'selected' : '' }}>Processing</option>
                      <option value="2" {{ $job->status == "2" ? 'selected' : '' }}>Working</option>
                      <option value="3" {{ $job->status == "3" ? 'selected' : '' }}>Document Problem</option>
                      <option value="4" {{ $job->status == "4" ? 'selected' : '' }}>Completed</option>
