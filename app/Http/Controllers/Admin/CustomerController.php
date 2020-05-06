@@ -233,7 +233,7 @@ class CustomerController extends Controller
             $residential = DB::table('address')->where('id',$client->residential_addr_id)->first();
             $business = DB::table('address')->where('id',$client->business_addr_id)->first();
         }
-        return view('admin.customer.client_edit',compact('client','job_type','residential','business'));
+        return view('admin.customer.client_edit',compact('client','residential','business'));
     }
 
     public function ClientUpdate(Request $request)
