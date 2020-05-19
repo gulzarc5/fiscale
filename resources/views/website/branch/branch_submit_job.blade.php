@@ -24,10 +24,12 @@
          </div>
          <div class="col-md-3">
             <p><b>Gender : </b>
-               @if ($client->gender == 'M')
-                   Male
+               @if ($client->gender == "M")
+                  Male
+               @elseif ($client->gender == "F")
+                  Femeale
                @else
-                   FeMale
+                     Other
                @endif
             </p>
          </div>

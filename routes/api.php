@@ -67,6 +67,9 @@ Route::group(['namespace'=>'Api'],function(){
 
             Route::get('search/jobs/{s_date}/{e_date}/{member_id}/{page}','TransactionController@jobSearch');
 
+            Route::post('add/job/remarks','ClientController@addJobRemarks');
+            Route::get('close/job/list/{member_id}/{page}','JobController@closeJobList');
+
 
         });
         

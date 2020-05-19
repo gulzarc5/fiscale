@@ -70,7 +70,14 @@
 
                                     <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                         <label for="constitution">Constitution</label>
-                                        <input type="text" class="form-control" name="constitution"  placeholder="Enter Constitution" value="{{ $client->constitution }}" >
+                                        {{-- <input type="text" class="form-control" name="constitution"  placeholder="Enter Constitution" value="{{ $client->constitution }}" > --}}
+                                        <select class="form-control" id="constitution" name="constitution">
+                                            <option selected="" disabled="">--SELECT CONSTITUTION FROM THE LIST--</option>
+                                            <option value="Individual" {{ $client->constitution == "Individual" ? 'selected' : '' }}>Individual</option>
+                                            <option value="Firm" {{ $client->constitution == "Firm" ? 'selected' : '' }}>Firm</option>
+                                            <option value="Company" {{ $client->constitution == "Company" ? 'selected' : '' }}>Company</option>
+                                            <option value="Others" {{ $client->constitution == "Others" ? 'selected' : '' }}>Others</option>
+                                        </select>
                                         @if($errors->has('constitution'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('constitution') }}</strong>
@@ -81,16 +88,9 @@
                                     <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                         <label for="gender">Gender</label>
                                         <p style="padding-bottom: 6px; margin-top: 8px;">
-                                            @if ($client->gender == 'M')
-                                                Male:
-                                                <input type="radio" class="flat" name="gender" id="genderM" value="M" checked=""/> FeMale:
-                                                <input type="radio" class="flat" name="gender" id="genderF" value="F" />
-                                            @else
-                                                Male:
-                                                <input type="radio" class="flat" name="gender" id="genderM" value="M" /> FeMale:
-                                                <input type="radio" class="flat" name="gender" id="genderF" value="F" checked=""/>
-                                            @endif
-                                        
+                                                Male: <input type="radio" class="flat" name="gender" id="genderM" value="M" {{ $client->gender == 'M' ? 'checked' : '' }}/> 
+                                                FeMale: <input type="radio" class="flat" name="gender" id="genderF" value="F" {{ $client->gender == 'F' ? 'checked' : '' }}/>
+                                                Other <input type="radio" class="flat" name="gender" id="genderF" value="O" {{ $client->gender == 'O' ? 'checked' : '' }}/>
                                         </p>
                                         @if($errors->has('gender'))
                                             <span class="invalid-feedback" role="alert" style="color:red">

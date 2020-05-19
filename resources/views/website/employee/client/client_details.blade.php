@@ -26,9 +26,12 @@
                <p><b>Gender : 
                   @if ($user->gender == 'M')
                      </b>Male</p>
-                  @else
+                  @elseif ($user->gender == 'F')
                      </b>FeMale</p>
+                  @else
+                     </b>Other</p>
                   @endif
+                  
             </div>
             <div class="col-md-6">
                <a target="_blank" href="{{route('employee.client_details_new',['client_id'=>encrypt($user->id)])}}" class="btn btn-sm btn-info" style="float:right;margin-left: 4px;">View Client Info</a>

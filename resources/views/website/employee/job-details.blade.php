@@ -37,10 +37,12 @@
             </div>
             <div class="col-md-4">
                <p><b>Gender : </b>
-                  @if ($job->gender == 'M')
-                      Male
+                  @if ($job->gender == "M")
+                        Male
+                  @elseif ($job->gender == "F")
+                     Femeale
                   @else
-                      Female
+                        Other
                   @endif
                </p>
             </div> 

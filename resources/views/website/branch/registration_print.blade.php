@@ -74,10 +74,12 @@
                                 <td>{{$client_personal->constitution}}</td>
                                 <th class="table-header-cl">Gender</th>
                                 <td>
-                                    @if ($client_personal->gender == 'M')
+                                    @if ($client_personal->gender == "M")
                                         Male
+                                    @elseif ($client_personal->gender == "F")
+                                        Femeale
                                     @else
-                                        Female
+                                            Other
                                     @endif
                                 </td>
                             </tr>

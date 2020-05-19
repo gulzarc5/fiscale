@@ -66,8 +66,10 @@
                                         <strong>Gender : </strong>
                                         @if ($client_personal->gender == 'M')
                                             Male
-                                        @else
+                                        @elseif ($client_personal->gender == 'F')
                                             Female
+                                        @else
+                                            Other
                                         @endif
                                         </address>
                                     </div>
