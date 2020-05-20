@@ -59,7 +59,7 @@ class EmployeeReport implements FromArray,ShouldAutoSize,WithEvents
         
      
         $job = DB::table('job')
-            ->select('job.*','client.client_id as c_id','client.name as c_name','client.pan as c_pan','job_type.name as job_type_name','branch.name as branch_name')
+            ->select('job.*','client.name as c_name','client.pan as c_pan','job_type.name as job_type_name','branch.name as branch_name')
             ->leftjoin('client','client.id','=','job.client_id')
             ->leftjoin('branch','branch.id','=','job.created_by_id')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
