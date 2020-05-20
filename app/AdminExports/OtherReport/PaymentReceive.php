@@ -59,7 +59,7 @@ class PaymentReceive implements FromArray,ShouldAutoSize,WithEvents
         $job = DB::table('wallet_order')
             ->select('wallet_order.*','branch.email as b_email','branch.name as b_name','branch.branch_id as b_branch_id')
             ->leftjoin('branch','branch.id','=','wallet_order.user_id')
-            ->whereBetween('wallet_order.created_at', [$this->start_date,$this->end_date]);
+            ->whereBetween('wallet_order.created_at', [$date_from,$date_to]);
         $job = $job->orderBy('wallet_order.id','desc')->get();
        
 

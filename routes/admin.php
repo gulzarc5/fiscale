@@ -147,6 +147,16 @@ Route::group(['namespace'=>'Admin'],function(){
 
             Route::get('wallet/balance/report/form','UsersReportController@walletBalanceReportForm')->name('admin.wallet_balance_report_form');
             Route::post('wallet/balance/report/export','UsersReportController@walletBalanceReportExport')->name('admin.wallet_balance_report_export');
+
+            Route::get('amount/credited/report/form','UsersReportController@amountCreditedReportForm')->name('admin.amount_credited_report_form');
+            Route::post('amount/credited/report/export','UsersReportController@amountCreditedReportExport')->name('admin.amount_credited_report_export');
+
+            Route::get('amount/job/report/form','UsersReportController@amountJobReportForm')->name('admin.amount_job_report_form');
+            Route::post('amount/job/report/export','UsersReportController@amountJobReportExport')->name('admin.amount_job_report_export');
+
+            
+            Route::get('wallet/ledger/report/form','UsersReportController@walletLedgerReportForm')->name('admin.wallet_ledger_report_form');
+            Route::post('wallet/ledger/report/export','UsersReportController@walletLedgerReportExport')->name('admin.wallet_ledger_report_export');
         });
         
     });
