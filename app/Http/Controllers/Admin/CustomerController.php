@@ -576,8 +576,7 @@ class CustomerController extends Controller
             ->leftjoin('client','client.id','=','job.client_id')
             ->leftjoin('employee','employee.id','=','job.assign_to_id')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
-            ->leftjoin('branch','branch.id','=','job.created_by_id')
-            ->where('job.status',2)            
+            ->leftjoin('branch','branch.id','=','job.created_by_id')           
             ->where('job.employee_assignment_status',2)
             ->orderBy('job.id','desc');
         $employee = DB::table('employee')->where('status',1)->get();
