@@ -34,7 +34,7 @@
             <div class="col-lg-8 col-md-10 col-sm-12 pt-5 pb-5 m-auto">
                 <div class="row upper-headings text-center mb-3">
                         <div class="col-md-12" style="display: flex; justify-content: center;">
-                            <img src="{{asset('web/img/logo.png')}}" width="250" alt="logo" style="margin-right: 10px">
+                            <img src="{{asset('web/img/connect-logo.png')}}" width="250" alt="logo" style="margin-right: 10px">
                             {{-- <h1>FISCALEINDIA</h1> --}}
                         </div>
                         <div class="col-md-12">

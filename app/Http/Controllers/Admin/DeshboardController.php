@@ -18,7 +18,7 @@ class DeshboardController extends Controller
         
         $pending_jobs = DB::table('job')->where('status',1)->count();
         $assigned_jobs = DB::table('job')->where('status',2)->where('employee_assignment_status',1)->count();
-        $rejected_jobs = DB::table('job')->where('employee_assignment_status',2)->count();
+        $rejected_jobs = DB::table('job')->where('employee_assignment_status',2)->where('status',2)->count();
         $working_jobs = DB::table('job')->where('status',2)->count();
         $correction_jobs = DB::table('job')->where('status',3)->count();
         $completed_jobs = DB::table('job')->where('status',4)->count();

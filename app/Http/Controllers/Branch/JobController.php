@@ -174,13 +174,14 @@ class JobController extends Controller
         }
 
         $date =Carbon::today()->toDateString();
+        $client_details = DB::table('client')->where('id',$client_id)->first();
         $jobs = DB::table('job')
             ->select('job.*','job_type.name as job_type_name')
             ->leftjoin('job_type','job_type.id','=','job.job_type')
             ->where('job.client_id',$client_id)
             ->whereDate('job.created_at',$date)
             ->get();
-        return view('website.branch.job_add_thankyou',compact('jobs'));
+        return view('website.branch.job_add_thankyou',compact('jobs','client_details'));
     }
 
     public function JobReportForm()

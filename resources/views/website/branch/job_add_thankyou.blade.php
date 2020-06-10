@@ -6,17 +6,19 @@
         style="animation-duration: 0.6s; animation-delay: 0.1s; margin-top: 70px;">
         @if (isset($jobs) && isset($jobs))
             <div class="alert alert-success text-center"><h2>JOB Registered Successfully</h2></div>
-            <div class="row">
-                <div class="col-md-4">
-                    <p><b>Client Name : </b>sdgfsdgsdg</p>
-                </div>
-                <div class="col-md-4">
-                    <p><b>Client PAN : </b>fgsdfg</p>
-                </div>
-                <div class="col-md-4">
-                    <p><b>Client Mobile : </b>453253425</p>
-                </div>
-            </div>
+            @if (isset($client_details) && !empty($client_details))
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><b>Client Name : </b>{{$client_details->name}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><b>Client PAN : </b>{{$client_details->pan}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><b>Client Mobile : </b>{{$client_details->mobile}}</p>
+                    </div>
+                </div>                
+            @endif
             <table class="table table-bordered">
                 <tbody>
                     <tr>
