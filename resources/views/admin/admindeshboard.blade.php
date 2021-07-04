@@ -14,37 +14,87 @@
         </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-clock-o"></i> Total Expired Jobs</span>
+        <span class="count_top"><i class="fa fa-clock-o"></i> Total Service Point</span>
         <div class="count green">
-            @if(isset($expire_jobs))
-              {{$expire_jobs}}
+            @if(isset($total_sp))
+              {{$total_sp}}
             @endif
         </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Live Jobs</span>
+          <span class="count_top"><i class="fa fa-user"></i> Total Employee</span>
           <div class="count green">
-              @if(isset($live_jobs))
-                {{$live_jobs}}
+              @if(isset($total_emp))
+                {{$total_emp}}
               @endif
           </div>
       </div>
+
       <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> Total Resumes</span>
+        <span class="count_top"><i class="fa fa-user"></i> Total Client</span>
         <div class="count green">
-            @if(isset($total_resumes))
-              {{$total_resumes}}
+            @if(isset($total_client))
+              {{$total_client}}
             @endif
         </div>
       </div>
     </div>
+    <div class="row tile_count">
+      <div class="col-md-12 col-sm-12 col-xs-12 tile_stats_count" style="display:flex;justify-content:center">
+        <h3>Jobs</h3>
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Pending Jobs</span>
+        <div class="count green">
+          @if(isset($pending_jobs))
+            {{$pending_jobs}}
+          @endif
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Assigned Jobs</span>
+        <div class="count green">
+          @if(isset($assigned_jobs))
+            {{$assigned_jobs}}
+          @endif
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Employee Rejected Jobs</span>
+        <div class="count green">
+          @if(isset($rejected_jobs))
+            {{$rejected_jobs}}
+          @endif
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Correction Jobs</span>
+        <div class="count green">
+          @if(isset($correction_jobs))
+            {{$correction_jobs}}
+          @endif
+        </div>
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Completed Jobs</span>
+        <div class="count green">
+          @if(isset($completed_jobs))
+            {{$completed_jobs}}
+          @endif
+        </div>
+      </div>
+
+    </div>
     <!-- /top tiles -->
 
-    <div class="row">
+    {{-- <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
               <div class="x_content">
-                 {{--//////////// Last Ten Sellers //////////////--}}
                  <div class="table-responsive">
                     <h2>Last 10 Added Jobs</h2>
                     <table class="table table-striped jambo_table bulk_action">
@@ -89,7 +139,7 @@
               </div>
           </div>
       </div>
-    </div>
+    </div> --}}
 
   </div>
 

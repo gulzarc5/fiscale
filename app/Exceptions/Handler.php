@@ -60,9 +60,39 @@ class Handler extends ExceptionHandler
         switch ($guard) {
             case 'admin':
                 $login = 'admin.login';
-                break;               
+                break;  
+            case 'employee':
+                $login = 'employee.loginForm';
+                break;   
+            case 'branch':
+                $login = 'branch.loginForm';
+                break;  
+            case 'executive':
+                $login = 'executive.loginForm';
+                break;  
+            case 'apiSp':
+                $response = [
+                    'status'=>false,
+                    'login_error' => 1,
+                    'message'=>'unauthorize'
+                ];
+                return response()->json($response, 200);  
+            case 'apiMember':
+                $response = [
+                    'status'=>false,
+                    'login_error' => 1,
+                    'message'=>'unauthorize'
+                ];
+                return response()->json($response, 200); 
+            case 'apiExecutive':
+                $response = [
+                    'status'=>false,
+                    'login_error' => 1,
+                    'message'=>'unauthorize'
+                ];
+                return response()->json($response, 200);           
             default:
-                $login = 'admin.login';
+                $login = 'employee.loginForm';
                 break;
         }
         return redirect()->guest(route($login));

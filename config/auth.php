@@ -51,6 +51,39 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employee',
+        ],
+
+        'branch' => [
+            'driver' => 'session',
+            'provider' => 'branch',
+        ],
+
+        'executive' => [
+            'driver' => 'session',
+            'provider' => 'executive',
+        ],
+
+        'apiSp' => [
+            'driver' => 'token',
+            'provider' => 'branch',
+            'hash' => false,
+        ],
+
+        'apiMember' => [
+            'driver' => 'token',
+            'provider' => 'employee',
+            'hash' => false,
+        ],
+
+        
+        'apiExecutive' => [
+            'driver' => 'token',
+            'provider' => 'executive',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -79,6 +112,21 @@ return [
         'admin' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'branch' => [
+            'driver' => 'eloquent',
+            'model' => App\Branch::class,
+        ],
+
+        'employee' => [
+            'driver' => 'eloquent',
+            'model' => App\Employee::class,
+        ],
+
+        'executive' => [
+            'driver' => 'eloquent',
+            'model' => App\Executive::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

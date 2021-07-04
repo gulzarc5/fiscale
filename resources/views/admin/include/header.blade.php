@@ -11,10 +11,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{asset('web/assets/images/favicon.png')}}" type="image/ico" />
 
-    <title>FISCALE INDIA</title>
-    <link rel="icon" href="{{asset('web/assets/images/favicon.png')}}" type="image/icon type">
+    <title>CONNECT</title>
+    <link rel="icon" href="{{asset('web/img/favicon.png')}}" type="image/icon type">
 
 
     <!-- Bootstrap -->
@@ -39,8 +38,10 @@
     <link href="{{asset('admin/src_files/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/src_files/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/src_files/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('select2/css/select2.css')}}" rel="stylesheet" />
 
     <link href="{{asset('admin/src_files/build/css/custom.min.css')}}" rel="stylesheet">
+    <link href="{{asset('select2/css/select2.css')}}" rel="stylesheet" />
   </head>
 
   <body class="nav-md">
@@ -51,8 +52,7 @@
             <div class="navbar nav_title" style="border: 0;">
 
               <a href="{{route('admin.deshboard')}}" class="site_title">
-                FISCALE INDIA
-                {{-- <img src="{{asset('web/assets/images/logo_dark.png')}}" height="50" style=" width: 60%;margin-left:20px;"> --}}
+                <img src="{{asset('web/img/logo.png')}}" height="50" style=" width: 92%;margin-left:0px;">
               </a>
             </div>
 
@@ -76,43 +76,64 @@
                 <ul class="nav side-menu">
                   <li><a href="{{ route('admin.deshboard')}}"><i class="fa fa-home"></i> Home </span></a>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Employee <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Member <span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="{{route('admin.add_employee_form')}}">Add New Employee</a>
+                      <li class="sub_menu"><a href="{{route('admin.add_employee_form')}}">Add New Member</a>
                       </li>
-                      <li class="sub_menu"><a href="{{route('admin.employee_list')}}">Employee List</a>
+                      <li class="sub_menu"><a href="{{route('admin.employee_list')}}">Member List</a>
                       </li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-desktop"></i>Branch<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{route('admin.add_branch_form')}}">Add New Branch</a></li>
-                      <li><a href="{{route('admin.branch_list')}}">Branch List</a></li>
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-desktop"></i>Customer<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Marketing Executive <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.add_employee_form')}}">Add New Customer</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">customer List</a></li>
+                     <li class="sub_menu"><a href="{{route('admin.add_executive_form')}}">Add New Executive</a>
+                     </li>
+                     <li class="sub_menu"><a href="{{route('admin.executive_list')}}">Executive List</a>
+                     </li>
+                   </ul>
+                 </li>
+
+                  <li><a><i class="fa fa-desktop"></i>Service Point<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{route('admin.add_branch_form')}}">Add New SP</a></li>
+                      <li><a href="{{route('admin.branch_list')}}">SP List</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-desktop"></i>Client<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{route('admin.customer_list')}}">Client List</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-desktop"></i>Job<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.add_employee_form')}}">Add New Job</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">Job List</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">Add Remarks To Job</a></li>
+                      <li><a href="{{route('admin.job_list')}}">Pending Job List</a></li>
+                      <li><a href="{{route('admin.working_job_list')}}">Assigned Job List</a></li>     
+                      <li><a href="{{route('admin.empRejected_job_list')}}">Rejected Job List</a></li>                      
+                      <li><a href="{{route('admin.problem_job_list')}}">Correction Job List</a></li>                                            
+                      <li><a href="{{route('admin.completed_job_list')}}">Complete Job List</a></li>
                     </ul>
                   </li>
-
-                  <li><a><i class="fa fa-bar-chart-o"></i> Configuration <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Wallet Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('admin.add_employee_form')}}">Add New Job</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">Job List</a></li>
-                      <li><a href="{{route('admin.employee_list')}}">Add Remarks To Job</a></li>
+                      <li><a href="{{route('admin.employee_job_report_form')}}">Employee Wallet</a></li>
+                      <li><a href="{{route('admin.executive_job_report_form')}}">Marketing Executive</a></li>
+                    </ul>
+                  </li>                 
+
+                  <li><a><i class="fa fa-desktop"></i>Report<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{route('admin.users_report_form')}}">Users</a></li>
+                      <li><a href="{{route('admin.job_report_form')}}">Job</a></li>
+                      <li><a href="{{route('admin.other_report_form')}}">Other Report</a></li>
                     </ul>
                   </li>
+                  
+                  
+                  <li><a href="{{route('admin.contact_mail')}}"><i class="fa fa-edit"></i>Contact Mail</a></li>
+                  <li><a href="{{route('admin.change_password_form')}}"><i class="fa fa-key" aria-hidden="true"></i>Change Password</a></li>
 
                 </ul>
               </div>

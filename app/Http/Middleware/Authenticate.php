@@ -18,11 +18,20 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             if (Auth::guard($guard)->check()) {
                 switch ($guard) {
-                   case 'admin':
+                    case 'admin':
                        $route = 'admin/deshboard';
                        break;
-                  default:
-                       $route = 'admin/deshboard';
+                    case 'employee':
+                        $route = 'employee/deshboard';
+                        break;
+                    case 'branch':
+                        $route = 'branch/deshboard';
+                        break;
+                    case 'executive':
+                        $route = 'executive/deshboard';
+                        break;
+                    default:
+                        $route = 'employee.loginForm';
                }
                return redirect($route);
            }else{

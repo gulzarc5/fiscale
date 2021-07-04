@@ -22,8 +22,17 @@ class RedirectIfAuthenticated
                 case 'admin':
                     $route = 'admin/deshboard';
                     break;
+                case 'employee':
+                    $route = 'employee/deshboard';
+                    break;
+                case 'branch':
+                    $route = 'branch/deshboard';
+                    break;
+                case 'branch':
+                    $route = 'executive/deshboard';
+                    break;
                default:
-                    $route = 'admin/deshboard';
+                    $route = 'employee.loginForm';
             }
             return redirect($route);
         }

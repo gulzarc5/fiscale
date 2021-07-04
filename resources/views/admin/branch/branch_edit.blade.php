@@ -8,7 +8,7 @@
             <div class="x_panel">
 
                 <div class="x_title">
-                    <h2>Edit Branch</h2>
+                    <h2>Edit Service Point</h2>
                     <div class="clearfix"></div>
                 </div>
 
@@ -28,10 +28,31 @@
                             <input type="hidden" name="id" value="{{$branch->id}}" >
                              <div class="well" style="overflow: auto">
                                 <div class="form-row mb-10">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+                                        <label for="name">Select Executive</label>
+                                        <select class="form-control executive" name="executive_id">
+                                            <option value="">--Select Executive--</option>
+                                            @if (isset($executive) && !empty($executive))
+                                                @foreach ($executive as $item)
+                                                    @if ($item->id == $branch->executive_id)
+                                                        <option value="{{$item->id}}" selected>{{$item->name}}</option>                                                        
+                                                    @else
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>                                                        
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            
+                                        </select>
+                                          @if($errors->has('name'))
+                                              <span class="invalid-feedback" role="alert" style="color:red">
+                                                  <strong>{{ $errors->first('name') }}</strong>
+                                              </span>
+                                          @enderror
+                                    </div>
     
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-                                      <label for="name">Branch Name</label>
-                                      <input type="text" class="form-control" name="name"  placeholder="Enter Branch name" value="{{$branch->name}}" >
+                                      <label for="name">Service Point Name</label>
+                                      <input type="text" class="form-control" name="name"  placeholder="Enter Service Point name" value="{{$branch->name}}" >
                                         @if($errors->has('name'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -41,7 +62,7 @@
     
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="mobile">Mobile Number</label>
-                                        <input type="text" class="form-control" name="mobile"  placeholder="Enter Branch Mobile Number" value="{{$branch->mobile}}" >
+                                        <input type="text" class="form-control" name="mobile"  placeholder="Enter SP Mobile Number" value="{{$branch->mobile}}" >
                                         @if($errors->has('mobile'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('mobile') }}</strong>
@@ -51,7 +72,7 @@
     
                                     <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control" name="email"  placeholder="Enter Branch Email Id" value="{{$branch->email}}" >
+                                        <input type="text" class="form-control" name="email"  placeholder="Enter SP Email Id" value="{{$branch->email}}" >
                                         @if($errors->has('email'))
                                             <span class="invalid-feedback" role="alert" style="color:red">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -117,6 +138,12 @@
     <div class="clearfix"></div>
 
 </div>
-
-
+@endsection
+@section('script')
+<script src="{{asset('select2/js/select2.min.js')}}"></script>
+   <script>
+      $(document).ready(function() {
+         $('.executive').select2();
+      });
+   </script>
 @endsection
